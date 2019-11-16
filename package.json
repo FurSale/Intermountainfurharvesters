@@ -1,7 +1,11 @@
 {
   "name": "materialize-admin-boiler-plate",
   "description": "Materialize Admin Template",
+<<<<<<< HEAD
+  "url": "http://johnsondelbert1.com/",
+=======
   "url": "http://pixinvent.com/",
+>>>>>>> 48c7c723f69602723898c1ff6060969c2c7462f9
   "version": "4.0.0",
   "private": true,
   "keywords": [
@@ -17,11 +21,19 @@
     "Materialize"
   ],
   "author": {
+<<<<<<< HEAD
+    "name": "johnsondelbert1",
+    "url": "http://johnsondelbert1.com"
+  },
+  "bugs": {
+    "url": "https://support.johnsondelbert1.com"
+=======
     "name": "Pixinvent",
     "url": "http://pixinvent.com"
   },
   "bugs": {
     "url": "https://support.pixinvent.com"
+>>>>>>> 48c7c723f69602723898c1ff6060969c2c7462f9
   },
   "license": "Themeforest Standard Licenses",
   "licenses": [{
@@ -57,4 +69,8 @@
     "node-sass": "^4.5.2",
     "phantomjs-prebuilt": "^2.1.14"
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 48c7c723f69602723898c1ff6060969c2c7462f9

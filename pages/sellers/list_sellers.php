@@ -1,8 +1,4 @@
 <?php
-<<<<<<< HEAD
-include 'pages\sellers\list_sellers.php';
-?>
-=======
 
 
 include 'includes\begin_html.php';
@@ -161,4 +157,3 @@ include 'includes\begin_html.php';
 
 
   ?>
->>>>>>> 48c7c723f69602723898c1ff6060969c2c7462f9

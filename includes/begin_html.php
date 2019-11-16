@@ -66,6 +66,8 @@
                 </a>
               </li>
             </ul>
+<<<<<<< HEAD
+=======
             <!-- profile-dropdown -->
             <ul id="profile-dropdown" class="dropdown-content">
               <li>
@@ -77,6 +79,7 @@
                   <i class="material-icons">settings</i> Settings</a>
               </li>
             </ul>
+>>>>>>> 48c7c723f69602723898c1ff6060969c2c7462f9
           </div>
         </nav>
       </div>
@@ -88,6 +91,9 @@
     <div id="main">
       <!-- START WRAPPER -->
       <div class="wrapper">
+<<<<<<< HEAD
+        <?php include 'includes\nav.php';?>
+=======
         <!-- START LEFT SIDEBAR NAV-->
         <aside id="left-sidebar-nav">
           <ul id="slide-out" class="side-nav fixed leftside-navigation">
@@ -141,3 +147,4 @@
           </a>
         </aside>
         <!-- END LEFT SIDEBAR NAV-->
+>>>>>>> 48c7c723f69602723898c1ff6060969c2c7462f9
