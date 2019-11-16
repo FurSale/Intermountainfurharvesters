@@ -8,7 +8,7 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
     <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
-    <title>Trapping sale Manager</title>
+    <title>Trapping sale Manager <?php echo $pgsettings['title']; ?></title>
     <!-- Favicons-->
     <link rel="icon" href="images/favicon/favicon-32x32.png" sizes="32x32">
     <!-- Favicons-->
@@ -66,20 +66,6 @@
                 </a>
               </li>
             </ul>
-<<<<<<< HEAD
-=======
-            <!-- profile-dropdown -->
-            <ul id="profile-dropdown" class="dropdown-content">
-              <li>
-                <a href="#" class="grey-text text-darken-1">
-                  <i class="material-icons">face</i> Profile</a>
-              </li>
-              <li>
-                <a href="#" class="grey-text text-darken-1">
-                  <i class="material-icons">settings</i> Settings</a>
-              </li>
-            </ul>
->>>>>>> 48c7c723f69602723898c1ff6060969c2c7462f9
           </div>
         </nav>
       </div>
@@ -91,60 +77,7 @@
     <div id="main">
       <!-- START WRAPPER -->
       <div class="wrapper">
-<<<<<<< HEAD
         <?php include 'includes\nav.php';?>
-=======
-        <!-- START LEFT SIDEBAR NAV-->
-        <aside id="left-sidebar-nav">
-          <ul id="slide-out" class="side-nav fixed leftside-navigation">
-            <li class="user-details brown darken-2">
-              <div class="row">
-                <div class="col col s4 m4 l4">
-                  <img src="images/avatar/avatar-7.png" alt="" class="circle responsive-img valign profile-image brown">
-                </div>
-                <div class="col col s8 m8 l8">
-                  <ul id="profile-dropdown-nav" class="dropdown-content">
-                    <li>
-                      <a href="#" class="grey-text text-darken-1">
-                        <i class="material-icons">face</i> Profile</a>
-                    </li>
-                    <li>
-                      <a href="#" class="grey-text text-darken-1">
-                        <i class="material-icons">settings</i> Settings</a>
-                    </li>
-
-                  </ul>
-                  <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#" data-activates="profile-dropdown-nav">Muhaimin<i class="mdi-navigation-arrow-drop-down right"></i></a>
-                  <p class="user-roal">Administrator</p>
-                </div>
-              </div>
-            </li>
-            <li class="no-padding">
-                <ul class="collapsible" data-collapsible="accordion">
-                  <li class="bold">
-                    <a href="index.php" class="waves-effect waves-brown">
-                        <i class="material-icons">account_circle</i>
-                        <span class="nav-text">Sellers</span>
-                      </a>
-                  </li>
-                  <li class="bold">
-                      <a href="sale.php" class="waves-effect waves-brown">
-                          <i class="material-icons">layers</i>
-                          <span class="nav-text">sale</span>
-                      </a>
-                    </li>
-                    <li class="bold">
-                        <a href="buyers.php" class="waves-effect waves-brown">
-                            <i class="material-icons">shopping_cart</i>
-                            <span class="nav-text">Buyers</span>
-                        </a>
-                    </li>
-                </ul>
-              </li>
-          </ul>
-          <a href="#" data-activates="slide-out" class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only">
-            <i class="material-icons">menu</i>
-          </a>
-        </aside>
-        <!-- END LEFT SIDEBAR NAV-->
->>>>>>> 48c7c723f69602723898c1ff6060969c2c7462f9
+        <?php include 'includes\crumbs.php';?>
+        <!-- START CONTENT -->
+      <section id="content">
