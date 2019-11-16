@@ -23,9 +23,9 @@
   "bugs": {
     "url": "https://support.johnsondelbert1.com"
   },
-  "license": "Themeforest Standard Licenses",
+  "license": "GPLv3",
   "licenses": [{
-    "type": "Themeforest Standard Licenses",
+    "type": "GPLv3",
     "url": "http://themeforest.net/licenses/standard"
   }],
   "dependencies": {

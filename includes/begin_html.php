@@ -15,16 +15,16 @@
     <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-152x152.png">
     <!-- For iPhone -->
     <meta name="msapplication-TileColor" content="#00bcd4">
-    <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
+    <meta name="msapplication-TileImage" content="../../images/favicon/mstile-144x144.png">
     <!-- For Windows Phone -->
     <!-- CORE CSS-->
-    <link href="css//materialize.css" type="text/css" rel="stylesheet">
-    <link href="css//style.css" type="text/css" rel="stylesheet">
+    <link href="../../css/materialize.css" type="text/css" rel="stylesheet">
+    <link href="../../css/style.css" type="text/css" rel="stylesheet">
     <!-- Custome CSS-->
     <link href="css/custom/custom.css" type="text/css" rel="stylesheet">
     <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
-    <link href="vendors/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet">
-    <link href="vendors/flag-icon/css/flag-icon.min.css" type="text/css" rel="stylesheet">
+    <link href="../../vendors/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet">
+    <link href="../../vendors/flag-icon/css/flag-icon.min.css" type="text/css" rel="stylesheet">
   </head>
   <body>
     <!-- Start Page Loading -->
@@ -44,8 +44,8 @@
             <ul class="left">
               <li>
                 <h1 class="logo-wrapper">
-                  <a href="index.php" class="brand-logo darken-1">
-                    <img src="images/logo/materialize-logo.png" alt="materialize logo">
+                  <a href="../../index.php" class="brand-logo darken-1">
+                    <img src="../../images/logo/materialize-logo.png" alt="materialize logo">
 
                   </a>
                 </h1>
@@ -60,7 +60,7 @@
               <li>
                 <a href="javascript:void(0);" class="waves-effect waves-block waves-light profile-button" data-activates="profile-dropdown">
                   <span class="avatar-status avatar-online">
-                    <img src="images/avatar/avatar-7.png" alt="avatar">
+                    <img src="../../images/avatar/avatar-7.png" alt="avatar">
                     <i></i>
                   </span>
                 </a>
@@ -77,7 +77,7 @@
     <div id="main">
       <!-- START WRAPPER -->
       <div class="wrapper">
-        <?php include 'includes\nav.php';?>
-        <?php include 'includes\crumbs.php';?>
+        <?php include 'nav.php';?>
+        <?php include 'crumbs.php';?>
         <!-- START CONTENT -->
       <section id="content">

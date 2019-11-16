@@ -1,3 +1,3 @@
 <?php
-include 'pages\sellers\list_sellers.php';
+include 'template.php';
 ?>

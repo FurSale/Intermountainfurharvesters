@@ -14,19 +14,19 @@
     <li class="no-padding">
         <ul class="collapsible" data-collapsible="accordion">
           <li class="bold">
-            <a href="pages\sellers\list_sellers.php" class="waves-effect waves-brown">
+            <a href="../../pages/sellers/list_sellers.php" class="waves-effect waves-brown">
                 <i class="material-icons">account_circle</i>
                 <span class="nav-text">Sellers</span>
               </a>
           </li>
           <li class="bold">
-              <a href="pages\items\list_items.php" class="waves-effect waves-brown">
+              <a href="../../pages/items/list_items.php" class="waves-effect waves-brown">
                   <i class="material-icons">layers</i>
                   <span class="nav-text">sale</span>
               </a>
             </li>
             <li class="bold">
-                <a href="pages\buyers\list_buyers.php" class="waves-effect waves-brown">
+                <a href="../../pages/buyers/list_buyers.php" class="waves-effect waves-brown">
                     <i class="material-icons">shopping_cart</i>
                     <span class="nav-text">Buyers</span>
                 </a>

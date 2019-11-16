@@ -3,7 +3,7 @@
 		"title" => "Items",
 		"icon" => "icon-newspaper"
 	);
-	require_once("includes/begin_html.php");
+	require_once("../../includes/begin_html.php");
 ?>
       <!--start container-->
       <div class="container">
@@ -67,7 +67,7 @@
   <?php
 
 
-  include 'includes\end_html.php';
+  include '../../includes/end_html.php';
 
 
   ?>
