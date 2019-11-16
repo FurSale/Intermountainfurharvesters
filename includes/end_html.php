@@ -1,5 +1,9 @@
 
-
+<!-- END CONTENT -->
+</div>
+<!-- END WRAPPER -->
+</div>
+<!-- END MAIN -->
     <!-- //////////////////////////////////////////////////////////////////////////// -->
     <!-- START FOOTER -->
     <footer class="page-footer gradient-45deg-light-blue-cyan">

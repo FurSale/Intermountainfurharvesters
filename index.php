@@ -149,11 +149,7 @@ include 'includes\begin_html.php';
             </div>
           </div>
       </section>
-      <!-- END CONTENT -->
-    </div>
-    <!-- END WRAPPER -->
-  </div>
-  <!-- END MAIN -->
+
   <?php
 
 
