@@ -12,7 +12,7 @@
             <span>Copyright ©
               <script type="text/javascript">
                 document.write(new Date().getFullYear());
-              </script> <a class="grey-text text-lighten-2" href="http://github.com/johnsondelbert1" target="_blank">Delbert Johnson</a></span>
+              </script> <a class="grey-text text-lighten-2" href="http://github.com/johnsondelbert1" target="_blank">SecondGenDesign</a></span>
             <span class="right hide-on-small-only"> Special Thanks to <a class="grey-text text-lighten-2" href="https://cc-wd.com/" target="_blank">CCWD</a></span>
             <span class="hide-on-small-only"> In Memory of Delbert Jepson</span>
 
