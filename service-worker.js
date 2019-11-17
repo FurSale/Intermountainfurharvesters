@@ -1,5 +1,3 @@
-"use strict";
-
 console.log('WORKER: executing.');
 
 /* A version number is useful when updating the worker logic,
