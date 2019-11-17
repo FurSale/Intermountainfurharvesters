@@ -33,5 +33,7 @@
     <script type="text/javascript" src="../../js/plugins.js"></script>
     <!--custom-script.js - Add your own theme custom JS-->
     <script type="text/javascript" src="../../js/custom-script.js"></script>
+    <script type="text/javascript" src="../../js/pwabuilder-sw-register.js"></script>
+
   </body>
 </html>

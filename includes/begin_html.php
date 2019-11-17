@@ -9,8 +9,10 @@
     <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
     <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
     <title>Trapping sale Manager <?php echo $pgsettings['title']; ?></title>
+    <link rel='manifest' href='../../manifest.webmanifest'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicons-->
-    <link rel="icon" href="images/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" href="../../images/favicon/favicon-32x32.png" sizes="32x32">
     <!-- Favicons-->
     <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-152x152.png">
     <!-- For iPhone -->

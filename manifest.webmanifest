@@ -1,0 +1,10 @@
+{
+	"name" : "Trapper SAle",
+	"short_name" : "Sale",
+	"start_url" : "johnsondelbert1.me",
+	"description" : "Trapping Sale management",
+	"scope" : "/",
+	"display" : "standalone",
+	"orientation" : "landscape",
+	"lang" : "English"
+}
