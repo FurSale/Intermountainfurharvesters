@@ -80,7 +80,7 @@
                               <td>Alfin</td>
                               <td>$1000/td>
                               <td>Editing</td>
-                              <td><a href="detail.html" class="waves-effect waves-light  btn-small"><i class="material-icons left">developer_board</i> Detail</a></td>
+                              <td><a href="../details.php" class="waves-effect waves-light  btn-small"><i class="material-icons left">developer_board</i> Detail</a></td>
                           </tr>
                         </tbody>
                       </table>
