@@ -13,7 +13,6 @@ var version = 'v1::';
 */
 var offlineFundamentals = [
   '',
-  'css/global.css',
   'js/global.js'
 ];
 
