@@ -10,7 +10,7 @@
         <h5 class="breadcrumbs-title">Data Tables</h5>
         <ol class="breadcrumbs">
 
-          <li><a href="#">Data</a></li>
+          <li><a href="../../index.php">Data</a></li>
           <li class="active"><?php echo $pgsettings['title']; ?></li>
         </ol>
       </div>

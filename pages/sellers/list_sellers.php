@@ -116,7 +116,7 @@
   <?php
 
 
-  include '../../includes\end_html.php';
+  include '../../includes/end_html.php';
 
 
   ?>
