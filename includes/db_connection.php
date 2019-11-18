@@ -1,7 +1,7 @@
 <?php
 $xml = null;
-if(file_exists(__DIR__.'\database.xml')){
-	$xml = simplexml_load_file(__DIR__.'\database.xml');
+if(file_exists(__DIR__.DIRECTORY_SEPARATOR.'database.xml')){
+	$xml = simplexml_load_file(__DIR__.DIRECTORY_SEPARATOR.'database.xml');
 }else{
 	CreateXML();
 	echo("Database config error. Enter correct DB info into XML file.");
@@ -68,6 +68,6 @@ function CreateXML(){
 			
 			$doc->appendChild( $b );
 			
-			$doc->save(__DIR__.'\database.xml');
+			$doc->save(__DIR__.DIRECTORY_SEPARATOR.'database.xml');
 }
 ?>
