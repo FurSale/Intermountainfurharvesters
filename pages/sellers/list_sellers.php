@@ -1,4 +1,5 @@
 <?php
+  require_once("../../includes/db_connection.php");
 	$pgsettings = array(
 		"title" => "Sellers",
 		"icon" => "icon-newspaper"
@@ -44,66 +45,28 @@
                         </tr>
                       </thead>
                       <tbody>
-
-                        <tr>
-                          <td><a href="https://www.w3schools.com">S01</a></td>
-                          <td>Alfin</td>
-                          <td></td>
-                          <td>Surakarta, Central Java</td>
-                          <td>+62 8190 4073 250</td>
-                          <td>21</td>
+                      <?php
+                        	$query="SELECT * FROM `seller`";
+                          $result=mysqli_query( $connection, $query);
+                          //confirm_query($result);
+                          while($seller=mysqli_fetch_array($result)){
+                            ?>
+                       <tr>
+                          <td><?php echo $seller['id']; ?></td>
+                          <td><?php echo $seller['first_name'] . " " . $seller['last_name']; ?></td>
+                          <td><?php echo $seller['first_name'] . " " . $seller['last_name']; ?></td>
+                          <td><?php echo $seller['address_1'] . " " . $seller['address_1'] . ", " . $seller['city'] . ", " . $seller['state'] . " " . $seller['zip']; ?></td>
+                          <td><?php echo $seller['phone']; ?></td>
+                          <td><?php echo $seller['trapper_id']; ?></td>
                           <td>
                             <a class="waves-effect waves-light  btn"><i class="material-icons left">add_box</i>Add Items</a>
                               <a class="waves-effect waves-light  btn"><i class="material-icons">edit</i></a>
                               <a class="waves-effect waves-light  btn"><i class="material-icons">delete</i></a>
                           </td>
                         </tr>
-
-                      <a href="https://www.w3schools.com">
-                        <tr>
-                          <td>S02</td>
-                          <td>Maulana</td>
-                          <td></td>
-                          <td>Boyolali, Central Java</td>
-                          <td>+62 8944 9112 095</td>
-                          <td>17</td>
-                          <td>
-                            <a class="waves-effect waves-light  btn"><i class="material-icons left">add_box</i>Add Items</a>
-                              <a class="waves-effect waves-light  btn"><i class="material-icons">edit</i></a>
-                              <a class="waves-effect waves-light  btn"><i class="material-icons">delete</i></a>
-                          </td>
-                        </tr>
-                      </a>
-                      <a href="https://www.w3schools.com">
-                        <tr>
-                          <td>S03</td>
-                          <td>Citra</td>
-                          <td></td>
-                          <td>Jakarta, West Java</td>
-                          <td>+62 8572 6534 114</td>
-                          <td>34</td>
-                          <td>
-                            <a class="waves-effect waves-light  btn"><i class="material-icons left">add_box</i>Add Items</a>
-                              <a class="waves-effect waves-light  btn"><i class="material-icons">edit</i></a>
-                              <a class="waves-effect waves-light  btn"><i class="material-icons">delete</i></a>
-                          </td>
-                        </tr>
-                      </a>
-
-                        <tr>
-                          <td>S04</td>
-                          <td>Rahma</td>
-                          <td></td>
-                          <td>Surabaya, East Java</td>
-                          <td>+62 8555 4145 279</td>
-                          <td>28</td>
-                          <td>
-                            <a class="waves-effect waves-light  btn"><i class="material-icons left">add_box</i>Add Items</a>
-                              <a class="waves-effect waves-light  btn"><i class="material-icons">edit</i></a>
-                              <a class="waves-effect waves-light  btn"><i class="material-icons">delete</i></a>
-                          </td>
-                        </tr>
-
+                        <?php
+                          }
+                      ?>
                       </tbody>
                     </table>
                   </div>

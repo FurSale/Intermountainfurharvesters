@@ -1,4 +1,5 @@
 <?php
+  require_once("../../includes/db_connection.php");
 	$pgsettings = array(
 		"title" => "Items",
 		"icon" => "icon-newspaper"
@@ -17,44 +18,33 @@
                 <table class="responsive-table">
                   <thead>
                     <tr>
-                      <th data-field="id">Lot</th>
+                      <th data-field="lot">Lot</th>
                       <th data-field="name">Item</th>
-                      <th data-field="email">Count</th>
-                      <th data-field="address">Price</th>
-                      <th data-field="address">High Bid</th>
+                      <th data-field="count">Count</th>
+                      <th data-field="price">Price</th>
+                      <th data-field="high-bid">High Bid</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>2001</td>
-                      <td>Coyote</td>
-                      <td>16</td>
-                      <td>$12</td>
-                      <td class="green-text">$127</td>
-
-                    </tr>
-                    <tr>
-                      <td>2003</td>
-                      <td>Coyote</td>
-                      <td>1</td>
-                      <td>$34</td>
-                      <td class="red-text">$23</td>
-
-                    </tr>
-                    <tr>
-                      <td>2007</td>
-                      <td>Coyote</td>
-                      <td>8</td>
-                      <td>$56</td>
-                      <td class="green-text">$123</td>
-                    </tr>
-                    <tr>
-                      <td>2015</td>
-                      <td>Bobcat</td>
-                      <td>102</td>
-                      <td>$78</td>
-                      <td class="red-text">$12</td>
-                    </tr>
+                  <?php
+                        	$query="SELECT * FROM `seller_item`";
+                          $result=mysqli_query( $connection, $query);
+                          //confirm_query($result);
+                          while($sellerItem=mysqli_fetch_array($result)){
+                            $query="SELECT * FROM `bid` WHERE seller_item_id = {$sellerItem['id']} ORDER BY `bid_amount` ASC LIMIT 1";
+                            $result2=mysqli_query( $connection, $query);
+                            $highestBid=mysqli_fetch_array($result2);
+                            ?>
+                       <tr>
+                          <td><?php echo $sellerItem['lot']; ?></td>
+                          <td><?php echo $sellerItem['item']; ?></td>
+                          <td><?php echo $sellerItem['count']; ?></td>
+                          <td><?php echo "$".$sellerItem['asking']; ?></td>
+                          <td <?php if($highestBid != null){if($highestBid['bid_amount'] < $sellerItem['asking']){echo "class=\"red-text\"";}else{echo "class=\"green-text\"";}} ?>><?php if($highestBid != null){ echo "$".$highestBid['bid_amount']; }else{echo "N/A";} ?></td>
+                        </tr>
+                        <?php
+                          }
+                      ?>
                   </tbody>
                 </table>
               </div>
