@@ -28,6 +28,7 @@
   navigator.serviceWorker.register('service-worker.js');
 }
     </script>
+    <script src="../../js/manup.js"></script>
     <!-- jQuery Library -->
     <script type="text/javascript" src="../../vendors/jquery-3.2.1.min.js"></script>
     <!--materialize js-->
