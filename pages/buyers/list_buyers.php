@@ -1,4 +1,5 @@
 <?php
+  require_once("../../includes/db_connection.php");
 	$pgsettings = array(
 		"title" => "Buyers",
 		"icon" => "icon-newspaper"
@@ -49,39 +50,34 @@
                           <tr>
                             <th data-field="id">ID</th>
                             <th data-field="name">Buyer</th>
+                            <th data-field="company">Company</th>
+                            <th data-field="address">Address</th>
+                            <th data-field="phone">Phone</th>
+                            <th data-field="license">License</th>
                             <th data-field="total">Total</th>
                             <th data-field="status">Status</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>TRF001</td>
-                            <td>Alfin</td>
-                            <td>$17544</td>
-                            <td>Final</td>
-                            <td><a href="detail.html" class="waves-effect waves-light  btn-small"><i class="material-icons left">developer_board</i> Detail</a></td>
-                          </tr>
-                          <tr>
-                            <td>TRF002</td>
-                            <td>Rahma</td>
-                            <td>$234</td>
-                            <td>Empty</td>
-                            <td><a href="detail.html" class="waves-effect waves-light  btn-small"><i class="material-icons left">developer_board</i> Detail</a></td>
-                          </tr>
-                          <tr>
-                              <td>TRF003</td>
-                              <td>Maulana</td>
-                              <td>$5376</td>
-                              <td>Final</td>
-                              <td><a href="detail.html" class="waves-effect waves-light  btn-small"><i class="material-icons left">developer_board</i> Detail</a></td>
-                          </tr>
-                          <tr>
-                              <td>TRF004</td>
-                              <td>Alfin</td>
-                              <td>$1000/td>
-                              <td>Editing</td>
-                              <td><a href="../details.php" class="waves-effect waves-light  btn-small"><i class="material-icons left">developer_board</i> Detail</a></td>
-                          </tr>
+                        <?php
+                        	$query="SELECT * FROM `buyer`";
+                          $result=mysqli_query( $connection, $query);
+                          //confirm_query($result);
+                          while($buyer=mysqli_fetch_array($result)){
+                            ?>
+                       <tr>
+                          <td><?php echo $buyer['id']; ?></td>
+                          <td><?php echo $buyer['first_name'] . " " . $buyer['last_name']; ?></td>
+                          <td><?php echo $buyer['first_name'] . " " . $buyer['last_name']; ?></td>
+                          <td><?php echo $buyer['address_1'] . " " . $buyer['address_1'] . ", " . $buyer['city'] . ", " . $buyer['state'] . " " . $buyer['zip']; ?></td>
+                          <td><?php echo $buyer['phone']; ?></td>
+                          <td><?php echo $buyer['fur_buyer_license_num']; ?></td>
+                          <td></td>
+                          <td><a href="detail.html" class="waves-effect waves-light  btn-small"><i class="material-icons left">developer_board</i> Detail</a></td>
+                        </tr>
+                        <?php
+                          }
+                      ?>
                         </tbody>
                       </table>
                     </div>
