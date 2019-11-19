@@ -1,11 +1,11 @@
 <?php
-  require_once("../../includes/db_connection.php");
 	$pgsettings = array(
 		"title" => "Buyers",
 		"icon" => "icon-newspaper"
 	);
-	require_once("../../includes/begin_html.php");
-?>
+	require_once("../../includes/functions.php");
+	require_multi("../../includes/begin_html.php", "../../includes/crumbs.php", "../../includes/nav.php");
+	 ?>
             <!--start container-->
             <div class="container">
               <div class="section">
@@ -14,26 +14,6 @@
                       <div class="input-field col s12">
                           <i class="material-icons prefix">search</i>
                           <input type="text" name="Search" placeholder="Search" />
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="container">
-                        <div class="col s12 m12 l12">
-                          <a class="waves-effect waves-light  btn"><i class="material-icons left">add</i> Add Data</a>
-                          <a class="btn dropdown-settings waves-effect waves-teal breadcrumbs-btn" href="#!" data-activates="dropdown2">
-                              <i class="material-icons hide-on-med-and-up">settings</i>
-                              <span class="hide-on-small-onl">Export</span>
-                              <i class="material-icons right">arrow_drop_down</i>
-                            </a>
-                          <ul id="dropdown2" class="dropdown-content">
-                            <li><a href="#!" class="grey-text text-darken-2">PDF</a>
-                            </li>
-                            <li><a href="#!" class="grey-text text-darken-2">WORD</a>
-                            </li>
-                            <li><a href="#!" class="grey-text text-darken-2">EXCEL</a>
-                            </li>
-                          </ul>
-                        </div>
                       </div>
                   </div>
               </div>

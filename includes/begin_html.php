@@ -60,9 +60,6 @@
             <ul class="right hide-on-med-and-down">
 
               <li>
-                <button onclick="install()">
-    Install
-  </button>
               </li>
             </ul>
           </div>
@@ -76,7 +73,5 @@
     <div id="main">
       <!-- START WRAPPER -->
       <div class="wrapper">
-        <?php include 'nav.php';?>
-        <?php include 'crumbs.php';?>
         <!-- START CONTENT -->
       <section id="content">

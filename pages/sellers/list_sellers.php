@@ -4,8 +4,9 @@
 		"title" => "Sellers",
 		"icon" => "icon-newspaper"
 	);
-	require_once("../../includes/begin_html.php");
-?>
+  require_once("../../includes/functions.php");
+  require_multi("../../includes/begin_html.php", "../../includes/crumbs.php", "../../includes/nav.php");
+   ?>
           <!--start container-->
           <div class="container">
             <div class="section">
