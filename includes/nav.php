@@ -13,24 +13,28 @@
     </li>
     <li class="no-padding">
         <ul class="collapsible" data-collapsible="accordion">
-          <li class="bold">
-            <a href="../../pages/sellers/list_sellers.php" class="waves-effect waves-brown">
-                <i class="material-icons">account_circle</i>
-                <span class="nav-text">Sellers</span>
-              </a>
-          </li>
-          <li class="bold">
-              <a href="../../pages/items/list_items.php" class="waves-effect waves-brown">
-                  <i class="material-icons">layers</i>
-                  <span class="nav-text">sale</span>
-              </a>
-            </li>
-            <li class="bold">
-                <a href="../../pages/buyers/list_buyers.php" class="waves-effect waves-brown">
-                    <i class="material-icons">shopping_cart</i>
-                    <span class="nav-text">Buyers</span>
+          <?php
+          $dir_open = opendir('./pages');
+
+          while(false !== ($filename = readdir($dir_open))){
+            if($filename != "." && $filename != ".."){
+                $link = "
+                <li><div class='divider'></div></li>
+                <li><a class='subheader'>$filename</a></li>
+                <li class='bold'>
+                <a href='../../pages/$filename/list_$filename.php' class='waves-effect waves-brown'>
+                <span class='nav-text'>$filename List</span>
                 </a>
-            </li>
+                </li>
+                <li class='bold'>
+                <a href='../../pages/$filename/edit_$filename.php' class='waves-effect waves-brown'>
+                <span class='nav-text'>Edit $filename</span>
+                </a>
+                </li>";
+                echo $link;
+            }
+          }
+          ?>
         </ul>
       </li>
   </ul>

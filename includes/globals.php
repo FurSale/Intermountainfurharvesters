@@ -12,13 +12,5 @@ $GLOBALS['HOST'] = $protocol.$_SERVER['HTTP_HOST'].$serv_port.$path;
 $site_version = '0.0.1';
 $db_compatability = '0.0.1';
 
-//global constants
-define('USER_DIR','user-data/');
-define('USER_DIR_URL',$GLOBALS['HOST'].'/'.USER_DIR);
-
-function require_multi($files) {
-    $files = func_get_args();
-    foreach($files as $file)
-        require_once($file);
-}
+//global constant
 ?>

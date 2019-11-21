@@ -3,8 +3,14 @@
 		"title" => "Buyers",
 		"icon" => "icon-newspaper"
 	);
+	$nav = ("1");
 	require_once("../../includes/functions.php");
-	require_multi("../../includes/begin_html.php", "../../includes/crumbs.php", "../../includes/nav.php");
+	require_once("../../includes/begin_html.php");
+	require_once("../../includes/nav.php");
+	require_once("../../includes/crumbs.php");
+
+
+
 	 ?>
             <!--start container-->
             <div class="container">

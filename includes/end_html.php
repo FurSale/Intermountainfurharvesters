@@ -60,6 +60,14 @@ async function install() {
 }
 
     </script>
+    <script>document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+  });</script>
     <script src="../../js/manup.js"></script>
     <!-- jQuery Library -->
     <script type="text/javascript" src="../../vendors/jquery-3.2.1.min.js"></script>
