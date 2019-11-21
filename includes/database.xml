@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <database>
   <firstrun>false</firstrun>
-  <server>localhost</server>
+  <server>localhost:3306</server>
   <username>root</username>
   <password/>
   <name>intermountain_fur</name>
