@@ -9,3 +9,8 @@
 	require_once("includes/crumbs.php");
 		require_once("includes/end_html.php");
 	 ?>
+	 <!-- START CONTENT -->
+	<section id="content">
+		<?php
+				require_once("includes/end_html.php");
+			 ?>

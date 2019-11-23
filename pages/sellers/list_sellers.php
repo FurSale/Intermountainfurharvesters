@@ -7,6 +7,8 @@
   require_once("../../includes/functions.php");
   require_multi("../../includes/begin_html.php", "../../includes/crumbs.php", "../../includes/nav.php");
    ?>
+   <!-- START CONTENT -->
+ <section id="content">
           <!--start container-->
           <div class="container">
             <div class="section">

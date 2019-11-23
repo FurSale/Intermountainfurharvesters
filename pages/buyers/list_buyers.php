@@ -1,4 +1,5 @@
 <?php
+  require_once("../../includes/db_connection.php");
 	$pgsettings = array(
 		"title" => "Buyers",
 		"icon" => "icon-newspaper"
@@ -12,6 +13,11 @@
 
 
 	 ?>
+	 <!-- START CONTENT -->
+ <section id="content">
+	 <?php
+	 	require_once("../../includes/crumbs.php");
+	 	 ?>
             <!--start container-->
             <div class="container">
               <div class="section">

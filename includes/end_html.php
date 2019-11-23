@@ -1,12 +1,12 @@
 
 <!-- END CONTENT -->
-</div>
+</section>
 <!-- END WRAPPER -->
 </div>
 <!-- END MAIN -->
     <!-- //////////////////////////////////////////////////////////////////////////// -->
     <!-- START FOOTER -->
-    <footer class="page-footer brown">
+    <footer class="page-footer footer-fixed brown">
         <div class="footer-copyright">
           <div class="container">
             <span>Copyright ©

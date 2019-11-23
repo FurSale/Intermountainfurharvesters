@@ -2400,7 +2400,7 @@ body {
 }
 
 body.layout-light ul.side-nav.leftside-navigation {
-  top: 62px;
+  top: 0px;
 }
 
 body.layout-light #header nav.navbar-color {
@@ -2455,7 +2455,7 @@ body.layout-light .footer-copyright {
 }
 
 body.layout-dark ul.side-nav.leftside-navigation {
-  top: 62px;
+  top: 0px;
 }
 
 body.layout-dark #header nav.navbar-color {
@@ -2531,7 +2531,7 @@ body.layout-dark .footer-copyright {
 }
 
 body.layout-semi-dark ul.side-nav.leftside-navigation {
-  top: 62px;
+  top: 0px;
 }
 
 body.layout-semi-dark #header nav.navbar-color {
@@ -2658,7 +2658,7 @@ select {
 #left-sidebar-nav {
   position: fixed;
   width: 100px;
-  left: 180px;
+  left: 0;
   z-index: 999;
   height: auto;
 }
@@ -6289,7 +6289,7 @@ header .brand-logo img {
     top: -48px;
   }
   ul.side-nav.leftside-navigation {
-    top: 56px !important;
+    top: 0px !important;
   }
 }
 
@@ -6605,7 +6605,7 @@ nav ul li.no-hover:hover {
 }
 
 ul.side-nav.leftside-navigation {
-  top: 64px;
+  top: 0x;
   overflow: hidden;
   height: 100%;
 }

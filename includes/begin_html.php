@@ -22,13 +22,14 @@
     <!-- CORE CSS-->
     <link href="../../css/materialize.css" type="text/css" rel="stylesheet">
     <link href="../../css/style.css" type="text/css" rel="stylesheet">
+    <link href="../../css/reset.css" type="text/css" rel="stylesheet">
     <!-- Custome CSS-->
     <link href="css/custom/custom.css" type="text/css" rel="stylesheet">
     <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
     <link href="../../vendors/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet">
     <link href="../../vendors/flag-icon/css/flag-icon.min.css" type="text/css" rel="stylesheet">
   </head>
-  <body>
+  <body class="layout-dark">
     <!-- Start Page Loading -->
     <div id="loader-wrapper">
       <div id="loader"></div>
@@ -73,5 +74,3 @@
     <div id="main">
       <!-- START WRAPPER -->
       <div class="wrapper">
-        <!-- START CONTENT -->
-      <section id="content">
