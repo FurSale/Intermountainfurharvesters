@@ -4378,6 +4378,7 @@ nav .nav-title {
   display: inline-block;
   font-size: 32px;
   padding: 28px 0;
+  margin-left: 20px;
 }
 
 nav ul {

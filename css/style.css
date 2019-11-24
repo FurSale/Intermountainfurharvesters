@@ -6286,7 +6286,7 @@ header .brand-logo img {
 
 /*Search box*/
 #header .header-search-wrapper {
-  margin: 10px auto 0 260px;
+  margin-left: 20px;
   width: calc(100% - 600px);
   height: 40px;
   display: inline-block;

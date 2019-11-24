@@ -20,3 +20,6 @@ body {
     right: 100px;
     bottom:-20px;
   }
+  nav .navtitle{
+    margin-left: 20px;
+  }
