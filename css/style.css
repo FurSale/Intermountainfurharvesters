@@ -1,4 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700);
+
+
 .materialize-red {
   background-color: #e51c23 !important;
 }
@@ -2391,13 +2393,7 @@ ul.side-nav.leftside-navigation li:not(.no-padding) a {
 /*----------------------------------------
   General Layout Style
 ------------------------------------------*/
-html, body {
-  height: 100%;
-}
 
-body {
-  background-color: #f9f9f9;
-}
 
 body.layout-light ul.side-nav.leftside-navigation {
   top: 0px;
@@ -2608,7 +2604,6 @@ body.layout-semi-dark .footer-copyright {
 
 #main {
   min-height: calc(100% - 100px);
-  padding-left: 240px;
   -webkit-transition: .3s ease all;
   -o-transition: .3s ease all;
   -moz-transition: .3s ease all;
@@ -2620,10 +2615,6 @@ body.layout-semi-dark .footer-copyright {
 
 #main.main-full {
   padding-left: 64px;
-}
-
-footer {
-  padding-left: 240px;
 }
 
 footer.page-footer {
@@ -7459,25 +7450,4 @@ tr.group:hover {
 
 .icon-holder p {
   margin: 0;
-}
-
-/*----------------------------------------
-    Footer
-------------------------------------------*/
-.page-footer.footer-fixed {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
-.page-footer .container {
-  padding: 0 15px;
-}
-
-#world-map-markers {
-  height: 300px;
-}
-
-#polar-chart-holder {
-  padding-top: 20px;
 }

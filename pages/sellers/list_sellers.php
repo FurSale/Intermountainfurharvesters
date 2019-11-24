@@ -1,12 +1,14 @@
 <?php
-  require_once("../../includes/db_connection.php");
+require_once("../../includes/db_connection.php");
 	$pgsettings = array(
 		"title" => "Sellers",
 		"icon" => "icon-newspaper"
 	);
-  require_once("../../includes/functions.php");
-  require_multi("../../includes/begin_html.php", "../../includes/crumbs.php", "../../includes/nav.php");
-   ?>
+	require_once("../../includes/functions.php");
+	require_once("../../includes/begin_html.php");
+	require_once("../../includes/nav.php");
+	require_once("../../includes/crumbs.php");
+	 ?>
    <!-- START CONTENT -->
  <section id="content">
           <!--start container-->
@@ -77,7 +79,6 @@
               </div>
             </div>
           </div>
-      </section>
 
   <?php
 

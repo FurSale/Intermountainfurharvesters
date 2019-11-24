@@ -5,6 +5,18 @@ NOTE:
 PLACE HERE YOUR OWN CSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
 
-.btn, .btn-large, .btn-floating, .btn-floating:hover {
-  background-color: #cddc39 !important;
-}
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  .fab.direction-left ul{
+    position: absolute;
+    right: 100px;
+    bottom:-20px;
+  }

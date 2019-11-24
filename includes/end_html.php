@@ -2,23 +2,22 @@
 <!-- END CONTENT -->
 </section>
 <!-- END WRAPPER -->
-</div>
+</main>
 <!-- END MAIN -->
     <!-- //////////////////////////////////////////////////////////////////////////// -->
     <!-- START FOOTER -->
-    <footer class="page-footer footer-fixed brown">
-        <div class="footer-copyright">
-          <div class="container">
-            <span>Copyright ©
-              <script type="text/javascript">
-                document.write(new Date().getFullYear());
-              </script> <a class="grey-text text-lighten-2" href="http://github.com/johnsondelbert1" target="_blank">SecondGenDesign</a></span>
-            <span class="right hide-on-small-only"> Special Thanks to <a class="grey-text text-lighten-2" href="https://cc-wd.com/" target="_blank">CCWD</a></span>
-            <span class="hide-on-small-only"> In Memory of Delbert Jepson</span>
-
-          </div>
-        </div>
-    </footer>
+    <footer class="page-footer">
+  <div class="footer-copyright">
+    <div class="container">
+      <span>Copyright ©
+        <script type="text/javascript">
+          document.write(new Date().getFullYear());
+        </script> <a class="grey-text hide-on-small-only text-lighten-2" href="http://github.com/johnsondelbert1" target="_blank">SecondGenDesign</a></span>
+      <span class="right hide-on-small-only"> Special Thanks to <a class="grey-text text-lighten-2" href="https://cc-wd.com/" target="_blank">CCWD</a></span>
+      <span> In Memory of Delbert Jepson</span>
+    </div>
+  </div>
+</footer>
     <!-- END FOOTER -->
     <!-- ================================================
     Scripts
@@ -67,7 +66,22 @@ async function install() {
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
     var instances = M.Sidenav.init(elems);
-  });</script>
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.fab');
+      var instances = M.FloatingActionButton.init(elems, {
+        direction: 'left'
+      });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.dropdown-trigger');
+        var instances = M.Dropdown.init(elems);
+      });
+      document.addEventListener('DOMContentLoaded', function() {
+   var elems = document.querySelectorAll('.tooltipped');
+   var instances = M.Tooltip.init(elems);
+ });
+</script>
     <script src="../../js/manup.js"></script>
     <!-- jQuery Library -->
     <script type="text/javascript" src="../../vendors/jquery-3.2.1.min.js"></script>

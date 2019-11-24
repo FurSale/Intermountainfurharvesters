@@ -8,7 +8,6 @@
 	require_once("../../includes/functions.php");
 	require_once("../../includes/begin_html.php");
 	require_once("../../includes/nav.php");
-	require_once("../../includes/crumbs.php");
 
 
 
