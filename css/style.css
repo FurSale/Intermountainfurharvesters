@@ -1,4 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700);
+
+
 .materialize-red {
   background-color: #e51c23 !important;
 }
@@ -2391,16 +2393,10 @@ ul.side-nav.leftside-navigation li:not(.no-padding) a {
 /*----------------------------------------
   General Layout Style
 ------------------------------------------*/
-html, body {
-  height: 100%;
-}
 
-body {
-  background-color: #f9f9f9;
-}
 
 body.layout-light ul.side-nav.leftside-navigation {
-  top: 62px;
+  top: 0px;
 }
 
 body.layout-light #header nav.navbar-color {
@@ -2455,7 +2451,7 @@ body.layout-light .footer-copyright {
 }
 
 body.layout-dark ul.side-nav.leftside-navigation {
-  top: 62px;
+  top: 0px;
 }
 
 body.layout-dark #header nav.navbar-color {
@@ -2531,7 +2527,7 @@ body.layout-dark .footer-copyright {
 }
 
 body.layout-semi-dark ul.side-nav.leftside-navigation {
-  top: 62px;
+  top: 0px;
 }
 
 body.layout-semi-dark #header nav.navbar-color {
@@ -2608,7 +2604,6 @@ body.layout-semi-dark .footer-copyright {
 
 #main {
   min-height: calc(100% - 100px);
-  padding-left: 240px;
   -webkit-transition: .3s ease all;
   -o-transition: .3s ease all;
   -moz-transition: .3s ease all;
@@ -2620,10 +2615,6 @@ body.layout-semi-dark .footer-copyright {
 
 #main.main-full {
   padding-left: 64px;
-}
-
-footer {
-  padding-left: 240px;
 }
 
 footer.page-footer {
@@ -2658,7 +2649,7 @@ select {
 #left-sidebar-nav {
   position: fixed;
   width: 100px;
-  left: 180px;
+  left: 0;
   z-index: 999;
   height: auto;
 }
@@ -6289,7 +6280,7 @@ header .brand-logo img {
     top: -48px;
   }
   ul.side-nav.leftside-navigation {
-    top: 56px !important;
+    top: 0px !important;
   }
 }
 
@@ -6605,7 +6596,7 @@ nav ul li.no-hover:hover {
 }
 
 ul.side-nav.leftside-navigation {
-  top: 64px;
+  top: 0x;
   overflow: hidden;
   height: 100%;
 }
@@ -7459,25 +7450,4 @@ tr.group:hover {
 
 .icon-holder p {
   margin: 0;
-}
-
-/*----------------------------------------
-    Footer
-------------------------------------------*/
-.page-footer.footer-fixed {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
-.page-footer .container {
-  padding: 0 15px;
-}
-
-#world-map-markers {
-  height: 300px;
-}
-
-#polar-chart-holder {
-  padding-top: 20px;
 }

@@ -12,7 +12,7 @@
     "use strict";
 
     var window_width = $(window).width();
-    
+
 
     // Search class for focus
     $('.header-search-input').focus(
