@@ -1,4 +1,4 @@
-<div class="input-field col s12">
+<div class="input-field">
 <select name="state" id="state">
   <option value="" selected="selected">Select a State</option>
   <option value="AL">Alabama</option>

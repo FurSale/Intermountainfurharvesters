@@ -12,7 +12,6 @@
       <div class="container">
 
           <!--Responsive Table-->
-          <div class="divider"></div>
           <div id="responsive-table">
             <h4 class="header">Data sale</h4>
             <div class="row">
@@ -54,14 +53,11 @@
               </div>
             </div>
           </div>
-        </div>
       </div>
   </section>
-
+<!-- END WRAPPER -->
+</main>
   <?php
-
-
+  include '../../includes/footer.php';
   include '../../includes/end_html.php';
-
-
   ?>

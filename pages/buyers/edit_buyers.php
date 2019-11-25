@@ -17,5 +17,10 @@
 	 <?php
 	 	require_once("../../includes/crumbs.php");
 	 	 ?>
-
-<?php include '../../includes/end_html.php'; ?>
+   </section>
+ <!-- END WRAPPER -->
+ </main>
+<?php
+include '../../includes/footer.php';
+include '../../includes/end_html.php';
+?>

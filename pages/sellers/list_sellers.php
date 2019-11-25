@@ -13,26 +13,7 @@ require_once("../../includes/db_connection.php");
  <section id="content">
           <!--start container-->
           <div class="container">
-            <div class="section">
-                <div class="row">
-                  <div class="col s12">
-                      <div class="input-field col s12">
-                          <i class="material-icons prefix">search</i>
-                          <input type="text" name="Search" placeholder="Search" />
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="container">
-                      <div class="col s12">
-                          <a href="edit_sellers.php?action=newseller" class="waves-effect waves-light  btn"><i class="material-icons left">add</i> Add Seller</a>
-                      </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
               <!--Responsive Table-->
-              <div class="divider"></div>
               <div id="responsive-table">
                 <h4 class="header">Sellers</h4>
                 <div class="row">
@@ -79,11 +60,10 @@ require_once("../../includes/db_connection.php");
               </div>
             </div>
           </div>
-
-  <?php
-
-
-  include '../../includes/end_html.php';
-
-
-  ?>
+				</section>
+				<!-- END WRAPPER -->
+				</main>
+				<?php
+			  include '../../includes/footer.php';
+			  include '../../includes/end_html.php';
+			  ?>

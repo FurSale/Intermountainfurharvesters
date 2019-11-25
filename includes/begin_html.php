@@ -23,6 +23,8 @@
     <link href="../../css/reset.css" type="text/css" rel="stylesheet">
     <link href="../../css/materialize.css" type="text/css" rel="stylesheet">
     <link href="../../css/style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" media="print" href="../../css/print.css">
+
     <!-- Custome CSS-->
     <link href="../../css/custom/custom.css" type="text/css" rel="stylesheet">
     <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->

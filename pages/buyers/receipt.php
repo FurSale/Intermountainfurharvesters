@@ -69,18 +69,25 @@
                       <td class="red-text">$12</td>
                     </tr>
 										<tr>
-												<td>Commission</td>
 												<td></td>
 												<td></td>
-												<td>6%</td>
+												<td>Subtotal</td>
+												<td></td>
 												<td>$285</td>
 										</tr>
+										<tr>
+												<td></td>
+												<td></td>
+												<td>Commission</td>
+												<td>6%</td>
+												<td>$17</td>
+										</tr>
 									<tr>
-                      <td>TOTAL</td>
                       <td></td>
                       <td></td>
+                      <td>Total Due</td>
                       <td></td>
-                      <td>$285</td>
+                      <td>$302</td>
                   </tr>
                   </tbody>
                 </table>
