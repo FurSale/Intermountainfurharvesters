@@ -1,7 +1,7 @@
 <?php
   require_once("../../includes/db_connection.php");
 	$pgsettings = array(
-		"title" => "Buyers",
+		"title" => "Username",
 		"icon" => "icon-newspaper"
 	);
 	$nav = ("1");
@@ -22,8 +22,15 @@
            <form class="col s12">
              <div class="row">
                <div class="input-field col s3">
+                 <i class="material-icons prefix">contacts</i>
+                 <input placeholder="License" id="License" type="text" class="validate">
+                 <label for="License">License</label>
+               </div>
+             </div>
+             <div class="row">
+               <div class="input-field col s3">
                  <i class="material-icons prefix">account_circle</i>
-                 <input placeholder="First Name" id="first_name" type="text" class="validate">
+                 <input id="first_name" type="text" class="validate">
                  <label for="first_name">First Name</label>
                </div>
                <div class="input-field col s3">
@@ -41,6 +48,25 @@
                  <label for="email">Email</label>
                </div>
              </div>
+             <div class="row">
+               <div class="input-field col s3">
+                 <i class="material-icons prefix">home</i>
+                 <input placeholder="Address" id="Address" type="text" class="validate">
+                 <label for="address">Address</label>
+               </div>
+               <div class="input-field col s3">
+                 <input id="city" type="text" class="validate">
+                 <label for="city">City</label>
+               </div>
+        <div class="input-field col s3">
+          <?php require("../../includes/states.php"); ?>
+        </div>
+               <div class="input-field col s3">
+                 <input id="zip" type="number" class="validate">
+                 <label for="zip">Zip</label>
+               </div>
+             </div>
+
            </form>
          </div>
           <!--Responsive Table-->
@@ -62,15 +88,21 @@
 
         <tbody>
           <tr>
-            <td><div class="input-field"><input placeholder="#1000" id="lot" type="text" class="validate"><label for="lot">Lot #</label></div></td>
-            <td><?php require_once("../../includes/itemtype.php"); ?></td>
+            <td><div class="input-field"> <i class="material-icons prefix">local_offer</i><input placeholder="#1000" id="lot" type="text" class="validate"><label for="lot">Lot #</label></div></td>
+            <td><?php require_once("../../includes/itemtype.php"); ?>
+              <div id="custom" class="hide"><input placeholder="Custom" type="text" class="validate">
+            <label for="License">Custom</label></div></td>
             <td><div class="input-field"><input placeholder="1" id="Quantity" type="text" class="validate"><label for="Quantity">Quantity</label></div></td>
-            <td><label><input name="group1" type="radio" checked /><span>ct</span><label><input name="group1" type="radio" /><span>lbs</span></label></td>
-            <td><?php require_once("../../includes/states.php"); ?></td>
-            <td><div class="input-field"><input placeholder="$0" id="Asking_Price" type="text" class="validate"><label for="Asking_Price">Asking Price</label></div></td>
+            <td><label><input name="group1" type="radio" id="item_count1" checked /><span>ct</span><label><input name="group1" type="radio" id="item_weight1" /><span>lbs</span></label></td>
+            <td><?php require("../../includes/states.php"); ?></td>
+            <td><div class="input-field"><input placeholder="$0" id="Asking_Price" type="number" class="validate"><label for="Asking_Price">Asking Price</label></div></td>
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="row">
+       <div class="input-field col s3"><a class="waves-effect waves-light btn">Add another Item</a></div>
+       <div class="input-field col s3"><a class="waves-effect waves-light btn">Save</a></div>
     </div>
   </div>
 </div>

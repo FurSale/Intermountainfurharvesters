@@ -6808,6 +6808,7 @@ ul.side-nav .collapsible-header.active:after {
 ------------------------------------------*/
 #breadcrumbs-wrapper {
   background: #f3f3f3;
+  margin-bottom: 30px;
 }
 
 #breadcrumbs-wrapper .breadcrumbs-btn {

@@ -1,7 +1,8 @@
 <div class="input-field">
-<select name="type" id="type">
+<select name="type" id="type1">
   <option value="" selected="selected">Type</option>
-  <option value="">Antlers</option>
+  <option value="custom">Custom</option>
+  <option value="Antlers">Antlers</option>
   <option value="">Artic Fox</option>
   <option value="">Baculum</option>
   <option value="">Badger</option>
@@ -17,7 +18,7 @@
   <option value="">Bobcat Bones</option>
   <option value="">Bobcat Paws</option>
   <option value="">Bobcat Skull</option>
-  <option value="">Castor</option>
+  <option value="Castor">Castor</option>
   <option value="">Cougar</option>
   <option value="">Coyote</option>
   <option value="">Coyote Paws</option>
