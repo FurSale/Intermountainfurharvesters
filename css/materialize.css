@@ -4378,6 +4378,7 @@ nav .nav-title {
   display: inline-block;
   font-size: 32px;
   padding: 28px 0;
+  margin-left: 20px;
 }
 
 nav ul {
@@ -7173,7 +7174,6 @@ select {
   cursor: pointer;
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid #9e9e9e;
   outline: none;
   height: 3rem;
   line-height: 3rem;
@@ -7189,9 +7189,6 @@ select {
   z-index: 1;
 }
 
-.select-wrapper input.select-dropdown:focus {
-  border-bottom: 1px solid #26a69a;
-}
 
 .select-wrapper .caret {
   position: absolute;

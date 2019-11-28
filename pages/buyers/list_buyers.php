@@ -19,19 +19,7 @@
 	 	 ?>
             <!--start container-->
             <div class="container">
-              <div class="section">
-                <div class="row">
-                  <div class="col s12">
-                      <div class="input-field col s12">
-                          <i class="material-icons prefix">search</i>
-                          <input type="text" name="Search" placeholder="Search" />
-                      </div>
-                  </div>
-              </div>
-          </div>
-
                 <!--Responsive Table-->
-                <div class="divider"></div>
                 <div id="responsive-table">
                   <h4 class="header">Data Buyers</h4>
                   <div class="row">
@@ -75,11 +63,11 @@
                   </div>
                 </div>
               </div>
+            </section>
+            <!-- END WRAPPER -->
+            </main>
 
-    <?php
-
-
-    include '../../includes/end_html.php';
-
-
-    ?>
+            <?php
+            include '../../includes/footer.php';
+            include '../../includes/end_html.php';
+            ?>

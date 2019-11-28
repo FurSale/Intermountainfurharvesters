@@ -1,24 +1,4 @@
 
-<!-- END CONTENT -->
-</section>
-<!-- END WRAPPER -->
-</main>
-<!-- END MAIN -->
-    <!-- //////////////////////////////////////////////////////////////////////////// -->
-    <!-- START FOOTER -->
-    <footer class="page-footer">
-  <div class="footer-copyright">
-    <div class="container">
-      <span>Copyright ©
-        <script type="text/javascript">
-          document.write(new Date().getFullYear());
-        </script> <a class="grey-text hide-on-small-only text-lighten-2" href="http://github.com/johnsondelbert1" target="_blank">SecondGenDesign</a></span>
-      <span class="right hide-on-small-only"> Special Thanks to <a class="grey-text text-lighten-2" href="https://cc-wd.com/" target="_blank">CCWD</a></span>
-      <span> In Memory of Delbert Jepson</span>
-    </div>
-  </div>
-</footer>
-    <!-- END FOOTER -->
     <!-- ================================================
     Scripts
     ================================================ -->
@@ -59,28 +39,34 @@ async function install() {
 }
 
     </script>
-    <script>document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems);
-  });
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
-  });
-  document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.fab');
-      var instances = M.FloatingActionButton.init(elems, {
-        direction: 'left'
-      });
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.dropdown-trigger');
-        var instances = M.Dropdown.init(elems);
-      });
-      document.addEventListener('DOMContentLoaded', function() {
-   var elems = document.querySelectorAll('.tooltipped');
-   var instances = M.Tooltip.init(elems);
- });
+<script src="../../js/init.js"></script>
+    <script>
+//Sellers
+  document.getElementById("type1").onchange = function () {
+  document.getElementById("custom").setAttribute("class", "hide");
+  if (this.value == 'custom')
+    document.getElementById("custom").removeAttribute("class", "hide");
+};
+document.getElementById("type1").onchange = function () {
+if (this.value == 'Antlers' || this.value == 'Castor') {
+document.getElementById("item_count1").checked = false;
+document.getElementById("item_weight1").checked = true;
+}else {
+document.getElementById("item_count1").checked = true;
+document.getElementById("item_weight1").checked = false;
+}
+};
+//Buyers
+function swap1() {
+  document.getElementById("editbid1").setAttribute("class", "hide");
+  document.getElementById("sendbid1").classList.remove("hide");
+  document.getElementById("bids1").removeAttribute("disabled");
+  };
+  function swap2() {
+    document.getElementById("editbid2").setAttribute("class", "hide");
+    document.getElementById("sendbid2").classList.remove("hide");
+    document.getElementById("bids2").removeAttribute("disabled");
+    };
 </script>
     <script src="../../js/manup.js"></script>
     <!-- jQuery Library -->
