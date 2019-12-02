@@ -21,7 +21,7 @@
             <div class="container">
                 <!--Responsive Table-->
                 <div id="responsive-table">
-                  <h4 class="header">Data Buyers</h4>
+                  <h4 class="header">Buyers</h4>
                   <div class="row">
                     <div class="col s12">
                       <table class="responsive-table">
@@ -34,7 +34,7 @@
                             <th data-field="phone">Phone</th>
                             <th data-field="license">License</th>
                             <th data-field="total">Total</th>
-                            <th data-field="status">Status</th>
+                            <th data-field="status">Detail</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -47,12 +47,12 @@
                        <tr>
                           <td><?php echo $buyer['id']; ?></td>
                           <td><?php echo $buyer['first_name'] . " " . $buyer['last_name']; ?></td>
-                          <td><?php echo $buyer['first_name'] . " " . $buyer['last_name']; ?></td>
-                          <td><?php echo $buyer['address_1'] . " " . $buyer['address_1'] . ", " . $buyer['city'] . ", " . $buyer['state'] . " " . $buyer['zip']; ?></td>
+                          <td><?php echo $buyer['company_name']; ?></td>
+                          <td><?php echo $buyer['address_1'] . " " . $buyer['address_2'] . ", " . $buyer['city'] . ", " . $buyer['state'] . " " . $buyer['zip']; ?></td>
                           <td><?php echo $buyer['phone']; ?></td>
                           <td><?php echo $buyer['fur_buyer_license_num']; ?></td>
                           <td></td>
-                          <td><a href="detail.html" class="waves-effect waves-light  btn-small"><i class="material-icons left">developer_board</i> Detail</a></td>
+                          <td><a href="edit_buyers.php?id=<?php echo $buyer['id']; ?>" class="waves-effect waves-light  btn-small"><i class="material-icons left">developer_board</i> Detail</a></td>
                         </tr>
                         <?php
                           }

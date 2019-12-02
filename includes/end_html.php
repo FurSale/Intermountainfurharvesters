@@ -79,6 +79,38 @@ function swap1() {
     <script type="text/javascript" src="../../js/plugins.js"></script>
     <!--custom-script.js - Add your own theme custom JS-->
     <script type="text/javascript" src="../../js/custom-script.js"></script>
-
+    <script>
+      //Display messages
+      $(document).ready(function(){
+      <?php
+      //Display messages
+      if(isset($error)&&!is_array($error)){
+          echo "Materialize.toast('".$error."', 8000, 'red');";
+      }elseif(isset($error)&&is_array($error)&&!empty($error)){
+          foreach ($error as $value) {
+              echo "Materialize.toast('".$value."', 8000, 'red');";
+          }
+      } 
+      ?>
+      <?php
+      if(isset($success)&&!is_array($success)){
+          echo "Materialize.toast('".$success."', 8000, 'green');";
+      }elseif(isset($success)&&is_array($success)&&!empty($success)){
+          foreach ($success as $value) {
+              echo "Materialize.toast('".$value."', 8000, 'green');";
+          }
+      } 
+      ?>
+      <?php
+      if(isset($message)&&!is_array($message)){
+          echo "Materialize.toast('".$message."', 8000, 'yellow black-text');";
+      }elseif(isset($message)&&is_array($message)&&!empty($message)){
+          foreach ($message as $value) {
+              echo "Materialize.toast('".$value."', 8000, 'yellow black-text');";
+          }
+      } 
+      ?>
+    });
+    <script>
   </body>
 </html>

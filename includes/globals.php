@@ -8,7 +8,7 @@ if(in_array($_SERVER['SERVER_PORT'],array(80, 443))){
 }
 
 //global variables
-$GLOBALS['HOST'] = $protocol.$_SERVER['HTTP_HOST'].$serv_port.$path;
+$GLOBALS['HOST'] = $protocol.$_SERVER['HTTP_HOST'].$serv_port;
 $site_version = '0.0.1';
 $db_compatability = '0.0.1';
 

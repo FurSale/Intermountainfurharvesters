@@ -5,9 +5,14 @@
 		"icon" => "icon-newspaper"
 	);
   require_once("../../includes/functions.php");
-  require_multi("../../includes/begin_html.php", "../../includes/nav.php", "../../includes/crumbs.php");
+  require_once("../../includes/begin_html.php");
+	require_once("../../includes/nav.php");
+  
    ?>        <!-- START CONTENT -->
          <section id="content">
+         <?php
+	 	require_once("../../includes/crumbs.php");
+	 	 ?>
       <!--start container-->
       <div class="container">
 

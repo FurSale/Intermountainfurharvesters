@@ -46,7 +46,7 @@ require_once("../../includes/db_connection.php");
                           <td><?php echo $seller['trapper_id']; ?></td>
                           <td>
                             <a class="waves-effect waves-light  btn"><i class="material-icons left">add_box</i>Add Items</a>
-                              <a class="waves-effect waves-light  btn"><i class="material-icons">edit</i></a>
+                              <a href="edit_sellers.php?id=<?php echo $seller['id']; ?>" class="waves-effect waves-light  btn"><i class="material-icons">edit</i></a>
                               <a class="waves-effect waves-light  btn"><i class="material-icons">delete</i></a>
                           </td>
                         </tr>
