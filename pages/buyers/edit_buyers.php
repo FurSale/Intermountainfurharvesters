@@ -24,7 +24,7 @@
     //confirm_query($result);
     //Redirect to blog page if nothing returned from DB
     if(mysqli_num_rows($result) == 0){
-      //header("Location: {$GLOBALS['HOST']}");
+      header("Location: list_buyers.php");
     }else{
       $buyer=mysqli_fetch_array($result);
     }

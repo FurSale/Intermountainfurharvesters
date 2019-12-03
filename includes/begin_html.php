@@ -30,6 +30,8 @@
     <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
     <link href="../../vendors/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet">
     <link href="../../vendors/flag-icon/css/flag-icon.min.css" type="text/css" rel="stylesheet">
+    <!-- jQuery Library -->
+    <script type="text/javascript" src="../../vendors/jquery-3.2.1.min.js"></script>
   </head>
   <body>
     <!-- Start Page Loading -->
