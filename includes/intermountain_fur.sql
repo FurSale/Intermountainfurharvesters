@@ -60,6 +60,7 @@ CREATE TABLE IF NOT EXISTS `buyer` (
   `zip` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `commission` decimal(12,2) NOT NULL,
   `fur_buyer_license_num` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `date_last_logged_in` timestamp NULL DEFAULT NULL,
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -85,6 +86,7 @@ CREATE TABLE IF NOT EXISTS `seller` (
   `zip` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `commission` decimal(12,2) NOT NULL,
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

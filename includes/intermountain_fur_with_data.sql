@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 18, 2019 at 03:30 AM
+-- Generation Time: Dec 05, 2019 at 04:16 AM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -67,6 +67,8 @@ CREATE TABLE IF NOT EXISTS `buyer` (
   `state` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `zip` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `commission` decimal(12,2) NOT NULL,
   `fur_buyer_license_num` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `date_last_logged_in` timestamp NULL DEFAULT NULL,
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -77,8 +79,8 @@ CREATE TABLE IF NOT EXISTS `buyer` (
 -- Dumping data for table `buyer`
 --
 
-INSERT INTO `buyer` (`id`, `first_name`, `last_name`, `company_name`, `address_1`, `address_2`, `city`, `state`, `zip`, `phone`, `fur_buyer_license_num`, `date_last_logged_in`, `date_created`) VALUES
-(1, 'first', 'last', '324242', 'address1', 'address2', 'city', 'IDAHO', 'zip', '1243213234', '131313123', NULL, '2019-11-17 17:55:37');
+INSERT INTO `buyer` (`id`, `first_name`, `last_name`, `company_name`, `address_1`, `address_2`, `city`, `state`, `zip`, `phone`, `email`, `commission`, `fur_buyer_license_num`, `date_last_logged_in`, `date_created`) VALUES
+(1, 'firstttttttttttttttt', 'last', 'comapny', 'address1', 'address2', 'city', 'ID', '83814', '1243213234', 'test@test.com', '2.00', '131313123', NULL, '2019-11-17 17:55:37');
 
 -- --------------------------------------------------------
 
@@ -98,16 +100,21 @@ CREATE TABLE IF NOT EXISTS `seller` (
   `state` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `zip` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `commission` decimal(12,2) NOT NULL,
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `seller`
 --
 
-INSERT INTO `seller` (`id`, `trapper_id`, `first_name`, `last_name`, `address_1`, `address_2`, `city`, `state`, `zip`, `phone`, `date_created`) VALUES
-(1, '00001', 'testificate1', 'testificate2', 'sdfsdf', 'fdsfsdfsd', '324r32432', 'dasdasd', '13321', NULL, '2019-11-17 17:44:57');
+INSERT INTO `seller` (`id`, `trapper_id`, `first_name`, `last_name`, `address_1`, `address_2`, `city`, `state`, `zip`, `phone`, `email`, `commission`, `date_created`) VALUES
+(1, '00001', 'testttt', 'testificate2', 'sdfsdf', 'fdsfsdfsd', 'Coeur d\' Alene', 'ID', '13321', '', '', '6.00', '2019-11-17 17:44:57'),
+(2, '00002', 'test2', 'testificate2', 'sdfsdf', 'fdsfsdfsd', '324r32432', 'WA', '13321', '', '', '0.00', '2019-12-02 07:05:35'),
+(3, '00003', 'test', 'test', '123231', '1321312', 'Spokane', 'WA', '21334', '2313124123', 'test@test.com', '0.00', '2019-12-02 07:16:34'),
+(4, '00003', 'test', 'test', '123231', '1321312', 'Spokane', 'WA', '21334', '2313124123', 'test@test.com', '0.00', '2019-12-02 07:17:51');
 
 -- --------------------------------------------------------
 
@@ -133,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `seller_item` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `lot` (`lot`),
   KEY `seller_id` (`seller_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `seller_item`
@@ -141,7 +148,23 @@ CREATE TABLE IF NOT EXISTS `seller_item` (
 
 INSERT INTO `seller_item` (`id`, `seller_id`, `lot`, `type`, `item`, `unit_of_measure`, `count`, `tag_id`, `asking`, `bid_start`, `bid_end`, `sale_made`, `date_created`) VALUES
 (1, 1, '1001', NULL, 'fur', 'Count', '10.00', '', '20.00', '2019-11-17 00:00:00', '2019-11-18 00:00:00', 0, '2019-11-17 18:08:51'),
-(3, 1, '1002', NULL, 'fur', 'Count', '15.00', '', '50.00', '2019-11-17 00:00:00', '2019-11-18 00:00:00', 0, '2019-11-17 19:15:58');
+(3, 1, '1002', NULL, 'fur', 'Count', '15.00', '', '50.00', '2019-11-17 00:00:00', '2019-11-18 00:00:00', 0, '2019-11-17 19:15:58'),
+(4, 3, '10002', NULL, 'Badger', 'Count', '10.00', '10', '25.00', '2019-12-05 03:46:57', '2019-12-05 03:46:57', 0, '2019-12-05 03:46:57'),
+(5, 3, '1003', NULL, 'Bear rug', 'Count', '23.00', '13', '123.00', '2019-12-05 03:49:29', '2019-12-05 03:49:29', 0, '2019-12-05 03:49:29'),
+(6, 3, '2001', NULL, 'Beaver Darts', 'Count', '123123.00', '123', '12.00', '2019-12-05 03:49:29', '2019-12-05 03:49:29', 0, '2019-12-05 03:49:29'),
+(7, 3, '3001', NULL, 'Beaver Tails', 'Count', '31231.00', '21312', '22.50', '2019-12-05 03:49:29', '2019-12-05 03:49:29', 0, '2019-12-05 03:49:29'),
+(8, 3, '1004', NULL, 'Beaver Darts', 'Count', '224.00', '2423', '23.47', '2019-12-05 03:55:13', '2019-12-05 03:55:13', 0, '2019-12-05 03:55:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `site_info`
+--
+
+DROP TABLE IF EXISTS `site_info`;
+CREATE TABLE IF NOT EXISTS `site_info` (
+  `site_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 

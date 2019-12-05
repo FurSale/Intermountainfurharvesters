@@ -33,6 +33,7 @@
                             <th data-field="address">Address</th>
                             <th data-field="phone">Phone</th>
                             <th data-field="license">License</th>
+                            <th data-field="commission">Commission</th>
                             <th data-field="total">Total</th>
                             <th data-field="status">Detail</th>
                           </tr>
@@ -51,6 +52,7 @@
                           <td><?php echo $buyer['address_1'] . " " . $buyer['address_2'] . ", " . $buyer['city'] . ", " . $buyer['state'] . " " . $buyer['zip']; ?></td>
                           <td><?php echo $buyer['phone']; ?></td>
                           <td><?php echo $buyer['fur_buyer_license_num']; ?></td>
+                          <td><?php echo $buyer['commission']; ?>%</td>
                           <td></td>
                           <td><a href="edit_buyers.php?id=<?php echo $buyer['id']; ?>" class="waves-effect waves-light  btn-small"><i class="material-icons left">developer_board</i> Detail</a></td>
                         </tr>

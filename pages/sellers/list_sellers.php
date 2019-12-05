@@ -25,8 +25,9 @@ require_once("../../includes/db_connection.php");
                           <th data-field="name">Name</th>
                           <th data-field="company">Company</th>
                           <th data-field="address">Address</th>
-                          <th data-field="no">Phone</th>
-                          <th data-field="age">Trapper</th>
+                          <th data-field="phone">Phone</th>
+                          <th data-field="trapper">Trapper</th>
+                          <th data-field="commission">Commission</th>
                           <th data-field="action">Action</th>
                         </tr>
                       </thead>
@@ -44,6 +45,7 @@ require_once("../../includes/db_connection.php");
                           <td><?php echo $seller['address_1'] . " " . $seller['address_1'] . ", " . $seller['city'] . ", " . $seller['state'] . " " . $seller['zip']; ?></td>
                           <td><?php echo $seller['phone']; ?></td>
                           <td><?php echo $seller['trapper_id']; ?></td>
+                          <td><?php echo $seller['commission']; ?>%</td>
                           <td>
                             <a href="../items/edit_items.php?sellerId=<?php echo $seller['id']; ?>" class="waves-effect waves-light  btn"><i class="material-icons left">add_box</i>Add Items</a>
                               <a href="edit_sellers.php?id=<?php echo $seller['id']; ?>" class="waves-effect waves-light  btn"><i class="material-icons">edit</i></a>

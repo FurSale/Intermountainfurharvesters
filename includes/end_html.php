@@ -83,28 +83,28 @@ function swap1() {
       <?php
       //Display messages
       if(isset($error)&&!is_array($error)){
-          echo "Materialize.toast('".$error."', 8000, 'red');";
+          echo "M.toast({html:'".$error."'});";
       }elseif(isset($error)&&is_array($error)&&!empty($error)){
           foreach ($error as $value) {
-              echo "Materialize.toast('".$value."', 8000, 'red');";
+            echo "M.toast({html:'".$value."'});";
           }
       } 
       ?>
       <?php
       if(isset($success)&&!is_array($success)){
-          echo "Materialize.toast('".$success."', 8000, 'green');";
+          echo "M.toast({html:'".$success."'});";
       }elseif(isset($success)&&is_array($success)&&!empty($success)){
           foreach ($success as $value) {
-              echo "Materialize.toast('".$value."', 8000, 'green');";
+            echo "M.toast({html:'".$value."'});";
           }
       } 
       ?>
       <?php
       if(isset($message)&&!is_array($message)){
-          echo "Materialize.toast('".$message."', 8000, 'yellow black-text');";
+          echo "M.toast({html:'".$message."'});";
       }elseif(isset($message)&&is_array($message)&&!empty($message)){
           foreach ($message as $value) {
-              echo "Materialize.toast('".$value."', 8000, 'yellow black-text');";
+            echo "M.toast({html:'".$value."'});";
           }
       } 
       ?>

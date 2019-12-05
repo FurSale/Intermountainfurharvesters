@@ -45,31 +45,31 @@
 		  <form id="main-form" method="post">
 			<div id="editor-rows">
 				<div class="row">
-				<input id="seller_id[]" name="seller_id[]" type="hidden" value="<?php echo $seller['id']; ?>">
+				<input id="[0]seller_id" name="items[0][seller_id]" type="hidden" value="<?php echo $seller['id']; ?>">
 					<div class="input-field col s2">
-						<input name="lot[]" type="text" class="validate">
+						<input name="items[0][lot]" type="text" class="validate">
 						<label>Lot</label>
 					</div>
 					<div class="input-field col s2">
-					<select name="item[]">
+					<select name="items[0][item]">
 						<?php echo echo_item_types(); ?>
 					</select>
 						<label>Item</label>
 					</div>
 					<div class="input-field col s2">
-						<div style="display: inline;"><label><input name="unit_of_measure[]" type="radio" checked /><span>ct</span></label></div>
-						<div style="display: inline;"><label><input name="unit_of_measure[]" type="radio" /><span>lbs</span></label></div>
+						<div style="display: inline;"><label><input name="items[0][unit_of_measure]" value="Count" type="radio" checked /><span>ct</span></label></div>
+						<div style="display: inline;"><label><input name="items[0][unit_of_measure]" Value="Lbs" type="radio" /><span>lbs</span></label></div>
 					</div>
 					<div class="input-field col s2">
-						<input name="count[]" type="text" class="validate">
+						<input name="items[0][count]" type="number" class="validate">
 						<label>Qty</label>
 					</div>
 					<div class="input-field col s2">
-						<input name="tag_id[]" type="text" class="validate">
+						<input name="items[0][tag_id]" type="text" class="validate">
 						<label>Tag ID</label>
 					</div>
 					<div class="input-field col s2">
-						<input name="asking[]" type="number" class="validate">
+						<input name="items[0][asking]" type="number" class="validate">
 						<label>Asking $</label>
 					</div>
 				</div>
@@ -79,13 +79,35 @@
 </section>
 <script>
 	var _editorRow = $("#editor-rows").html();
+	var _rowIndex = 1;
 	$(document).ready(function(){
 		$( "#btn-add-row" ).click(function() {
-			$("#editor-rows").append(_editorRow);
+			//Replace index
+			var modified = _editorRow.toString().replace(/\[0\]/g, "["+_rowIndex+"]");
+			$("#editor-rows").append(modified);
+			//materialize
 			$('#editor-rows select').formSelect();
+
+			_rowIndex += 1;
 		});
 		$( "#btn-save" ).click(function() {
-			console.log($("#main-form").serialize());
+			$.ajax({
+				type: "POST",
+				url: "add_items_post.php",
+				data: $("#main-form").serialize(),
+				success: function(data){
+					console.log(data);
+					if(data.success){
+						M.toast({html:data.message});
+						$("#editor-rows").html(_editorRow);
+						//materialize
+						$('#editor-rows select').formSelect();
+					}else{
+						M.toast({html:data.message});
+					}
+					//console.log(JSON.parse(data));
+				}
+			});
 		});
 	});
 	</script>

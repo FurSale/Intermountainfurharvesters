@@ -12,6 +12,7 @@
   $seller['zip'] = null;
   $seller['phone'] = null;
   $seller['email'] = null;
+  $seller['commission'] = 6.00;
   $seller['trapper_id'] = null;
   $seller['date_created'] = null;
   
@@ -43,15 +44,15 @@
     $date = date("Y-m-d H:i:s");
     
     if($new){
-      $query = "INSERT INTO `seller` (`first_name`, `last_name`, `address_1`, `address_2`, `city`, `state`, `zip`, `phone`, `email`, `trapper_id`, `date_created`) 
+      $query = "INSERT INTO `seller` (`first_name`, `last_name`, `address_1`, `address_2`, `city`, `state`, `zip`, `phone`, `email`, `commission`, `trapper_id`, `date_created`) 
       VALUES ('{$data['first_name']}', '{$data['last_name']}', '{$data['address_1']}', '{$data['address_2']}', '{$data['city']}', '{$data['state']}', 
-      '{$data['zip']}', '{$data['phone']}', '{$data['email']}', '{$data['trapper_id']}', '{$date}')";
+      '{$data['zip']}', '{$data['phone']}', '{$data['email']}', {$data['commission']}, '{$data['trapper_id']}', '{$date}')";
     }
     else{
       $query = "UPDATE `seller` SET 
       `first_name` = '{$data['first_name']}', `last_name`='{$data['last_name']}', `address_1`='{$data['address_1']}', 
       `address_2` = '{$data['address_2']}', `city`='{$data['city']}', `state`='{$data['state']}', `zip`='{$data['zip']}', 
-      `phone` = '{$data['phone']}', `email`='{$data['email']}', `trapper_id`='{$data['trapper_id']}' 
+      `phone` = '{$data['phone']}', `email`='{$data['email']}', `commission`={$data['commission']}, `trapper_id`='{$data['trapper_id']}' 
       WHERE `id` = {$data['id']}";
     }
     $result = mysqli_query($connection, $query);
@@ -65,6 +66,7 @@
     } else {
       $error = "Couldn't update";
       $error .= "<br />" . mysqli_error($connection);
+      $seller = $data;
     }
 
     if(!$new){
@@ -150,9 +152,13 @@
               </div>
              </div>
              <div class="row">
-             <div class="input-field col s3">
+              <div class="input-field col s3">
                  <input id="zip" name="zip" type="number" class="validate" value="<?php echo $seller['zip']; ?>">
                  <label for="zip">Zip</label>
+               </div>
+               <div class="input-field col s3">
+                 <input id="commission" name="commission" type="number" class="validate" value="<?php echo $seller['commission']; ?>">
+                 <label for="commission">Commission %</label>
                </div>
               </div>
              <div class="input-field col s3"><input type="submit" name="submit" class="waves-effect waves-light btn submit" value="Save"></input></div>

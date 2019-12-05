@@ -13,6 +13,7 @@
   $buyer['zip'] = null;
   $buyer['phone'] = null;
   $buyer['email'] = null;
+  $buyer['commission'] = 2.00;
   $buyer['fur_buyer_license_num'] = null;
   $buyer['date_last_logged_in'] = null;
   $buyer['date_created'] = null;
@@ -45,15 +46,15 @@
     $date = date("Y-m-d H:i:s");
     
     if($new){
-      $query = "INSERT INTO `buyer` (`first_name`, `last_name`, `company_name`, `address_1`, `address_2`, `city`, `state`, `zip`, `phone`, `email`, `fur_buyer_license_num`, `date_created`) 
+      $query = "INSERT INTO `buyer` (`first_name`, `last_name`, `company_name`, `address_1`, `address_2`, `city`, `state`, `zip`, `phone`, `email`, `commission`, `fur_buyer_license_num`, `date_created`) 
       VALUES ('{$data['first_name']}', '{$data['last_name']}', '{$data['company_name']}', '{$data['address_1']}', '{$data['address_2']}', '{$data['city']}', '{$data['state']}', 
-      '{$data['zip']}', '{$data['phone']}', '{$data['email']}', '{$data['fur_buyer_license_num']}', '{$date}')";
+      '{$data['zip']}', '{$data['phone']}', '{$data['email']}', {$data['commission']}, '{$data['fur_buyer_license_num']}', '{$date}')";
     }
     else{
       $query = "UPDATE `buyer` SET 
       `first_name` = '{$data['first_name']}', `last_name`='{$data['last_name']}', `company_name`='{$data['company_name']}', `address_1`='{$data['address_1']}', 
       `address_2` = '{$data['address_2']}', `city`='{$data['city']}', `state`='{$data['state']}', `zip`='{$data['zip']}', 
-      `phone` = '{$data['phone']}', `email`='{$data['email']}', `fur_buyer_license_num`='{$data['fur_buyer_license_num']}' 
+      `phone` = '{$data['phone']}', `email`='{$data['email']}', `commission`={$data['commission']}, `fur_buyer_license_num`='{$data['fur_buyer_license_num']}' 
       WHERE `id` = {$data['id']}";
     }
     $result = mysqli_query($connection, $query);
@@ -67,6 +68,7 @@
     } else {
       $error = "Couldn't update";
       $error .= "<br />" . mysqli_error($connection);
+      $buyer = $data;
     }
 
     if(!$new){
@@ -155,9 +157,13 @@
               </div>
              </div>
              <div class="row">
-             <div class="input-field col s3">
+              <div class="input-field col s3">
                  <input id="zip" name="zip" type="number" class="validate" value="<?php echo $buyer['zip']; ?>">
                  <label for="zip">Zip</label>
+               </div>
+               <div class="input-field col s3">
+                 <input id="commission" name="commission" type="number" class="validate" value="<?php echo $buyer['commission']; ?>">
+                 <label for="commission">Commission %</label>
                </div>
               </div>
              <div class="input-field col s3"><input type="submit" name="submit" class="waves-effect waves-light btn submit" value="Save"></input></div>
