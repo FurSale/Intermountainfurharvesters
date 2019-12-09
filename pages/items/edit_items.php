@@ -23,7 +23,7 @@
 		"icon" => "icon-newspaper"
 	);
 	$nav = ("1");
-	
+
 	require_once("../../includes/begin_html.php");
 	require_once("../../includes/nav.php");
 
@@ -38,10 +38,7 @@
 		  <div class="row">
 			  <h4>Adding Items for <?php echo $seller['first_name'] . " " . $seller['last_name']; ?></h4>
 	      </div>
-		  <div class="row">
-			  <span class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add Items</span>
-			  <span class="waves-effect waves-light btn" id="btn-save">Save</span>
-	      </div>
+
 		  <form id="main-form" method="post">
 			<div id="editor-rows">
 				<div class="row">
@@ -75,7 +72,10 @@
 				</div>
 			</div>
 		  </form>
-
+      <div class="row">
+			  <span class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add Items</span>
+			  <span class="waves-effect waves-light btn" id="btn-save">Save</span>
+	      </div>
 </section>
 <script>
 	var _editorRow = $("#editor-rows").html();

@@ -15,7 +15,7 @@
   $seller['commission'] = 6.00;
   $seller['trapper_id'] = null;
   $seller['date_created'] = null;
-  
+
   if(isset($_GET['id'])){
     $id = htmlspecialchars($_GET["id"]);
     $query="SELECT * FROM `seller` WHERE `id`={$id}";
@@ -28,7 +28,7 @@
       $seller=mysqli_fetch_array($result);
     }
   }
-  
+
   if(isset($_POST['submit'])){
     $new = true;
     if($_POST['id'] != ""){
@@ -42,17 +42,17 @@
     }
 
     $date = date("Y-m-d H:i:s");
-    
+
     if($new){
-      $query = "INSERT INTO `seller` (`first_name`, `last_name`, `address_1`, `address_2`, `city`, `state`, `zip`, `phone`, `email`, `commission`, `trapper_id`, `date_created`) 
-      VALUES ('{$data['first_name']}', '{$data['last_name']}', '{$data['address_1']}', '{$data['address_2']}', '{$data['city']}', '{$data['state']}', 
+      $query = "INSERT INTO `seller` (`first_name`, `last_name`, `address_1`, `address_2`, `city`, `state`, `zip`, `phone`, `email`, `commission`, `trapper_id`, `date_created`)
+      VALUES ('{$data['first_name']}', '{$data['last_name']}', '{$data['address_1']}', '{$data['address_2']}', '{$data['city']}', '{$data['state']}',
       '{$data['zip']}', '{$data['phone']}', '{$data['email']}', {$data['commission']}, '{$data['trapper_id']}', '{$date}')";
     }
     else{
-      $query = "UPDATE `seller` SET 
-      `first_name` = '{$data['first_name']}', `last_name`='{$data['last_name']}', `address_1`='{$data['address_1']}', 
-      `address_2` = '{$data['address_2']}', `city`='{$data['city']}', `state`='{$data['state']}', `zip`='{$data['zip']}', 
-      `phone` = '{$data['phone']}', `email`='{$data['email']}', `commission`={$data['commission']}, `trapper_id`='{$data['trapper_id']}' 
+      $query = "UPDATE `seller` SET
+      `first_name` = '{$data['first_name']}', `last_name`='{$data['last_name']}', `address_1`='{$data['address_1']}',
+      `address_2` = '{$data['address_2']}', `city`='{$data['city']}', `state`='{$data['state']}', `zip`='{$data['zip']}',
+      `phone` = '{$data['phone']}', `email`='{$data['email']}', `commission`={$data['commission']}, `trapper_id`='{$data['trapper_id']}'
       WHERE `id` = {$data['id']}";
     }
     $result = mysqli_query($connection, $query);
@@ -165,6 +165,7 @@
            </form>
          </div>
           <!--Responsive Table-->
+          <h4 class="header red">Below is Currently Disabled - Go to add items</h4>
           <div id="responsive-table">
             <h4 class="header">Items</h4>
             <div class="row">
