@@ -1,5 +1,5 @@
 <!-- START FOOTER -->
-<footer class="page-footer">
+<footer class="page-footer brown">
 <div class="footer-copyright">
 <div class="container">
   <span>Copyright ©
