@@ -17,6 +17,9 @@
 			if($item['item'] == ""){
 				return array('success' => false, 'message' => "Item Type cannot be blank");
 			}
+			if($item['item'] == "Custom" && $item['item_custom'] == ""){
+				return array('success' => false, 'message' => "Custom Item Type cannot be blank");
+			}
 			if($item['unit_of_measure'] == ""){
 				return array('success' => false, 'message' => "Unit of Measure cannot be blank");
 			}
@@ -24,6 +27,9 @@
 				return array('success' => false, 'message' => "Qty cannot be blank");
 			}
 			if($item['tag_id'] == ""){
+				return array('success' => false, 'message' => "Tag ID cannot be blank");
+			}
+			if($item['origin_state'] == ""){
 				return array('success' => false, 'message' => "Tag ID cannot be blank");
 			}
 			if($item['asking'] == ""){
@@ -58,8 +64,12 @@
 			foreach ($data as $key => $value) {
 				$data[$key] = mysqli_real_escape_string($connection, $value);
 			}
-			$query = "INSERT INTO `seller_item` (`seller_id`, `lot`, `item`, `unit_of_measure`, `count`, `tag_id`, `asking`, `bid_start`, `bid_end`, `date_created`) 
-			VALUES ('{$data['seller_id']}', '{$data['lot']}', '{$data['item']}', '{$data['unit_of_measure']}', {$data['count']}, '{$data['tag_id']}', {$data['asking']}, '{$date}', '{$date}', '{$date}')";
+			//Set the custom item type if custom
+			if($data['item'] == "Custom"){
+				$data['item'] = $data['item_custom'];
+			}
+			$query = "INSERT INTO `seller_item` (`seller_id`, `lot`, `item`, `unit_of_measure`, `count`, `tag_id`, `origin_state`, `asking`, `bid_start`, `bid_end`, `date_created`) 
+			VALUES ('{$data['seller_id']}', '{$data['lot']}', '{$data['item']}', '{$data['unit_of_measure']}', {$data['count']}, '{$data['tag_id']}', '{$data['origin_state']}', {$data['asking']}, '{$date}', '{$date}', '{$date}')";
 			$result=mysqli_query($connection, $query);
 			if(mysqli_affected_rows($connection) != 1){
 				return array('success' => false, 'message' => "Sorry, an error happened (". mysqli_error($connection).")");

@@ -45,7 +45,7 @@
                        <tr>
                           <td><?php echo $sellerItem['lot']; ?></td>
                           <td><?php echo $sellerItem['item']; ?></td>
-                          <td></td>
+                          <td><?php echo $sellerItem['origin_state']; ?></td>
                           <td><?php echo $sellerItem['count']; ?></td>
                           <td><?php echo "$".$sellerItem['asking']; ?></td>
                           <!--4<td <?php if($highestBid != null){if($highestBid['bid_amount'] < $sellerItem['asking']){echo "class=\"red-text\"";}else{echo "class=\"green-text\"";}} ?>><?php if($highestBid != null){ echo "$".$highestBid['bid_amount']; }else{echo "N/A";} ?></td>-->

@@ -42,20 +42,20 @@ async function install() {
 <script src="../../js/init.js"></script>
     <script>
 //Sellers
-  document.getElementById("type1").onchange = function () {
-  document.getElementById("custom").setAttribute("class", "hide");
-  if (this.value == 'custom')
-    document.getElementById("custom").removeAttribute("class", "hide");
-};
-document.getElementById("type1").onchange = function () {
-if (this.value == 'Antlers' || this.value == 'Castor') {
-document.getElementById("item_count1").checked = false;
-document.getElementById("item_weight1").checked = true;
-}else {
-document.getElementById("item_count1").checked = true;
-document.getElementById("item_weight1").checked = false;
-}
-};
+//   document.getElementById("type1").onchange = function () {
+//   document.getElementById("custom").setAttribute("class", "hide");
+//   if (this.value == 'custom')
+//     document.getElementById("custom").removeAttribute("class", "hide");
+// };
+// document.getElementById("type1").onchange = function () {
+// if (this.value == 'Antlers' || this.value == 'Castor') {
+// document.getElementById("item_count1").checked = false;
+// document.getElementById("item_weight1").checked = true;
+// }else {
+// document.getElementById("item_count1").checked = true;
+// document.getElementById("item_weight1").checked = false;
+// }
+// };
 //Buyers
 function swap1() {
   document.getElementById("editbid1").setAttribute("class", "hide");

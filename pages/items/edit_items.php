@@ -48,16 +48,17 @@
 						<label>Lot</label>
 					</div>
 					<div class="input-field col s2">
-					<select name="items[0][item]">
-						<?php echo echo_item_types(); ?>
-					</select>
+						<select name="items[0][item]">
+							<?php echo echo_item_types(); ?>
+						</select>
 						<label>Item</label>
+						<input name="items[0][item_custom]" type="text" class="validate item-custom" style="display:none;">
 					</div>
 					<div class="input-field col s2">
-						<div style="display: inline;"><label><input name="items[0][unit_of_measure]" value="Count" type="radio" checked /><span>ct</span></label></div>
-						<div style="display: inline;"><label><input name="items[0][unit_of_measure]" Value="Lbs" type="radio" /><span>lbs</span></label></div>
+						<div style="display: inline;"><label><input name="items[0][unit_of_measure]" value="Count" type="radio" class="radio-count" checked /><span>ct</span></label></div>
+						<div style="display: inline;"><label><input name="items[0][unit_of_measure]" Value="Lbs" type="radio" class="radio-lbs" /><span>lbs</span></label></div>
 					</div>
-					<div class="input-field col s2">
+					<div class="input-field col s1">
 						<input name="items[0][count]" type="number" class="validate">
 						<label>Qty</label>
 					</div>
@@ -66,6 +67,12 @@
 						<label>Tag ID</label>
 					</div>
 					<div class="input-field col s2">
+						<select name="items[0][origin_state]">
+							<?php echo echo_states(); ?>
+						</select>
+						<label>Origin State</label>
+					</div>
+					<div class="input-field col s1">
 						<input name="items[0][asking]" type="number" class="validate">
 						<label>Asking $</label>
 					</div>
@@ -108,6 +115,17 @@
 					//console.log(JSON.parse(data));
 				}
 			});
+		});
+		$( "select[name*='[item]'" ).change(function(e) {
+			if($(this).val() == "Custom"){
+				$(this).parents().eq(1).find(".item-custom").css( "display", "block" );
+			}else{
+				$(this).parents().eq(1).find(".item-custom").css( "display", "none" );
+			}
+
+			if($(this).val() == "Antlers" || $(this).val() == "Castor" ){
+				$(this).parents().eq(2).find(".radio-lbs").prop("checked", true);
+			}
 		});
 	});
 	</script>

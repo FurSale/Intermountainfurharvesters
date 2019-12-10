@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 05, 2019 at 04:16 AM
+-- Generation Time: Dec 10, 2019 at 05:01 AM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -133,6 +133,7 @@ CREATE TABLE IF NOT EXISTS `seller_item` (
   `count` decimal(12,2) NOT NULL,
   `tag_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `asking` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `origin_state` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `bid_start` datetime NOT NULL,
   `bid_end` datetime NOT NULL,
   `sale_made` tinyint(1) NOT NULL DEFAULT '0',
@@ -140,20 +141,21 @@ CREATE TABLE IF NOT EXISTS `seller_item` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `lot` (`lot`),
   KEY `seller_id` (`seller_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `seller_item`
 --
 
-INSERT INTO `seller_item` (`id`, `seller_id`, `lot`, `type`, `item`, `unit_of_measure`, `count`, `tag_id`, `asking`, `bid_start`, `bid_end`, `sale_made`, `date_created`) VALUES
-(1, 1, '1001', NULL, 'fur', 'Count', '10.00', '', '20.00', '2019-11-17 00:00:00', '2019-11-18 00:00:00', 0, '2019-11-17 18:08:51'),
-(3, 1, '1002', NULL, 'fur', 'Count', '15.00', '', '50.00', '2019-11-17 00:00:00', '2019-11-18 00:00:00', 0, '2019-11-17 19:15:58'),
-(4, 3, '10002', NULL, 'Badger', 'Count', '10.00', '10', '25.00', '2019-12-05 03:46:57', '2019-12-05 03:46:57', 0, '2019-12-05 03:46:57'),
-(5, 3, '1003', NULL, 'Bear rug', 'Count', '23.00', '13', '123.00', '2019-12-05 03:49:29', '2019-12-05 03:49:29', 0, '2019-12-05 03:49:29'),
-(6, 3, '2001', NULL, 'Beaver Darts', 'Count', '123123.00', '123', '12.00', '2019-12-05 03:49:29', '2019-12-05 03:49:29', 0, '2019-12-05 03:49:29'),
-(7, 3, '3001', NULL, 'Beaver Tails', 'Count', '31231.00', '21312', '22.50', '2019-12-05 03:49:29', '2019-12-05 03:49:29', 0, '2019-12-05 03:49:29'),
-(8, 3, '1004', NULL, 'Beaver Darts', 'Count', '224.00', '2423', '23.47', '2019-12-05 03:55:13', '2019-12-05 03:55:13', 0, '2019-12-05 03:55:13');
+INSERT INTO `seller_item` (`id`, `seller_id`, `lot`, `type`, `item`, `unit_of_measure`, `count`, `tag_id`, `asking`, `origin_state`, `bid_start`, `bid_end`, `sale_made`, `date_created`) VALUES
+(1, 1, '1001', NULL, 'fur', 'Count', '10.00', '', '20.00', '', '2019-11-17 00:00:00', '2019-11-18 00:00:00', 0, '2019-11-17 18:08:51'),
+(3, 1, '1002', NULL, 'fur', 'Count', '15.00', '', '50.00', '', '2019-11-17 00:00:00', '2019-11-18 00:00:00', 0, '2019-11-17 19:15:58'),
+(4, 3, '10002', NULL, 'Badger', 'Count', '10.00', '10', '25.00', '', '2019-12-05 03:46:57', '2019-12-05 03:46:57', 0, '2019-12-05 03:46:57'),
+(5, 3, '1003', NULL, 'Bear rug', 'Count', '23.00', '13', '123.00', '', '2019-12-05 03:49:29', '2019-12-05 03:49:29', 0, '2019-12-05 03:49:29'),
+(6, 3, '2001', NULL, 'Beaver Darts', 'Count', '123123.00', '123', '12.00', '', '2019-12-05 03:49:29', '2019-12-05 03:49:29', 0, '2019-12-05 03:49:29'),
+(7, 3, '3001', NULL, 'Beaver Tails', 'Count', '31231.00', '21312', '22.50', '', '2019-12-05 03:49:29', '2019-12-05 03:49:29', 0, '2019-12-05 03:49:29'),
+(8, 3, '1004', NULL, 'Beaver Darts', 'Count', '224.00', '2423', '23.47', '', '2019-12-05 03:55:13', '2019-12-05 03:55:13', 0, '2019-12-05 03:55:13'),
+(9, 1, '1005', NULL, 'Bear rug', 'Count', '1.00', '57655', '100.00', 'GA', '2019-12-10 04:02:09', '2019-12-10 04:02:09', 0, '2019-12-10 04:02:09');
 
 -- --------------------------------------------------------
 

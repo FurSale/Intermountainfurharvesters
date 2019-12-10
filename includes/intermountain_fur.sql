@@ -108,6 +108,7 @@ CREATE TABLE IF NOT EXISTS `seller_item` (
   `count` decimal(12,2) NOT NULL,
   `tag_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `asking` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `origin_state` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `bid_start` datetime NOT NULL,
   `bid_end` datetime NOT NULL,
   `sale_made` tinyint(1) NOT NULL DEFAULT '0',
