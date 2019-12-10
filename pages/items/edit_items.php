@@ -48,7 +48,7 @@
 						<label>Lot</label>
 					</div>
 					<div class="input-field col s2">
-						<select name="items[0][item]">
+						<select name="items[0][item]" class="select-item">
 							<?php echo echo_item_types(); ?>
 						</select>
 						<label>Item</label>
@@ -116,15 +116,15 @@
 				}
 			});
 		});
-		$( "select[name*='[item]'" ).change(function(e) {
+		$( "body" ).on("change", "select.select-item", function(e) {
 			if($(this).val() == "Custom"){
-				$(this).parents().eq(1).find(".item-custom").css( "display", "block" );
+				$(this).parents().eq(1).find("input.item-custom").css( "display", "block" );
 			}else{
-				$(this).parents().eq(1).find(".item-custom").css( "display", "none" );
+				$(this).parents().eq(1).find("input.item-custom").css( "display", "none" );
 			}
 
 			if($(this).val() == "Antlers" || $(this).val() == "Castor" ){
-				$(this).parents().eq(2).find(".radio-lbs").prop("checked", true);
+				$(this).parents().eq(2).find("input.radio-lbs").prop("checked", true);
 			}
 		});
 	});
