@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 10, 2019 at 05:01 AM
+-- Generation Time: Dec 12, 2019 at 04:06 AM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `seller_item` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `lot` (`lot`),
   KEY `seller_id` (`seller_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `seller_item`
@@ -155,7 +155,8 @@ INSERT INTO `seller_item` (`id`, `seller_id`, `lot`, `type`, `item`, `unit_of_me
 (6, 3, '2001', NULL, 'Beaver Darts', 'Count', '123123.00', '123', '12.00', '', '2019-12-05 03:49:29', '2019-12-05 03:49:29', 0, '2019-12-05 03:49:29'),
 (7, 3, '3001', NULL, 'Beaver Tails', 'Count', '31231.00', '21312', '22.50', '', '2019-12-05 03:49:29', '2019-12-05 03:49:29', 0, '2019-12-05 03:49:29'),
 (8, 3, '1004', NULL, 'Beaver Darts', 'Count', '224.00', '2423', '23.47', '', '2019-12-05 03:55:13', '2019-12-05 03:55:13', 0, '2019-12-05 03:55:13'),
-(9, 1, '1005', NULL, 'Bear rug', 'Count', '1.00', '57655', '100.00', 'GA', '2019-12-10 04:02:09', '2019-12-10 04:02:09', 0, '2019-12-10 04:02:09');
+(9, 1, '1005', NULL, 'Bear rug', 'Count', '1.00', '57655', '100.00', 'GA', '2019-12-10 04:02:09', '2019-12-10 04:02:09', 0, '2019-12-10 04:02:09'),
+(10, 1, '1006', NULL, 'test', 'Count', '2.00', '12323', '5.00', 'ID', '2019-12-10 05:03:02', '2019-12-10 05:03:02', 0, '2019-12-10 05:03:02');
 
 -- --------------------------------------------------------
 
@@ -180,9 +181,18 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `deletable` tinyint(1) NOT NULL DEFAULT '1',
+  `role` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'administrator',
+  `date_last_logged_in` datetime DEFAULT NULL,
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `password`, `deletable`, `role`, `date_last_logged_in`, `date_created`) VALUES
+(1, 'admin', '$2y$10$aFuHxhyY6PnrGjdCrQC5ZeFTatoFcGcM6iq.udEyja00rTE9u6WAS', 0, 'administrator', '2019-12-12 04:00:55', '2019-12-11 19:23:14');
 
 --
 -- Constraints for dumped tables

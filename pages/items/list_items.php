@@ -5,6 +5,9 @@
 		"icon" => "icon-newspaper"
 	);
   require_once("../../includes/functions.php");
+  if(!logged_in()){
+    header("Location: ../login.php");
+  }
   require_once("../../includes/begin_html.php");
 	require_once("../../includes/nav.php");
 

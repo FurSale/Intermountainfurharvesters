@@ -2,6 +2,10 @@
   require_once("../../includes/db_connection.php");
   require_once("../../includes/functions.php");
 
+  if(!logged_in()){
+    return array('success' => false, 'message' => "You must be logged in to do this");
+  }
+
   	function process(){
 	  	global $connection;
 		//return($_POST['items']);

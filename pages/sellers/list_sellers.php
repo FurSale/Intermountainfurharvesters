@@ -4,7 +4,10 @@ require_once("../../includes/db_connection.php");
 		"title" => "Sellers",
 		"icon" => "icon-newspaper"
 	);
-	require_once("../../includes/functions.php");
+  require_once("../../includes/functions.php");
+  if(!logged_in()){
+    header("Location: ../login.php");
+  }
 	require_once("../../includes/begin_html.php");
 	require_once("../../includes/nav.php");
 	require_once("../../includes/crumbs.php");

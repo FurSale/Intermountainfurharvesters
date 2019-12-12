@@ -2,6 +2,10 @@
   require_once("../../includes/db_connection.php");
   require_once("../../includes/functions.php");
 
+  if(!logged_in()){
+    header("Location: ../login.php");
+  }
+
   $seller = null;
   if(isset($_GET['sellerId'])){
     $id = htmlspecialchars($_GET["sellerId"]);

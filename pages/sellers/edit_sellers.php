@@ -2,6 +2,10 @@
   require_once("../../includes/db_connection.php");
   require_once("../../includes/functions.php");
 
+  if(!logged_in()){
+    header("Location: ../login.php");
+  }
+
   $seller['id'] = null;
   $seller['first_name'] = null;
   $seller['last_name'] = null;

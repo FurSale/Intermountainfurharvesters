@@ -5,7 +5,10 @@
 		"icon" => "icon-newspaper"
 	);
 	$nav = ("1");
-	require_once("../../includes/functions.php");
+  require_once("../../includes/functions.php");
+  if(!logged_in()){
+    header("Location: ../login.php");
+  }
 	require_once("../../includes/begin_html.php");
 	require_once("../../includes/nav.php");
 

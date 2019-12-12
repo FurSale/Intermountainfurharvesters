@@ -5,8 +5,8 @@ session_name("login");
 session_start();
 
 if(isset($_COOKIE['rememberme'])&&!isset($_SESSION['user_id'])){
-	$query="SELECT id, username FROM users
-			WHERE username='{$_COOKIE['rememberme']}'";
+	$query="SELECT id, username FROM user
+			WHERE `username`='{$_COOKIE['rememberme']}'";
 	$result=mysqli_query($connection, $query);
 	if (mysqli_num_rows($result)==1){
 		$found_user=mysqli_fetch_array($result);
@@ -14,7 +14,7 @@ if(isset($_COOKIE['rememberme'])&&!isset($_SESSION['user_id'])){
 		$_SESSION['username']=$found_user['username'];
 
 		$date=date("Y/m/d H:i:s");
-		$query="UPDATE `users` SET
+		$query="UPDATE `user` SET
 				`last_logged_in` = '{$date}'
 				WHERE `id` = {$_SESSION['user_id']}";
 		$result=mysqli_query($connection, $query);

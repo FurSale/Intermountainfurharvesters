@@ -130,6 +130,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `deletable` tinyint(1) NOT NULL DEFAULT '1',
+  `role` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'administrator',
+  `date_last_logged_in` timestamp NULL DEFAULT NULL,
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
