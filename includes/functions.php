@@ -155,4 +155,15 @@ function echo_item_types($selected = null){
 
     return $returnHTML;
 }
+
+function random_generator($length, $usableChars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'){
+    $randomString = ''; 
+  
+    for ($i = 0; $i < $length; $i++) { 
+        $index = rand(0, strlen($usableChars) - 1); 
+        $randomString .= $usableChars[$index]; 
+    } 
+  
+    return $randomString; 
+}
 ?>

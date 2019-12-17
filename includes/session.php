@@ -30,7 +30,7 @@ if(!function_exists('logged_in')){
 
 function confirm_logged_in($pageadmin = true) {
 	if (!logged_in()){
-		redirect_to($GLOBALS['HOST']."/login?error=".urlencode('You must be logged in to view this'));
+		header("Location: ".$GLOBALS['HOST']."/pages/login.php");
 	}
 }
 ?>

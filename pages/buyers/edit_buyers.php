@@ -65,6 +65,14 @@
     confirm_query($result);
     if (mysqli_affected_rows($connection) == 1) {
       if($new){
+        //Get inserted ID
+        $newID = mysqli_insert_id($connection);
+        //Generate a random number for a OTP
+        $randomPass = random_generator(6, "0123456789");
+        $query = "INSERT INTO `user` (`username`, `password_one_time`, `deletable`, `role`, `date_created`)
+        VALUES ('{$newID}', '{$randomPass}', 1, 'buyer', '{$date}')";
+        $result = mysqli_query($connection, $query);
+
         $success = "Buyer added";
       }else{
         $success = "Buyer updated";

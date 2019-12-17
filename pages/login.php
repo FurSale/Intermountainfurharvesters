@@ -10,7 +10,7 @@ if(logged_in()){
 	header("Location: sellers/list_sellers.php");
 }
 
-$login['username'] = "admin";
+$login['username'] = "";
 
 if(isset($_POST['submit'])){
 
@@ -30,13 +30,26 @@ if(isset($_POST['submit'])){
 		session_start();
 		
 		$date=date("Y-m-d H:i:s");
-		$query="UPDATE `user` SET 
-				`date_last_logged_in` = '{$date}' 
-				WHERE `id` = {$_SESSION['user_id']}";
+		$query = "";
+		//Set a new one time pass if user is a buyer
+		if($found_user['role'] == "buyer"){
+			$randomPass = random_generator(6, "0123456789");
+			$query="UPDATE `user` SET `password_one_time` = '{$randomPass}', `date_last_logged_in` = '{$date}' 
+			WHERE `id` = {$_SESSION['user_id']}";
+		}else{
+			$query="UPDATE `user` SET `date_last_logged_in` = '{$date}' 
+			WHERE `id` = {$_SESSION['user_id']}";
+		}
+
 		$result=mysqli_query($connection, $query);
 		confirm_query($result);
+
+		if($found_user['role'] == "buyer"){
+			header("Location: frontend/index.php");
+		}else{
+			header("Location: sellers/list_sellers.php");
+		}
 		
-		header("Location: sellers/list_sellers.php");
 	}
 
 	if(!isset($_POST['username']) || !isset($_POST['password'])){
@@ -56,11 +69,19 @@ if(isset($_POST['submit'])){
 	confirm_query($result);
 	if (mysqli_num_rows($result)==1){
 		$found_user = mysqli_fetch_array($result);
-		//Check if hashed password matches DB password
-		if(password_verify($pass, $found_user['password'])){
-			setLoginCookie($found_user);
+		if($found_user['role'] == "buyer"){
+			if($pass == $found_user['password_one_time']){
+				setLoginCookie($found_user);
+			}else{
+				$error = "Wrong password";
+			}
 		}else{
-			$error = "Wrong password";
+			//Check if hashed password matches DB password
+			if(password_verify($pass, $found_user['password'])){
+				setLoginCookie($found_user);
+			}else{
+				$error = "Wrong password";
+			}
 		}
 		$error = "User does not exist";
 	}
@@ -85,13 +106,13 @@ require_once("../includes/begin_html.php");
 				<form method="post" class="col s12">
 					<div class="row">
 						<div class="input-field col s12">
-							<input placeholder="Username" id="username" name="username" type="text" class="validate" value="<?php echo $login['username']; ?>">
-							<label for="username">Username</label>
+							<input placeholder="Username / Buyer ID" id="username" name="username" type="text" class="validate" value="<?php echo $login['username']; ?>">
+							<label for="username">Username / Buyer ID</label>
 						</div>
 					</div>
 					<div class="row">
 						<div class="input-field col s12">
-							<input placeholder="Password" id="password" name="password" type="text" class="validate">
+							<input placeholder="Password" id="password" name="password" type="password" class="validate">
 							<label for="password">Password</label>
 						</div>
 					</div>

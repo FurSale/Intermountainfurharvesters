@@ -31,6 +31,7 @@
                         <thead>
                           <tr>
                             <th data-field="id">ID</th>
+                            <th data-field="password">Password</th>
                             <th data-field="name">Buyer</th>
                             <th data-field="company">Company</th>
                             <th data-field="address">Address</th>
@@ -50,6 +51,31 @@
                             ?>
                        <tr>
                           <td><?php echo $buyer['id']; ?></td>
+                          <td><?php 
+                            			$query="SELECT * FROM `user` WHERE `username` = '{$buyer['id']}'";
+                                  $result2=mysqli_query($connection, $query);
+                                  confirm_query($result2);
+                                  //Get OTP, if no user exists create one
+                                  if (mysqli_num_rows($result2)==1){
+                                    $found_user = mysqli_fetch_array($result2);
+                                    echo $found_user['password_one_time'];
+                                  }else{
+                                    //Password
+                                    $date=date("Y-m-d H:i:s");
+                                    //Generate a random number for a OTP
+                                    $randomPass = random_generator(6, "0123456789");
+                                    //Add user
+                                    $query = "INSERT INTO `user` (`username`, `password_one_time`, `deletable`, `role`, `date_created`)
+                                    VALUES ('{$buyer['id']}', '{$randomPass}', 1, 'buyer', '{$date}')";
+                                    $result3 = mysqli_query($connection, $query);
+                                    if ($result3 != false){
+                                      echo $randomPass;
+                                    }else{
+                                      echo mysqli_error($connection);
+                                    }
+                                    
+                                  }
+                          ?></td>
                           <td><?php echo $buyer['first_name'] . " " . $buyer['last_name']; ?></td>
                           <td><?php echo $buyer['company_name']; ?></td>
                           <td><?php echo $buyer['address_1'] . " " . $buyer['address_2'] . ", " . $buyer['city'] . ", " . $buyer['state'] . " " . $buyer['zip']; ?></td>

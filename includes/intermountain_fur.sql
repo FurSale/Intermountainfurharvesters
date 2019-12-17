@@ -128,7 +128,8 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NULL,
+  `password_one_time` varchar(255) COLLATE utf8_unicode_ci NULL,
   `deletable` tinyint(1) NOT NULL DEFAULT '1',
   `role` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'administrator',
   `date_last_logged_in` timestamp NULL DEFAULT NULL,
