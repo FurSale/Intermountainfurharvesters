@@ -1,34 +1,153 @@
 <?php
   require_once("../../includes/db_connection.php");
+  require_once("../../includes/functions.php");
+  if(!logged_in()){
+    header("Location: ../login.php");
+  }
+
+  $bid['buyer_id'] = null;
+  $bid['seller_item_id'] = null;
+  $bid['bid_amount'] = null;
+  $bid['lot'] = null;
+
+  if(isset($_POST['add'])){
+    //Safely escape all data in _POST
+    $data = $_POST;
+    foreach ($data as $key => $value) {
+      $data[$key] = mysqli_real_escape_string($connection, $value);
+    }
+
+    if($data['lot'] == ""){
+      return array('success' => false, 'message' => "Lot cannot be blank");
+    }
+    if($data['bid_amount'] == ""){
+      return array('success' => false, 'message' => "Bid Amount cannot be blank");
+    }
+
+    $date = date("Y-m-d H:i:s");
+
+    $query = "SELECT * FROM `seller_item` WHERE `lot` = {$data['lot']}";
+    $result = mysqli_query($connection, $query);
+    if (mysqli_num_rows($result)==1){
+      $item = mysqli_fetch_array($result);
+      $query = "INSERT INTO `bid` (`buyer_id`, `seller_item_id`, `bid_amount`, `bid_status`, `date_created`)
+      VALUES ({$_SESSION['user_id']}, {$item['id']}, {$data['bid_amount']}, 'Unconfirmed', '{$date}')";
+      $result = mysqli_query($connection, $query);
+      confirm_query($result);
+      if (mysqli_affected_rows($connection) == 1) {
+          $success = "Bid added";
+      } else {
+        $error = "Couldn't update";
+        $error .= "<br />" . mysqli_error($connection);
+        $bid = $data;
+      }
+    }else{
+      $error = "Lot \"".$data['lot']."\" doesn\\'t exist";
+      $bid = $data;
+    }
+  }
+
+  if(isset($_POST['edit'])){
+    //Safely escape all data in _POST
+    $data = $_POST;
+    foreach ($data as $key => $value) {
+      $data[$key] = mysqli_real_escape_string($connection, $value);
+    }
+
+    if($data['id'] == ""){
+      return array('success' => false, 'message' => "ID cannot be blank");
+    }
+    if($data['bid_amount'] == ""){
+      return array('success' => false, 'message' => "Bid Amount cannot be blank");
+    }
+
+    $query = "UPDATE `bid` SET
+    `bid_amount` = {$data['bid_amount']} WHERE `id` = {$data['id']}";
+    $result = mysqli_query($connection, $query);
+    confirm_query($result);
+    if (mysqli_affected_rows($connection) == 1) {
+        $success = "Bid updated";
+    } else {
+      $error = "Couldn't update";
+      $error .= "<br />" . mysqli_error($connection);
+    }
+  }
+
+  if(isset($_GET['deleteID'])){
+    $id = mysqli_real_escape_string($connection, $_GET['deleteID']);
+
+    $query = "SELECT * FROM `bid` WHERE `id` = {$id}";
+    $result = mysqli_query($connection, $query);
+    confirm_query($result);
+    if (mysqli_num_rows($result)==1){
+      $bidData = mysqli_fetch_array($result);
+      //Make sure the bid is this user's and it is not finalized
+      if($bidData['buyer_id'] == $_SESSION['user_id'] && $bidData['bid_status'] == "Unconfirmed"){
+        $query = "DELETE FROM `bid` WHERE `id` = {$id}";
+        $result = mysqli_query($connection, $query);
+        confirm_query($result);
+        if (mysqli_affected_rows($connection) == 1) {
+            $success = "Bid deleted";
+        } else {
+          $error = "Couldn't update";
+          $error .= "<br />" . mysqli_error($connection);
+        }
+      }else{
+        $error = "Cannot delete this bid";
+      }
+    }
+  }
+
+  if(isset($_POST['confirm'])){
+    //Safely escape all data in _POST
+    $data = $_POST;
+    foreach ($data as $key => $value) {
+      $data[$key] = mysqli_real_escape_string($connection, $value);
+    }
+
+    $query = "UPDATE `bid` SET
+    `bid_status` = 'Confirmed' WHERE `buyer_id` = {$_SESSION['user_id']} AND `bid_status` = 'Unconfirmed'";
+    $result = mysqli_query($connection, $query);
+    confirm_query($result);
+    if (mysqli_affected_rows($connection) >= 1) {
+        $success = "Bids confirmed";
+    } else {
+      $error = "Couldn't update";
+      $error .= "<br />" . mysqli_error($connection);
+      $buyer = $data;
+    }
+  }
+
 	$pgsettings = array(
 		"title" => "Buyers",
 		"icon" => "icon-newspaper"
 	);
 	$nav = ("1");
-	require_once("../../includes/functions.php");
+	
 	require_once("../../includes/begin_html.php");
 
 
 	 ?>
    <div class="container">
       <section id="content" class="">
-          <form  method="post">
+          <form method="post" action="index.php" id="form-add">
+          <input type="hidden" name="add" value="add" />
             <div class='row'>
               <div class='input-field col s12'>
-                <input class='validate' type='text' name='lot' id='lot' />
+                <input class='validate' type='text' name='lot' id='lot' value="<?php echo $bid['lot']; ?>" />
                 <label for='email'>Lot #</label>
               </div>
             </div>
 
             <div class='row'>
               <div class='input-field col s12'>
-                <input class='validate' type='number' name='bid' id='bid' />
-                <label for='password'>Bid Amount</label>
+                <input class='validate' type='number' name='bid_amount' id='bid_amount' value="<?php echo $bid['bid_amount']; ?>" />
+                <label for='bid_amount'>Bid Amount</label>
               </div>
             </div>
             <br />
               <div class='row center'>
-                <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Place Bid</button>
+                <button id="btn-add" class='col s12 btn btn-large waves-effect indigo'>Place Bid</button>
               </div>
           </form>
         </section>
@@ -42,35 +161,42 @@
          <div class="modal-content">
            <ul class="collection with-header">
         <li class="collection-header"><h4>Bids</h4></li>
-        <li class="collection-item">
-          <div class="row">
-            <div class="col s2">#1000</div>
-            <div class="col s2">4ct</div>
-            <div class="col s2">Muskrat</div>
-            <div class="col s2"><input value="&#36;100" id="bids1" type="text" class="validate" disabled></div>
-            <div class="col s2">
-              <button onclick="swap1()" class="btn waves-effect waves-light blue" id="editbid1">Edit</button>
-              <button class="btn waves-effect waves-light green hide"  id="sendbid1">Save</button>
-            </div>
-            <div class="col s2"><button class="btn waves-effect waves-light red"  id="deletebid1"><i class="material-icons">close</i></button></div>
-            </div>
-        </li>
-        <li class="collection-item">
-          <div class="row">
-            <div class="col s2">#1001</div>
-            <div class="col s2">4lbs</div>
-            <div class="col s2">Antler</div>
-            <div class="col s2"><input value="&#36;100" id="bids2" type="text" class="validate" disabled></div>
-            <div class="col s2">
-              <button onclick="swap2()" class="btn waves-effect waves-light blue" id="editbid2">Edit</button>
-              <button class="btn waves-effect waves-light green hide"  id="sendbid2">Save</button>
-            </div>
-            <div class="col s2"><button class="btn waves-effect waves-light red"  id="deletebid2"><i class="material-icons">close</i></button></div>
-            </div>
-        </li>
+        <?php
+            $query="SELECT * FROM `bid` WHERE `buyer_id` = {$_SESSION['user_id']} AND `bid_status` = 'Unconfirmed'";
+            $result=mysqli_query( $connection, $query);
+            //confirm_query($result);
+            while($bidData=mysqli_fetch_array($result)){
+              $query="SELECT * FROM `seller_item` WHERE `id` = '{$bidData['seller_item_id']}'";
+              $result2=mysqli_query($connection, $query);
+              confirm_query($result2);
+              $item = mysqli_fetch_array($result2);
+              ?>
+                <li class="collection-item">
+                  <div class="row">
+                    <div class="col s2">#<?php echo $item['lot']; ?></div>
+                    <div class="col s2"><?php echo $item['count']." ".$item['unit_of_measure']; ?></div>
+                    <div class="col s2"><?php echo $item['item']; ?></div>
+                    <form method="post" action="index.php" class="form-edit">
+                      <input type="hidden" name="edit" value="edit" />
+                      <input type="hidden" name="id" value="<?php echo $bidData['id']; ?>" />
+                      <div class="col s2">
+                        <!-- <span style="display:inline-block;">&#36;</span> -->
+                        <input value="<?php echo $bidData['bid_amount']; ?>" name="bid_amount" type="number" class="validate text-bid-amount" disabled>
+                      </div>
+                      <div class="col s2">
+                        <button class="btn waves-effect waves-light blue btn-swap">Edit</button>
+                        <button class="btn waves-effect waves-light green hide btn-send-bid">Save</button>
+                      </div>
+                    </form>
+                    <div class="col s2"><a href="index.php?deleteID=<?php echo $bidData['id']; ?>" class="btn waves-effect waves-light red" id="deletebid1"><i class="material-icons">close</i></a></div>
+                    </div>
+                </li>
+          <?php
+            }
+        ?>
 
 </ul>
-<a class="waves-effect waves-light btn modal-trigger" href="#modal2">Submit</a>
+<a class="waves-effect waves-light btn modal-trigger" href="#modal2">Confirm Bids</a>
 </div>
 <!-- Modal Structure -->
 <div id="modal2" class="modal">
@@ -79,14 +205,48 @@
     <p>This is the Final Submission</p>
   </div>
   <div class="modal-footer">
-    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-<i class="material-icons right">send</i>
-</button>
-
+    <form method="post" action="index.php" id="form-confirm">
+      <input type="hidden" name="confirm" value="confirm" />
+      <button class="btn waves-effect waves-light btn-confirm">Submit
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
   </div>
 </div>
          </div>
        </div>
+  <script>
+	$(document).ready(function(){
+		$( "body" ).on("click", "#btn-add", function(e) {
+      //Prevent form submission via button
+      e.preventDefault();
+      $("#form-add").submit();
+		});
+
+		$( "body" ).on("click", ".btn-send-bid", function(e) {
+      //Prevent form submission via button
+      e.preventDefault();
+      $(this).parents().eq(2).find("form.form-edit").submit();
+		});
+
+    $( "body" ).on("click", "#btn-confirm", function(e) {
+      //Prevent form submission via button
+      e.preventDefault();
+      $("#form-confirm").submit();
+		});
+    
+		$( "body" ).on("click", ".btn-swap", function(e) {
+      //Prevent form submission via button
+      e.preventDefault();
+      //Hide edit btn
+			$(this).parents().eq(1).find("button.btn-swap").addClass( "hide" );
+      //Show save btn
+      $(this).parents().eq(1).find("button.btn-send-bid").removeClass( "hide" );
+      //Enable textbox
+      $(this).parents().eq(2).find("input.text-bid-amount").prop( "disabled", false );
+		});
+	});
+	</script>
 <?php
 	require_once("../../includes/end_html.php");
 	 ?>

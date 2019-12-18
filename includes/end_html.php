@@ -57,16 +57,16 @@ async function install() {
 // }
 // };
 //Buyers
-function swap1() {
-  document.getElementById("editbid1").setAttribute("class", "hide");
-  document.getElementById("sendbid1").classList.remove("hide");
-  document.getElementById("bids1").removeAttribute("disabled");
-  };
-  function swap2() {
-    document.getElementById("editbid2").setAttribute("class", "hide");
-    document.getElementById("sendbid2").classList.remove("hide");
-    document.getElementById("bids2").removeAttribute("disabled");
-    };
+// function swap1() {
+//   document.getElementById("editbid1").setAttribute("class", "hide");
+//   document.getElementById("sendbid1").classList.remove("hide");
+//   document.getElementById("bids1").removeAttribute("disabled");
+//   };
+//   function swap2() {
+//     document.getElementById("editbid2").setAttribute("class", "hide");
+//     document.getElementById("sendbid2").classList.remove("hide");
+//     document.getElementById("bids2").removeAttribute("disabled");
+//     };
 </script>
     <script src="../../js/manup.js"></script>
     <!--materialize js-->
