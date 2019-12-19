@@ -12,7 +12,16 @@
 	require_once("../../includes/begin_html.php");
 	require_once("../../includes/nav.php");
 
-
+  $searchName = null;
+  $buyerQuery = "SELECT * FROM `buyer`";
+  if(isset($_GET['name'])){
+    $searchName = urldecode($_GET['name']);
+    $searchName = mysqli_real_escape_string($connection, $searchName);
+    $buyerQuery = "SELECT * FROM (
+      SELECT *, CONCAT(first_name, ' ', last_name) as firstlast 
+      FROM `buyer`) base 
+    WHERE firstLast LIKE '%{$searchName}%'";
+  }
 
 	 ?>
 	 <!-- START CONTENT -->
@@ -26,13 +35,22 @@
                 <div id="responsive-table">
                   <h4 class="header">Buyers</h4>
                   <div class="row">
+                    <div class="input-field col s4 offset-s4">
+                      <input placeholder="Name" id="search-query" type="text" value="<?php echo $searchName; ?>">
+                      <label for="search-query">Name</label>
+                    </div>
+                    <div class=" col s1">
+                      <button class="waves-effect waves-light btn-small" id="btn-search"><i class="material-icons left">search</i>Search</button>
+                    </div>
+                  </div>
+                  <div class="row">
                     <div class="col s12">
                       <table class="responsive-table">
                         <thead>
                           <tr>
                             <th data-field="id">ID</th>
                             <th data-field="password">Password</th>
-                            <th data-field="name">Buyer</th>
+                            <th data-field="name">Name</th>
                             <th data-field="company">Company</th>
                             <th data-field="address">Address</th>
                             <th data-field="phone">Phone</th>
@@ -44,9 +62,8 @@
                         </thead>
                         <tbody>
                         <?php
-                        	$query="SELECT * FROM `buyer`";
-                          $result=mysqli_query( $connection, $query);
-                          //confirm_query($result);
+                          $result=mysqli_query( $connection, $buyerQuery);
+                          confirm_query($result);
                           while($buyer=mysqli_fetch_array($result)){
                             ?>
                        <tr>
@@ -95,6 +112,24 @@
                 </div>
               </div>
             </section>
+            <script>
+              $(document).ready(function(){
+                $( "body" ).on("click", "#btn-search", function(e) {
+                  NavigateSearch();
+                });
+                $( "body" ).on("keypress", "#search-query", function(e) {
+                  if(e.which == 13) {
+                    NavigateSearch();
+                  }
+                });
+                function NavigateSearch(){
+                  var url = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                  var query = $("#search-query").val();
+                  var newUrl = url + "?name=" + encodeURI(query);
+                  window.location.href = newUrl;
+                }
+              });
+              </script>
             <!-- END WRAPPER -->
             </main>
 

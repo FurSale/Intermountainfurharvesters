@@ -102,7 +102,7 @@ require_once("../includes/begin_html.php");
           <div class="container">
               <!--Responsive Table-->
               <div id="responsive-table">
-				<h4 class="header">Admin Login</h4>
+				<h4 class="header">Admin / Buyer Login</h4>
 				<form method="post" class="col s12">
 					<div class="row">
 						<div class="input-field col s12">

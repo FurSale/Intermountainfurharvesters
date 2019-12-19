@@ -10,7 +10,19 @@ require_once("../../includes/db_connection.php");
   }
 	require_once("../../includes/begin_html.php");
 	require_once("../../includes/nav.php");
-	require_once("../../includes/crumbs.php");
+  require_once("../../includes/crumbs.php");
+  
+  $searchName = null;
+  $sellerQuery = "SELECT * FROM `seller`";
+  if(isset($_GET['name'])){
+    $searchName = urldecode($_GET['name']);
+    $searchName = mysqli_real_escape_string($connection, $searchName);
+    $sellerQuery = "SELECT * FROM (
+      SELECT *, CONCAT(first_name, ' ', last_name) as firstlast 
+      FROM `seller`) base 
+    WHERE firstLast LIKE '%{$searchName}%'";
+  }
+
 	 ?>
    <!-- START CONTENT -->
  <section id="content">
@@ -19,6 +31,15 @@ require_once("../../includes/db_connection.php");
               <!--Responsive Table-->
               <div id="responsive-table">
                 <h4 class="header">Sellers</h4>
+                <div class="row">
+                    <div class="input-field col s4 offset-s4">
+                      <input placeholder="Name" id="search-query" type="text" value="<?php echo $searchName; ?>">
+                      <label for="search-query">Name</label>
+                    </div>
+                    <div class=" col s1">
+                      <button class="waves-effect waves-light btn-small" id="btn-search"><i class="material-icons left">search</i>Search</button>
+                    </div>
+                  </div>
                 <div class="row">
                   <div class="col s12">
                     <table class="responsive-table">
@@ -36,9 +57,8 @@ require_once("../../includes/db_connection.php");
                       </thead>
                       <tbody>
                       <?php
-                        	$query="SELECT * FROM `seller`";
-                          $result=mysqli_query( $connection, $query);
-                          //confirm_query($result);
+                          $result=mysqli_query( $connection, $sellerQuery);
+                          confirm_query($result);
                           while($seller=mysqli_fetch_array($result)){
                             ?>
                        <tr>
@@ -66,6 +86,24 @@ require_once("../../includes/db_connection.php");
             </div>
           </div>
 				</section>
+        <script>
+              $(document).ready(function(){
+                $( "body" ).on("click", "#btn-search", function(e) {
+                  NavigateSearch();
+                });
+                $( "body" ).on("keypress", "#search-query", function(e) {
+                  if(e.which == 13) {
+                    NavigateSearch();
+                  }
+                });
+                function NavigateSearch(){
+                  var url = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                  var query = $("#search-query").val();
+                  var newUrl = url + "?name=" + encodeURI(query);
+                  window.location.href = newUrl;
+                }
+              });
+              </script>
 				<!-- END WRAPPER -->
 				</main>
 				<?php
