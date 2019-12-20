@@ -109,7 +109,7 @@ require_once("../../includes/begin_html.php");
            <input id="id" name="id" type="hidden" value="<?php echo $seller['id']; ?>">
              <div class="row">
                <div class="input-field col s9">
-                 <i class="material-icons prefix">contacts_outline</i>
+                 <i class="material-icons prefix">contacts</i>
                  <input placeholder="Trapper ID" id="trapper_id" name="trapper_id" type="text" class="validate" value="<?php echo $seller['trapper_id']; ?>">
                  <label for="trapper_id">Trapper ID</label>
                </div>
