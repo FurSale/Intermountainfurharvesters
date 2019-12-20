@@ -112,6 +112,31 @@
 	 	require_once("../../includes/crumbs.php");
 	 	 ?>
       <div class="container">
+        <?php
+                $query="SELECT * FROM `user` WHERE `username` = '{$buyer['id']}'";
+                $result2=mysqli_query($connection, $query);
+                confirm_query($result2);
+                //Get OTP, if no user exists create one
+                if (mysqli_num_rows($result2)==1){
+                  $found_user = mysqli_fetch_array($result2);
+                  echo $found_user['password_one_time'];
+                }else{
+                  //Password
+                  $date=date("Y-m-d H:i:s");
+                  //Generate a random number for a OTP
+                  $randomPass = random_generator(6, "0123456789");
+                  //Add user
+                  $query = "INSERT INTO `user` (`username`, `password_one_time`, `deletable`, `role`, `date_created`)
+                  VALUES ('{$buyer['id']}', '{$randomPass}', 1, 'buyer', '{$date}')";
+                  $result3 = mysqli_query($connection, $query);
+                  if ($result3 != false){
+                    echo $randomPass;
+                  }else{
+                    echo mysqli_error($connection);
+                  }
+
+                }
+        ?>
         <div class="row">
            <form method="post" class="col s12">
            <input id="id" name="id" type="hidden" value="<?php echo $buyer['id']; ?>">
@@ -191,25 +216,16 @@
 				<thead>
 					<tr>
 						<th>Lot #</th>
-						<th>Item Type</th>
-						<th>Quantity</th>
-						<th>lbs / ct</th>
 						<th>Asking Price</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td>
-							#1000
-						</td>
-						<td>
-							ID
-						</td>
-						<td>
-							10
-						</td>
-						<td>
-							ct
+              <div class="input-field">
+              <input placeholder="$0" id="Lot" type="number" class="validate">
+              <label for="lot">Lot #</label>
+            </div>
 						</td>
 						<td>
 							<div class="input-field">
@@ -217,14 +233,13 @@
 								<label for="Asking_Price">Asking Price</label>
 							</div>
 						</td>
+            <td><a class="waves-effect waves-yellow btn-flat red-text">Delete</a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<div class="row">
-			<div class="input-field col s3"><a class="waves-effect waves-light btn">Save</a>
-			</div>
-		</div>
+      <div class="input-field"><a class="waves-effect waves-light btn">Add</a>
+			<div class="input-field"><a class="waves-effect waves-light btn">Save</a>
 	</div>
 </div>
    </section>

@@ -119,7 +119,7 @@ function echo_cat($selected = null){
         'Mink',
         'Misc Bones',
         'Misc Skulls',
-        'Musk Rat',
+        'Muskrat',
         'Necklace',
         'Opossum',
         'Otter',

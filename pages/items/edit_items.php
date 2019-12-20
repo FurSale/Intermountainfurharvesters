@@ -57,21 +57,16 @@
 							<?php echo echo_item_types(); ?>
             </datalist>
 						<input name="items[0][item_custom]" type="text" class="validate item-custom" style="display:none;">
+            <input name="items[0][tag_id]" type="text" class="validate tag-ID" placeholder="Tag ID" style="display:none;">
 					</div>
 					<div class="input-field col s2">
 						<div style="display: inline;"><label><input name="items[0][unit_of_measure]" value="ct" type="radio" class="radio-count" checked /><span>ct</span></label></div>
 						<div style="display: inline;"><label><input name="items[0][unit_of_measure]" Value="lbs" type="radio" class="radio-lbs" /><span>lbs</span></label></div>
             <div style="display: inline;"><label><input name="items[0][unit_of_measure]" Value="oz" type="radio" class="radio-lbs" /><span>oz</span></label></div>
-
-
           </div>
 					<div class="input-field col s1">
             <label>Qty</label>
 						<input name="items[0][count]" type="number" class="validate">
-					</div>
-					<div class="input-field col s2">
-						<input name="items[0][tag_id]" type="text" class="validate">
-						<label>Tag ID</label>
 					</div>
 					<div class="input-field col s2">
             <label>Origin State</label>
@@ -83,6 +78,9 @@
 					<div class="input-field col s1">
 						<input name="items[0][asking]" type="number" class="validate">
 						<label>Asking $</label>
+					</div>
+          <div class="input-field col s1">
+            <a class="waves-effect waves-yellow red btn-small">Delete</a>
 					</div>
 				</div>
 			</div>
@@ -133,6 +131,12 @@
 
 			if($(this).val() == "Antlers" || $(this).val() == "Castor" ){
 				$(this).parents().eq(2).find("input.radio-lbs").prop("checked", true);
+			}
+
+      if($(this).val() == "Bobcat"){
+				$(this).parents().eq(1).find("input.tag-ID").css( "display", "block" );
+			}else{
+				$(this).parents().eq(1).find("input.tag-ID").css( "display", "none" );
 			}
 		});
 	});
