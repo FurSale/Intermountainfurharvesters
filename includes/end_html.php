@@ -39,7 +39,7 @@ async function install() {
 }
 
     </script>
-<script src="../../js/init.js"></script>
+
     <script>
 //Sellers
 //   document.getElementById("type1").onchange = function () {
@@ -88,7 +88,7 @@ async function install() {
           foreach ($error as $value) {
             echo "M.toast({html:'".$value."'});";
           }
-      } 
+      }
       ?>
       <?php
       if(isset($success)&&!is_array($success)){
@@ -97,7 +97,7 @@ async function install() {
           foreach ($success as $value) {
             echo "M.toast({html:'".$value."'});";
           }
-      } 
+      }
       ?>
       <?php
       if(isset($message)&&!is_array($message)){
@@ -106,7 +106,7 @@ async function install() {
           foreach ($message as $value) {
             echo "M.toast({html:'".$value."'});";
           }
-      } 
+      }
       ?>
     });
     <script>

@@ -92,7 +92,7 @@
 		"icon" => "icon-newspaper"
 	);
 	$nav = ("1");
-	require_once("../../includes/begin_html.php");
+require_once("../../includes/begin_html.php");
 	require_once("../../includes/nav.php");
 
 
@@ -108,65 +108,69 @@
            <form method="post" class="col s12">
            <input id="id" name="id" type="hidden" value="<?php echo $seller['id']; ?>">
              <div class="row">
-               <div class="input-field col s3">
-                 <i class="material-icons prefix">contacts</i>
-                 <input placeholder="Trapper ID" id="trapper_id" name="trapper_id" type="text" class="validate" value="<?php echo $seller['trapper_id']; ?>"">
+               <div class="input-field col s9">
+                 <i class="material-icons prefix">contacts_outline</i>
+                 <input placeholder="Trapper ID" id="trapper_id" name="trapper_id" type="text" class="validate" value="<?php echo $seller['trapper_id']; ?>">
                  <label for="trapper_id">Trapper ID</label>
                </div>
-             </div>
-             <div class="row">
                <div class="input-field col s3">
-                 <i class="material-icons prefix">account_circle</i>
-                 <input id="first_name" name="first_name" type="text" class="validate" value="<?php echo $seller['first_name']; ?>">
-                 <label for="first_name">First Name</label>
-               </div>
-               <div class="input-field col s3">
-                 <input id="last_name" name="last_name" type="text" class="validate" value="<?php echo $seller['last_name']; ?>">
-                 <label for="last_name">Last Name</label>
-               </div>
-              <div class="input-field col s3">
-                <i class="material-icons prefix">contact_phone</i>
-                <input id="phone" name="phone" type="tel" class="validate" value="<?php echo $seller['phone']; ?>">
-                <label for="phone">Telephone</label>
-              </div>
-               <div class="input-field col s3">
-                 <i class="material-icons prefix">contact_mail</i>
-                 <input id="email" name="email" type="email" class="validate" value="<?php echo $seller['email']; ?>">
-                 <label for="email">Email</label>
-               </div>
-             </div>
-             <div class="row">
-               <div class="input-field col s3">
-                 <i class="material-icons prefix">home</i>
-                 <input placeholder="Address 1" id="address_1" name="address_1" type="text" class="validate" value="<?php echo $seller['address_1']; ?>">
-                 <label for="address_1">Address 1</label>
-               </div>
-               <div class="input-field col s3">
-                 <input placeholder="Address 2" id="address_2" name="address_2" type="text" class="validate" value="<?php echo $seller['address_2']; ?>">
-                 <label for="address_2">Address 2</label>
-               </div>
-               <div class="input-field col s3">
-                 <input id="city" name="city" type="text" class="validate" value="<?php echo $seller['city']; ?>">
-                 <label for="city">City</label>
-               </div>
-              <div class="input-field col s3">
-                <select name="state" id="state">
-                  <?php echo echo_states($seller['state']); ?>
-                </select>
-              </div>
-             </div>
-             <div class="row">
-              <div class="input-field col s3">
-                 <input id="zip" name="zip" type="number" class="validate" value="<?php echo $seller['zip']; ?>">
-                 <label for="zip">Zip</label>
-               </div>
-               <div class="input-field col s3">
+                 <i class="material-icons prefix">attach_money</i>
                  <input id="commission" name="commission" type="number" class="validate" value="<?php echo $seller['commission']; ?>">
                  <label for="commission">Commission %</label>
                </div>
-              </div>
+             </div>
+             <div class="row">
+             <div class="row">
+               <div class="input-field col s6">
+                 <div class="input-field col s6">
+                   <i class="material-icons prefix">account_circle</i>
+                   <input placeholder="First" id="first_name" name="first_name" type="text" class="validate" value="<?php echo $seller['first_name']; ?>">
+                   <label for="first_name">First Name</label>
+                 </div>
+                 <div class="input-field col s6">
+                   <input placeholder="Last" id="last_name" name="last_name" type="text" class="validate" value="<?php echo $seller['last_name']; ?>">
+                   <label for="last_name">Last Name</label>
+                 </div>
+                <div class="input-field col s6">
+                  <i class="material-icons prefix">contact_phone</i>
+                  <input onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);" id="phone" name="phone" type="tel" class="validate" value="<?php echo $seller['phone']; ?>">
+                  <label for="phone">Telephone</label>
+                </div>
+                 <div class="input-field col s6">
+                   <i class="material-icons prefix">contact_mail</i>
+                   <input placeholder="@" id="email" name="email" type="email" class="validate" value="<?php echo $seller['email']; ?>">
+                   <label for="email">Email</label>
+                 </div>
+               </div>
+                 <div class="input-field col s6">
+                   <div class="input-field col s12">
+                     <i class="material-icons prefix">home</i>
+                     <input placeholder="Address 1" id="address_1" name="address_1" type="text" class="validate" value="<?php echo $seller['address_1']; ?>">
+                     <label for="address_1">Address 1</label>
+                   </div>
+                   <div class="input-field col s12">
+                     <input placeholder="Address 2" id="address_2" name="address_2" type="text" class="validate" value="<?php echo $seller['address_2']; ?>">
+                     <label for="address_2">Address 2</label>
+                   </div>
+                   <div class="input-field col s12">
+                     <input id="city" name="city" type="text" class="validate" value="<?php echo $seller['city']; ?>">
+                     <label for="city">City</label>
+                   </div>
+                  <div class="input-field col s6">
+                    <select name="state" id="state">
+                      <?php echo echo_states($seller['state']); ?>
+                    </select>
+                  </div>
+                  <div class="input-field col s6">
+                     <input id="zip" name="zip" type="number" class="validate" value="<?php echo $seller['zip']; ?>">
+                     <label for="zip">Zip</label>
+                   </div>
+                 </div>
+
+             </div>
              <div class="input-field col s3"><input type="submit" name="submit" class="waves-effect waves-light btn submit" value="Save"></input></div>
            </form>
+         </div>
          </div>
           <!--Responsive Table-->
           <h4 class="header red">Below is Currently Disabled - Go to add items</h4>
@@ -189,12 +193,12 @@
         <tbody>
           <tr>
             <td><div class="input-field"> <i class="material-icons prefix">local_offer</i><input placeholder="#1000" id="lot" type="text" class="validate"><label for="lot">Lot #</label></div></td>
-            <td><?php require_once("../../includes/itemtype.php"); ?>
+            <td>
               <div id="custom" class="hide"><input placeholder="Custom" type="text" class="validate">
             <label for="License">Custom</label></div></td>
             <td><div class="input-field"><input placeholder="1" id="Quantity" type="text" class="validate"><label for="Quantity">Quantity</label></div></td>
             <td><label><input name="group1" type="radio" id="item_count1" checked /><span>ct</span><label><input name="group1" type="radio" id="item_weight1" /><span>lbs</span></label></td>
-            <td><?php require("../../includes/states.php"); ?></td>
+            <td></td>
             <td><div class="input-field"><input placeholder="$0" id="Asking_Price" type="number" class="validate"><label for="Asking_Price">Asking Price</label></div></td>
           </tr>
         </tbody>

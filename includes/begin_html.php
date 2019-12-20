@@ -31,6 +31,8 @@
     <link href="../../vendors/flag-icon/css/flag-icon.min.css" type="text/css" rel="stylesheet">
     <!-- jQuery Library -->
     <script type="text/javascript" src="../../vendors/jquery-3.2.1.min.js"></script>
+    <script src="../../js/init.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
   </head>
   <body>
     <!-- Start Page Loading -->

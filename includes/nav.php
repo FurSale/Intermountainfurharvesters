@@ -33,8 +33,8 @@
       <i class="large material-icons">library_add</i>
     </a>
     <ul>
-      <li><a href="../../pages/sellers/edit_sellers.php?new" class="btn-floating halfwayfab red tooltipped" data-position="bottom" data-tooltip="Sellers"><i class="material-icons left">person_add</i></a></li>
-      <li><a href="../../pages/buyers/edit_buyers.php?new" class="btn-floating halfwayfab blue tooltipped" data-position="bottom" data-tooltip="Buyers"><i class="material-icons left">store_mall_directory</i></a></li>
+      <li><a href="../../pages/sellers/edit_sellers.php?new" class="btn-floating halfwayfab red tooltipped" data-position="bottom" data-tooltip="Sellers"><i class="material-icons-two-tone">person_add</i></a></li>
+      <li><a href="../../pages/buyers/edit_buyers.php?new" class="btn-floating halfwayfab blue tooltipped" data-position="bottom" data-tooltip="Buyers"><i class="material-icons-two-tone">store_mall_directory</i></a></li>
       <!--<li><a href="../../pages/items/edit_items.php?new" class="btn-floating halfwayfab green tooltipped" data-position="bottom" data-tooltip="Items"><i class="material-icons left">publish</i></a></li>-->
     </ul>
   </div>
