@@ -5,6 +5,10 @@
     header("Location: ../login.php");
   }
 
+  $query = "SELECT * FROM `site_info` WHERE `id` = 1";
+  $result = mysqli_query($connection, $query);
+  $site = mysqli_fetch_array($result);
+
   $bid['buyer_id'] = null;
   $bid['seller_item_id'] = null;
   $bid['bid_amount'] = null;
@@ -130,6 +134,9 @@
 	 ?>
    <div class="container">
       <section id="content" class="">
+      <div class="col 12">
+        <h1><?php echo $site['site_name']; ?></h1>
+      </div>
           <form method="post" action="index.php" id="form-add">
           <input type="hidden" name="add" value="add" />
             <div class='row'>
@@ -189,6 +196,29 @@
                       </div>
                     </form>
                     <div class="col s2"><a href="index.php?deleteID=<?php echo $bidData['id']; ?>" class="btn waves-effect waves-light red" id="deletebid1"><i class="material-icons">close</i></a></div>
+                    </div>
+                </li>
+          <?php
+            }
+        ?>
+        <?php
+            $cutoffDate = date("Y-m-d H:i:s", strtotime('-72 hours', time())); //3 days
+            $query="SELECT * FROM `bid` WHERE `buyer_id` = {$_SESSION['user_id']} AND `bid_status` = 'Confirmed' AND `date_created` > '{$cutoffDate}'";
+            $result=mysqli_query( $connection, $query);
+            //confirm_query($result);
+            while($bidData=mysqli_fetch_array($result)){
+              $query="SELECT * FROM `seller_item` WHERE `id` = '{$bidData['seller_item_id']}'";
+              $result2=mysqli_query($connection, $query);
+              confirm_query($result2);
+              $item = mysqli_fetch_array($result2);
+              ?>
+                <li class="collection-item" style="background-color:#cccccc;">
+                  <div class="row">
+                    <div class="col s2">#<?php echo $item['lot']; ?></div>
+                    <div class="col s2"><?php echo $item['count']." ".$item['unit_of_measure']; ?></div>
+                    <div class="col s2"><?php echo $item['item']; ?></div>
+                    <div class="col s2">$<?php echo $bidData['bid_amount']; ?></div>
+                    <div class="col s2"></div>
                     </div>
                 </li>
           <?php
