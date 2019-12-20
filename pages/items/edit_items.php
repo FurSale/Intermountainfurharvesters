@@ -52,29 +52,33 @@
 						<label>Lot</label>
 					</div>
 					<div class="input-field col s2">
-						<select name="items[0][item]" class="select-item">
+						<input list="items[0][item]" class="select-item">
+          <datalist name="items[0][item]" id="items[0][item]">
 							<?php echo echo_item_types(); ?>
-						</select>
-						<label>Item</label>
+            </datalist>
 						<input name="items[0][item_custom]" type="text" class="validate item-custom" style="display:none;">
 					</div>
 					<div class="input-field col s2">
-						<div style="display: inline;"><label><input name="items[0][unit_of_measure]" value="Count" type="radio" class="radio-count" checked /><span>ct</span></label></div>
-						<div style="display: inline;"><label><input name="items[0][unit_of_measure]" Value="Lbs" type="radio" class="radio-lbs" /><span>lbs</span></label></div>
-					</div>
+						<div style="display: inline;"><label><input name="items[0][unit_of_measure]" value="ct" type="radio" class="radio-count" checked /><span>ct</span></label></div>
+						<div style="display: inline;"><label><input name="items[0][unit_of_measure]" Value="lbs" type="radio" class="radio-lbs" /><span>lbs</span></label></div>
+            <div style="display: inline;"><label><input name="items[0][unit_of_measure]" Value="oz" type="radio" class="radio-lbs" /><span>oz</span></label></div>
+
+
+          </div>
 					<div class="input-field col s1">
+            <label>Qty</label>
 						<input name="items[0][count]" type="number" class="validate">
-						<label>Qty</label>
 					</div>
 					<div class="input-field col s2">
 						<input name="items[0][tag_id]" type="text" class="validate">
 						<label>Tag ID</label>
 					</div>
 					<div class="input-field col s2">
-						<select name="items[0][origin_state]">
+            <label>Origin State</label>
+            	<input list="items[0][origin_state]">
+						<datalist name="items[0][origin_state]" id="items[0][origin_state]">
 							<?php echo echo_states(); ?>
-						</select>
-						<label>Origin State</label>
+						</datalist>
 					</div>
 					<div class="input-field col s1">
 						<input name="items[0][asking]" type="number" class="validate">
@@ -120,7 +124,7 @@
 				}
 			});
 		});
-		$( "body" ).on("change", "select.select-item", function(e) {
+		$( "body" ).on("change", "input.select-item", function(e) {
 			if($(this).val() == "Custom"){
 				$(this).parents().eq(1).find("input.item-custom").css( "display", "block" );
 			}else{

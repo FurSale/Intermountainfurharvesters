@@ -74,6 +74,87 @@ function echo_states($selected = null){
     return $returnHTML;
 }
 
+
+function echo_cat($selected = null){
+    $cat = array(
+        'Antlers',
+        'Artic Fox',
+        'Baculum',
+        'Badger',
+        'Bear Parts',
+        'Bear rug',
+        'Beaver',
+        'Beaver Darts',
+        'Beaver Skulls',
+        'Beaver Tails',
+        'Bee Hive',
+        'Blue Fox',
+        'Bobcat',
+        'Bobcat Bones',
+        'Bobcat Paws',
+        'Bobcat Skull',
+        'Castor',
+        'Cougar',
+        'Coyote',
+        'Coyote Paws',
+        'Coyote Skulls',
+        'Cross Fox',
+        'Earings',
+        'Ermine',
+        'Ermine Skull',
+        'Fox Paws',
+        'Fur Coat',
+        'Fur Headband',
+        'Fur Pieces',
+        'Goat Skulls',
+        'Goat / Sheep Horns',
+        'Grey Fox',
+        'Grouse Tails',
+        'Hoop Art',
+        'Indian Leather Jacket',
+        'Indian Shield',
+        'Lion Skull',
+        'Lynx Feet',
+        'Marten',
+        'Mink',
+        'Misc Bones',
+        'Misc Skulls',
+        'Musk Rat',
+        'Necklace',
+        'Opossum',
+        'Otter',
+        'Porky Claws',
+        'Porky Hair',
+        'Porky Quills',
+        'Raccoon',
+        'Raccoon Paws',
+        'Raccoon Skulls',
+        'Red Fox',
+        'Silver Fox',
+        'Skunk',
+        'Skunk Essence',
+        'Skunk Skulls',
+        'Tanned Lamb Skin',
+        'Traps',
+        'Turkey Beard',
+        'Turkey Tails',
+        'White fox',
+        'Wolf',
+        'Wolf Skull'
+    );
+
+
+    foreach ($cat as $value) {
+        if($value == $selected){
+            $returnHTML .= "<tr><td>{$value}</tr></td>";
+        }else{
+            $returnHTML .= "<tr><td><b>{$value}</b><td></td><td></td><td></td><td></td><td></td></tr></td>";
+        }
+    }
+
+    return $returnHTML;
+}
+
 function echo_item_types($selected = null){
     $types = array(
         'Custom',
@@ -143,13 +224,13 @@ function echo_item_types($selected = null){
         'Wolf Skull'
     );
 
-    $returnHTML = "<option value=\"\">Select type</option>";
+    $returnHTML = "<option value=\"\">Select type";
 
     foreach ($types as $value) {
         if($value == $selected){
-            $returnHTML .= "<option value=\"{$value}\" selected>{$value}</option>";
+            $returnHTML .= "<option value=\"{$value}\" selected>{$value}";
         }else{
-            $returnHTML .= "<option value=\"{$value}\">{$value}</option>";
+            $returnHTML .= "<option value=\"{$value}\">{$value}";
         }
     }
 
@@ -157,13 +238,13 @@ function echo_item_types($selected = null){
 }
 
 function random_generator($length, $usableChars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'){
-    $randomString = ''; 
-  
-    for ($i = 0; $i < $length; $i++) { 
-        $index = rand(0, strlen($usableChars) - 1); 
-        $randomString .= $usableChars[$index]; 
-    } 
-  
-    return $randomString; 
+    $randomString = '';
+
+    for ($i = 0; $i < $length; $i++) {
+        $index = rand(0, strlen($usableChars) - 1);
+        $randomString .= $usableChars[$index];
+    }
+
+    return $randomString;
 }
 ?>
