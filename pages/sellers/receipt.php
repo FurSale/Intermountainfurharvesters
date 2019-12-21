@@ -1,10 +1,38 @@
 <?php
+  require_once("../../includes/db_connection.php");
+  require_once("../../includes/functions.php");
+
+  if(!logged_in()){
+    header("Location: ../login.php");
+  }
+  $sellerData = null;
+  if(isset($_GET['id'])){
+    $id = htmlspecialchars($_GET["id"]);
+    $query="SELECT * FROM `seller` WHERE `id`={$id}";
+    $result=mysqli_query($connection, $query);
+    //confirm_query($result);
+    //Redirect to blog page if nothing returned from DB
+    if(mysqli_num_rows($result) == 0){
+      header("Location: list_sellers.php");
+    }else{
+      $sellerData=mysqli_fetch_array($result);
+    }
+  }
+
 	$pgsettings = array(
-		"title" => "Details",
+		"title" => "Seller Receipt",
 		"icon" => "icon-newspaper"
 	);
-	require_once("../includes/begin_html.php");
-?>
+	$nav = ("1");
+
+	require_once("../../includes/begin_html.php");
+  require_once("../../includes/nav.php");
+	 ?>
+	 <!-- START CONTENT -->
+   <section id="content">
+	 <?php
+	 	require_once("../../includes/crumbs.php");
+	 	 ?>
       <!--start container-->
       <div class="container">
 
@@ -25,42 +53,38 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>2001</td>
-                      <td>Coyote</td>
-                      <td>16</td>
-                      <td>$12</td>
-                      <td class="green-text">$127</td>
-
-                    </tr>
-                    <tr>
-                      <td>2003</td>
-                      <td>Coyote</td>
-                      <td>1</td>
-                      <td>$34</td>
-                      <td class="red-text">$23</td>
-
-                    </tr>
-                    <tr>
-                      <td>2007</td>
-                      <td>Coyote</td>
-                      <td>8</td>
-                      <td>$56</td>
-                      <td class="green-text">$123</td>
-                    </tr>
-                    <tr>
-                      <td>2015</td>
-                      <td>Bobcat</td>
-                      <td>102</td>
-                      <td>$78</td>
-                      <td class="red-text">$12</td>
-                    </tr>
+                  <?php
+                  $subtotal = 0;
+                  $query = "SELECT * FROM `seller_item` WHERE `seller_id` = {$sellerData['id']}";
+                  $result=mysqli_query( $connection, $query);
+                  confirm_query($result);
+                  //Check each of the buyer's bid to see if it's the winning one
+                  while($itemData=mysqli_fetch_array($result)){
+                    //Get first record of the highest bid in case of tie bids
+                    $query = "SELECT * FROM `bid` WHERE `seller_item_id` = {$itemData['id']} AND `bid_status` = 'Confirmed' ORDER BY `bid_amount` DESC, `DATE_CREATED` ASC LIMIT 1";
+                    $result2=mysqli_query( $connection, $query);
+                    confirm_query($result2);
+                    if(mysqli_num_rows($result2) > 0){
+                      $bid=mysqli_fetch_array($result2);
+                        $subtotal += $bid['bid_amount'];
+                        ?>
+                        <tr>
+                            <td><?php echo $itemData['lot']; ?></td>
+                            <td><?php echo $itemData['item']; ?></td>
+                            <td><?php echo $itemData['count']; ?></td>
+                            <td>$<?php echo $itemData['asking']; ?></td>
+                            <td <?php if($bid['bid_amount'] < $itemData['asking']){echo "class=\"red-text\"";}else{echo "class=\"green-text\"";} ?>><?php echo "$".$bid['bid_amount']; ?></td>
+                          </tr>
+                    <?php
+                    }
+                  }
+                      ?>
                   <tr>
                       <td>TOTAL</td>
                       <td></td>
                       <td></td>
                       <td></td>
-                      <td>$285</td>
+                      <td>$<?php echo number_format($subtotal, 2); ?></td>
                   </tr>
                   </tbody>
                 </table>
@@ -78,7 +102,7 @@
 <?php
 
 
-include '../includes/end_html.php';
+include '../../includes/end_html.php';
 
 
 ?>

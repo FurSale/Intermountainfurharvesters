@@ -1,16 +1,32 @@
 <?php
   require_once("../../includes/db_connection.php");
+  require_once("../../includes/functions.php");
+
+  if(!logged_in()){
+    header("Location: ../login.php");
+  }
+  $buyerData = null;
+  if(isset($_GET['id'])){
+    $id = htmlspecialchars($_GET["id"]);
+    $query="SELECT * FROM `buyer` WHERE `id`={$id}";
+    $result=mysqli_query($connection, $query);
+    //confirm_query($result);
+    //Redirect to blog page if nothing returned from DB
+    if(mysqli_num_rows($result) == 0){
+      header("Location: list_buyers.php");
+    }else{
+      $buyerData=mysqli_fetch_array($result);
+    }
+  }
+
 	$pgsettings = array(
-		"title" => "Buyers",
+		"title" => "Buyer Receipt",
 		"icon" => "icon-newspaper"
 	);
 	$nav = ("1");
-	require_once("../../includes/functions.php");
+
 	require_once("../../includes/begin_html.php");
-	require_once("../../includes/nav.php");
-
-
-
+  require_once("../../includes/nav.php");
 	 ?>
 	 <!-- START CONTENT -->
  <section id="content">
@@ -38,56 +54,63 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>2001</td>
-                      <td>Coyote</td>
-                      <td>16</td>
-                      <td>$12</td>
-                      <td class="green-text">$127</td>
-
-                    </tr>
-                    <tr>
-                      <td>2003</td>
-                      <td>Coyote</td>
-                      <td>1</td>
-                      <td>$34</td>
-                      <td class="red-text">$23</td>
-
-                    </tr>
-                    <tr>
-                      <td>2007</td>
-                      <td>Coyote</td>
-                      <td>8</td>
-                      <td>$56</td>
-                      <td class="green-text">$123</td>
-                    </tr>
-                    <tr>
-                      <td>2015</td>
-                      <td>Bobcat</td>
-                      <td>102</td>
-                      <td>$78</td>
-                      <td class="red-text">$12</td>
-                    </tr>
+                  <?php
+                  $subtotal = 0;
+                          $query = "SELECT * FROM `bid` WHERE `buyer_id` = {$buyerData['id']} AND bid_status = 'Confirmed'";
+                          $result=mysqli_query( $connection, $query);
+                          confirm_query($result);
+                          //Check each of the buyer's bid to see if it's the winning one
+                          while($bid=mysqli_fetch_array($result)){
+                            //If bid is the highest for this item
+                            $query = "SELECT * FROM `bid` WHERE `seller_item_id` = {$bid['seller_item_id']} AND `bid_amount` > {$bid['bid_amount']} AND bid_status = 'Confirmed'";
+                            $result2=mysqli_query( $connection, $query);
+                            confirm_query($result2);
+                            if(mysqli_num_rows($result2) == 0){
+                              //Check if bid is the first one time wise if there's a tie
+                              $query = "SELECT * FROM `bid` WHERE `seller_item_id` = {$bid['seller_item_id']} AND `bid_amount` = {$bid['bid_amount']} AND `date_created` < '{$bid['date_created']}' AND bid_status = 'Confirmed'";
+                              $result3=mysqli_query( $connection, $query);
+                              confirm_query($result3);
+                              if(mysqli_num_rows($result3) == 0){
+                                //We should be down here if this is the winning bid
+                                //Get item data for this bid
+                                $query = "SELECT * FROM `seller_item` WHERE `id` = {$bid['seller_item_id']}";
+                                $resultItem=mysqli_query( $connection, $query);
+                                confirm_query($resultItem);
+                                $itemData=mysqli_fetch_array($resultItem);
+                                $subtotal += $bid['bid_amount'];
+                                ?>
+                                <tr>
+                                   <td><?php echo $itemData['lot']; ?></td>
+                                   <td><?php echo $itemData['item']; ?></td>
+                                   <td><?php echo $itemData['count']; ?></td>
+                                   <td>$<?php echo $itemData['asking']; ?></td>
+                                   <td <?php if($bid['bid_amount'] < $itemData['asking']){echo "class=\"red-text\"";}else{echo "class=\"green-text\"";} ?>><?php echo "$".$bid['bid_amount']; ?></td>
+                                 </tr>
+                                 <?php
+                              }
+                            }
+                          }
+                      ?>
 										<tr>
 												<td></td>
 												<td></td>
 												<td>Subtotal</td>
 												<td></td>
-												<td>$285</td>
+												<td>$<?php echo number_format($subtotal, 2); ?></td>
 										</tr>
 										<tr>
 												<td></td>
 												<td></td>
 												<td>Commission</td>
-												<td>6%</td>
-												<td>$17</td>
+												<td><?php echo $buyerData['commission']; ?>%</td>
+												<td>$<?php echo number_format((($buyerData['commission']/100) * $subtotal), 2); ?></td>
 										</tr>
 									<tr>
                       <td></td>
                       <td></td>
-                      <td>Total Due</td>
+                      <td><span style="font-weight:bold;">Total Due</span></td>
                       <td></td>
-                      <td>$302</td>
+                      <td><span style="font-weight:bold;">$<?php echo (($buyerData['commission']/100) + 1) * $subtotal; ?></span></td>
                   </tr>
                   </tbody>
                 </table>
@@ -96,6 +119,7 @@
         </div>
       </div>
     </div>
+    </section>
   <!-- END CONTENT -->
 <?php
 

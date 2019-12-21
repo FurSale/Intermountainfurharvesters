@@ -9,17 +9,60 @@
   if(!logged_in()){
     header("Location: ../login.php");
   }
+
+  function Delete(){
+    global $connection;
+    $id = mysqli_real_escape_string($connection, $_GET['deleteID']);
+
+    $query = "SELECT * FROM `buyer` WHERE `id` = {$id}";
+    $result = mysqli_query($connection, $query);
+    confirm_query($result);
+    if (mysqli_num_rows($result)!=1){
+      return array('success' => false, 'message' => "Buyer does not exist to delete");
+    }
+    $buyerData = mysqli_fetch_array($result);
+
+    //Delete all the bids under the buyer
+    $query = "DELETE FROM `bid` WHERE `buyer_id` = {$buyerData['id']}";
+    $result = mysqli_query($connection, $query);
+    confirm_query($result);
+
+    //Delete the buyer login
+    $query = "DELETE FROM `user` WHERE `username` = '{$buyerData['id']}'";
+    $result = mysqli_query($connection, $query);
+    confirm_query($result);
+
+    //Delete the buyer
+    $query = "DELETE FROM `buyer` WHERE `id` = {$buyerData['id']}";
+    $result = mysqli_query($connection, $query);
+    confirm_query($result);
+
+    if (mysqli_affected_rows($connection) == 1) {
+      return array('success' => true, 'message' => "Buyer {$buyerData['first_name']} deleted");
+    }
+    return array('success' => false, 'message' => "Couldn't update" . "<br />" . mysqli_error($connection));
+  }
+
+  if(isset($_GET['deleteID'])){
+    $result = Delete();
+    if($result['success']){
+      $success = $result['message'];
+    }else{
+      $error = $result['message'];
+    }
+  }
+
 	require_once("../../includes/begin_html.php");
 	require_once("../../includes/nav.php");
 
   $searchName = null;
-  $buyerQuery = "SELECT * FROM `buyer`";
+  $buyerQuery = "SELECT * FROM `buyer` ORDER BY `last_name` ASC";
   if(isset($_GET['name'])){
     $searchName = urldecode($_GET['name']);
     $searchName = mysqli_real_escape_string($connection, $searchName);
     $buyerQuery = "SELECT * FROM (
       SELECT *, CONCAT(first_name, ' ', last_name) as firstlast
-      FROM `buyer`) base
+      FROM `buyer` ORDER BY `last_name` ASC) base
     WHERE firstLast LIKE '%{$searchName}%'";
   }
 
@@ -63,14 +106,14 @@
                             ?>
                        <tr>
                           <td><?php echo $buyer['id']; ?></td>
-                          <td><?php echo $buyer['first_name'] . " " . $buyer['last_name']; ?></td>
+                          <td><?php echo $buyer['last_name'] . ", " . $buyer['first_name']; ?></td>
                           <td><?php echo $buyer['company_name']; ?></td>
                           <td><?php echo $buyer['phone']; ?></td>
                           <td><?php echo $buyer['fur_buyer_license_num']; ?></td>
                           <td>
                             <a href="edit_buyers.php?id=<?php echo $buyer['id']; ?>" class="waves-effect waves-light  btn-small"><i class="material-icons">edit</i></a>
-                            <a href="edit_buyers.php?id=<?php echo $buyer['id']; ?>" class="waves-effect waves-light  btn-small red"><i class="material-icons">delete</i></a>
                             <a href="receipt.php?id=<?php echo $buyer['id']; ?>" class="waves-effect waves-light  btn-small blue"><i class="material-icons">receipt</i></a>
+                            <a href="list_buyers.php?deleteID=<?php echo $buyer['id']; ?>" class="waves-effect waves-light  btn-small red"><i class="material-icons">delete</i></a>
                           </td>
                         </tr>
                         <?php

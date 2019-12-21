@@ -172,45 +172,114 @@ require_once("../../includes/begin_html.php");
            </form>
          </div>
          </div>
-          <!--Responsive Table-->
-          <h4 class="header red">Below is Currently Disabled - Go to add items</h4>
-          <div id="responsive-table">
-            <h4 class="header">Items</h4>
+         <form id="main-form" method="post">
+          <div id="editor-rows">
             <div class="row">
-              <div class="col s12">
-      <table>
-        <thead>
-          <tr>
-              <th>Lot #</th>
-              <th>Item Type</th>
-              <th>Quantity</th>
-              <th>lbs / ct</th>
-              <th>Region</th>
-              <th>Asking Price</th>
-          </tr>
-        </thead>
+            <input id="[0]seller_id" name="items[0][seller_id]" type="hidden" value="<?php echo $seller['id']; ?>">
+              <div class="input-field col s2">
+                <i class="material-icons prefix">local_offer</i>
+                <input name="items[0][lot]" type="text" class="validate">
+                <label>Lot</label>
+              </div>
+              <div class="input-field col s2">
+                <input list="items[0][item]" name="items[0][item]" class="select-item">
+              <datalist id="items[0][item]">
+                  <?php echo echo_item_types(); ?>
+                </datalist>
+                <input name="items[0][item_custom]" type="text" class="validate item-custom" style="display:none;">
+                <input name="items[0][tag_id]" type="text" class="validate tag-ID" placeholder="Tag ID" style="display:none;">
+              </div>
+              <div class="input-field col s2">
+                <div style="display: inline;"><label><input name="items[0][unit_of_measure]" value="ct" type="radio" class="radio-count" checked /><span>ct</span></label></div>
+                <div style="display: inline;"><label><input name="items[0][unit_of_measure]" Value="lbs" type="radio" class="radio-lbs" /><span>lbs</span></label></div>
+                <div style="display: inline;"><label><input name="items[0][unit_of_measure]" Value="oz" type="radio" class="radio-lbs" /><span>oz</span></label></div>
+              </div>
+              <div class="input-field col s1">
+                <label>Qty</label>
+                <input name="items[0][count]" type="number" class="validate">
+              </div>
+              <div class="input-field col s2">
+                <label>Origin State</label>
+                  <input list="items[0][origin_state]" name="items[0][origin_state]">
+                <datalist id="items[0][origin_state]">
+                  <?php echo echo_states(); ?>
+                </datalist>
+              </div>
+              <div class="input-field col s1">
+                <input name="items[0][asking]" type="number" class="validate">
+                <label>Asking $</label>
+              </div>
+              <div class="input-field col s1">
+                <!-- JS parent index number will need to be changed if this button is moved up or down in the DOM -->
+                <a class="waves-effect waves-yellow red btn-small btn-delete-row">Delete</a>
+              </div>
+            </div>
+          </div>
+          </form>
+          <div class="row">
+            <span class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add Items</span>
+            <span class="waves-effect waves-light btn" id="btn-save">Save</span>
+          </div>
+</section>
+<script>
+	var _editorRow = $("#editor-rows").html();
+	var _rowIndex = 1;
+	$(document).ready(function(){
+		$( "#btn-add-row" ).click(function() {
+			//Replace index
+			var modified = _editorRow.toString().replace(/\[0\]/g, "["+_rowIndex+"]");
+			$("#editor-rows").append(modified);
+			//materialize
+			$('#editor-rows select').formSelect();
 
-        <tbody>
-          <tr>
-            <td><div class="input-field"> <i class="material-icons prefix">local_offer</i><input placeholder="#1000" id="lot" type="text" class="validate"><label for="lot">Lot #</label></div></td>
-            <td>
-              <div id="custom" class="hide"><input placeholder="Custom" type="text" class="validate">
-            <label for="License">Custom</label></div></td>
-            <td><div class="input-field"><input placeholder="1" id="Quantity" type="text" class="validate"><label for="Quantity">Quantity</label></div></td>
-            <td><label><input name="group1" type="radio" id="item_count1" checked /><span>ct</span><label><input name="group1" type="radio" id="item_weight1" /><span>lbs</span></label></td>
-            <td></td>
-            <td><div class="input-field"><input placeholder="$0" id="Asking_Price" type="number" class="validate"><label for="Asking_Price">Asking Price</label></div></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="row">
-       <div class="input-field col s3"><a class="waves-effect waves-light btn">Add another Item</a></div>
-       <div class="input-field col s3"><a class="waves-effect waves-light btn">Save</a></div>
-    </div>
-  </div>
-</div>
-   </section>
+			_rowIndex += 1;
+		});
+		$( "#btn-save" ).click(function() {
+			$.ajax({
+				type: "POST",
+				url: "../items/add_items_post.php",
+				data: $("#main-form").serialize(),
+				success: function(data){
+					console.log(data);
+					if(data.success){
+						M.toast({html:data.message});
+						$("#editor-rows").html(_editorRow);
+						//materialize
+						$('#editor-rows select').formSelect();
+					}else{
+						M.toast({html:data.message});
+					}
+					//console.log(JSON.parse(data));
+				},
+        error:function(data){
+          console.log(data.responseText);
+        }
+			});
+		});
+
+		$( "body" ).on("click", ".btn-delete-row", function(e) {
+      $(this).parents().eq(1).remove();
+		});
+
+		$( "body" ).on("change", "input.select-item", function(e) {
+			if($(this).val() == "Custom"){
+				$(this).parents().eq(1).find("input.item-custom").css( "display", "block" );
+			}else{
+				$(this).parents().eq(1).find("input.item-custom").css( "display", "none" );
+			}
+
+			if($(this).val() == "Antlers" || $(this).val() == "Castor" ){
+				$(this).parents().eq(2).find("input.radio-lbs").prop("checked", true);
+			}
+
+      if($(this).val() == "Bobcat"){
+				$(this).parents().eq(1).find("input.tag-ID").css( "display", "block" );
+			}else{
+				$(this).parents().eq(1).find("input.tag-ID").css( "display", "none" );
+			}
+		});
+	});
+	</script>
  <!-- END WRAPPER -->
  </main>
 <?php

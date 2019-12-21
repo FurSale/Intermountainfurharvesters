@@ -112,6 +112,7 @@ CREATE TABLE IF NOT EXISTS `seller_item` (
   `bid_start` datetime NOT NULL,
   `bid_end` datetime NOT NULL,
   `sale_made` tinyint(1) NOT NULL DEFAULT '0',
+  `seller_item` decimal(12,2) NULL,
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `lot` (`lot`),
@@ -134,7 +135,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `role` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'administrator',
   `date_last_logged_in` timestamp NULL DEFAULT NULL,
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username_unique` (`username`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------

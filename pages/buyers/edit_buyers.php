@@ -113,6 +113,7 @@
 	 	 ?>
       <div class="container">
         <?php
+                echo "ID: ".$buyer['id']." Pass: ";
                 $query="SELECT * FROM `user` WHERE `username` = '{$buyer['id']}'";
                 $result2=mysqli_query($connection, $query);
                 confirm_query($result2);
@@ -134,7 +135,6 @@
                   }else{
                     echo mysqli_error($connection);
                   }
-
                 }
         ?>
         <div class="row">

@@ -14,7 +14,8 @@
   $bid['bid_amount'] = null;
   $bid['lot'] = null;
 
-  if(isset($_POST['add'])){
+  function AddBid(){
+    global $connection;
     //Safely escape all data in _POST
     $data = $_POST;
     foreach ($data as $key => $value) {
@@ -32,26 +33,28 @@
 
     $query = "SELECT * FROM `seller_item` WHERE `lot` = {$data['lot']}";
     $result = mysqli_query($connection, $query);
-    if (mysqli_num_rows($result)==1){
-      $item = mysqli_fetch_array($result);
-      $query = "INSERT INTO `bid` (`buyer_id`, `seller_item_id`, `bid_amount`, `bid_status`, `date_created`)
-      VALUES ({$_SESSION['user_id']}, {$item['id']}, {$data['bid_amount']}, 'Unconfirmed', '{$date}')";
-      $result = mysqli_query($connection, $query);
-      confirm_query($result);
-      if (mysqli_affected_rows($connection) == 1) {
-          $success = "Bid added";
-      } else {
-        $error = "Couldn't update";
-        $error .= "<br />" . mysqli_error($connection);
-        $bid = $data;
-      }
-    }else{
-      $error = "Lot \"".$data['lot']."\" doesn\\'t exist";
+    if (mysqli_num_rows($result)!=1){
       $bid = $data;
+      return array('success' => false, 'message' => "Lot \"".$data['lot']."\" doesn\\'t exist");
+    }
+    $item = mysqli_fetch_array($result);
+    if($item['sale_made']){
+      return array('success' => false, 'message' => "This item has already been sold");
+    }
+    $query = "INSERT INTO `bid` (`buyer_id`, `seller_item_id`, `bid_amount`, `bid_status`, `date_created`)
+    VALUES ({$_SESSION['username']}, {$item['id']}, {$data['bid_amount']}, 'Unconfirmed', '{$date}')";
+    $result = mysqli_query($connection, $query);
+    confirm_query($result);
+    if (mysqli_affected_rows($connection) == 1) {
+      return array('success' => true, 'message' => "Bid added");
+    } else {
+      $bid = $data;
+      return array('success' => false, 'message' => "Couldn't update" . "<br />" . mysqli_error($connection));
     }
   }
 
-  if(isset($_POST['edit'])){
+  function EditBid(){
+    global $connection;
     //Safely escape all data in _POST
     $data = $_POST;
     foreach ($data as $key => $value) {
@@ -70,35 +73,63 @@
     $result = mysqli_query($connection, $query);
     confirm_query($result);
     if (mysqli_affected_rows($connection) == 1) {
-        $success = "Bid updated";
+      return array('success' => true, 'message' => "Bid updated");
     } else {
-      $error = "Couldn't update";
-      $error .= "<br />" . mysqli_error($connection);
+      return array('success' => false, 'message' => "Couldn't update" . "<br />" . mysqli_error($connection));
     }
   }
 
-  if(isset($_GET['deleteID'])){
+  function DeleteBid(){
+    global $connection;
     $id = mysqli_real_escape_string($connection, $_GET['deleteID']);
 
     $query = "SELECT * FROM `bid` WHERE `id` = {$id}";
     $result = mysqli_query($connection, $query);
     confirm_query($result);
-    if (mysqli_num_rows($result)==1){
-      $bidData = mysqli_fetch_array($result);
-      //Make sure the bid is this user's and it is not finalized
-      if($bidData['buyer_id'] == $_SESSION['user_id'] && $bidData['bid_status'] == "Unconfirmed"){
-        $query = "DELETE FROM `bid` WHERE `id` = {$id}";
-        $result = mysqli_query($connection, $query);
-        confirm_query($result);
-        if (mysqli_affected_rows($connection) == 1) {
-            $success = "Bid deleted";
-        } else {
-          $error = "Couldn't update";
-          $error .= "<br />" . mysqli_error($connection);
-        }
-      }else{
-        $error = "Cannot delete this bid";
+    if (mysqli_num_rows($result)!=1){
+      return array('success' => false, 'message' => null);
+    }
+
+    $bidData = mysqli_fetch_array($result);
+    //Make sure the bid is this user's and it is not finalized
+    if($bidData['buyer_id'] == $_SESSION['username'] && $bidData['bid_status'] == "Unconfirmed"){
+      $query = "DELETE FROM `bid` WHERE `id` = {$id}";
+      $result = mysqli_query($connection, $query);
+      confirm_query($result);
+      if (mysqli_affected_rows($connection) == 1) {
+        return array('success' => true, 'message' => "Bid deleted");
+      } else {
+        return array('success' => false, 'message' => "Couldn't update" . "<br />" . mysqli_error($connection));
       }
+    }else{
+      return array('success' => false, 'message' => "Cannot delete this bid");
+    }
+  }
+
+  if(isset($_POST['add'])){
+    $result = AddBid();
+    if($result['success']){
+      $success = $result['message'];
+    }else{
+      $error = $result['message'];
+    }
+  }
+
+  if(isset($_POST['edit'])){
+    $result = EditBid();
+    if($result['success']){
+      $success = $result['message'];
+    }else{
+      $error = $result['message'];
+    }
+  }
+
+  if(isset($_GET['deleteID'])){
+    $result = DeleteBid();
+    if($result['success']){
+      $success = $result['message'];
+    }else{
+      $error = $result['message'];
     }
   }
 
@@ -109,8 +140,9 @@
       $data[$key] = mysqli_real_escape_string($connection, $value);
     }
 
+    $cutoffDate = date("Y-m-d H:i:s", strtotime('-72 hours', time())); //3 days
     $query = "UPDATE `bid` SET
-    `bid_status` = 'Confirmed' WHERE `buyer_id` = {$_SESSION['user_id']} AND `bid_status` = 'Unconfirmed'";
+    `bid_status` = 'Confirmed' WHERE `buyer_id` = {$_SESSION['username']} AND `bid_status` = 'Unconfirmed' AND `date_created` > '{$cutoffDate}'";
     $result = mysqli_query($connection, $query);
     confirm_query($result);
     if (mysqli_affected_rows($connection) >= 1) {
@@ -169,7 +201,8 @@
            <ul class="collection with-header">
         <li class="collection-header"><h4>Bids</h4></li>
         <?php
-            $query="SELECT * FROM `bid` WHERE `buyer_id` = {$_SESSION['user_id']} AND `bid_status` = 'Unconfirmed'";
+            $cutoffDate = date("Y-m-d H:i:s", strtotime('-72 hours', time())); //3 days
+            $query="SELECT * FROM `bid` WHERE `buyer_id` = {$_SESSION['username']} AND `bid_status` = 'Unconfirmed' AND `date_created` > '{$cutoffDate}'";
             $result=mysqli_query( $connection, $query);
             //confirm_query($result);
             while($bidData=mysqli_fetch_array($result)){
@@ -203,7 +236,7 @@
         ?>
         <?php
             $cutoffDate = date("Y-m-d H:i:s", strtotime('-72 hours', time())); //3 days
-            $query="SELECT * FROM `bid` WHERE `buyer_id` = {$_SESSION['user_id']} AND `bid_status` = 'Confirmed' AND `date_created` > '{$cutoffDate}'";
+            $query="SELECT * FROM `bid` WHERE `buyer_id` = {$_SESSION['username']} AND `bid_status` = 'Confirmed' AND `date_created` > '{$cutoffDate}'";
             $result=mysqli_query( $connection, $query);
             //confirm_query($result);
             while($bidData=mysqli_fetch_array($result)){

@@ -24,7 +24,7 @@ if (!$connection) {
 function confirm_query($result){
 	global $connection;
 	if(!$result){
-		die("Query failed: ".mysqli_error($connection));	
+		$error = "Query failed: ".mysqli_error($connection);
 	}else{
 		return true;
 	}

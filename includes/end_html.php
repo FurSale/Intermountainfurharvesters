@@ -109,6 +109,6 @@ async function install() {
       }
       ?>
     });
-    <script>
+    </script>
   </body>
 </html>
