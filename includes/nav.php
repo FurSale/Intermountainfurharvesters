@@ -11,9 +11,9 @@
 <ul id="dropdown3" class="dropdown-content">
   <li><a href="../../pages/sellers/edit_items.php?new">Add</a></li>
   <li><a href="../../pages/buyers/list_buyers.php">Buyers</a></li>
-  <li><a href="../../pages/items/list_items.php">Items</a></li>-->
-</ul>
-<nav class="nav-extended brown">
+  <li><a href="../../pages/items/list_items.php">Items</a></li>
+</ul>-->
+<nav class="nav-extended">
 <div class="nav-wrapper " id="header">
 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 <div class="header-search-wrapper hide-on-med-and-down">

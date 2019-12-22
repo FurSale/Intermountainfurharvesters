@@ -142,7 +142,8 @@ require_once("../../includes/begin_html.php");
                    <label for="email">Email</label>
                  </div>
                </div>
-                 <div class="input-field col s6">
+                 <div class="input-field col s6 white-text">
+                   <div class="card-content">
                    <div class="input-field col s12">
                      <i class="material-icons prefix">home</i>
                      <input placeholder="Address 1" id="address_1" name="address_1" type="text" class="validate" value="<?php echo $seller['address_1']; ?>">
@@ -166,7 +167,7 @@ require_once("../../includes/begin_html.php");
                      <label for="zip">Zip</label>
                    </div>
                  </div>
-
+               </div>
              </div>
              <div class="input-field col s3"><input type="submit" name="submit" class="waves-effect waves-light btn submit" value="Save"></input></div>
            </form>

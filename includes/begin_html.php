@@ -34,7 +34,7 @@
     <script src="../../js/init.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
   </head>
-  <body>
+  <body class="layout-dark blue-grey darken-1">
     <!-- Start Page Loading -->
     <div id="loader-wrapper">
       <div id="loader"></div>

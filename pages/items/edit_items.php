@@ -48,12 +48,12 @@
 				<div class="row">
 				<input id="[0]seller_id" name="items[0][seller_id]" type="hidden" value="<?php echo $seller['id']; ?>">
 					<div class="input-field col s2">
-						<input name="items[0][lot]" type="text" class="validate">
+						<input name="items[0][lot]" type="text" class="validate" placeholder="1000">
 						<label>Lot</label>
 					</div>
 					<div class="input-field col s2">
-						<input list="items[0][item]" class="select-item">
-          <datalist name="items[0][item]" id="items[0][item]">
+						<input type="text" list="items[0][item]" class="select-item">
+          <datalist name="items[0][item]" id="items[0][item]" class="autocomplete">
 							<?php echo echo_item_types(); ?>
             </datalist>
 						<input name="items[0][item_custom]" type="text" class="validate item-custom" style="display:none;">
@@ -66,18 +66,18 @@
           </div>
 					<div class="input-field col s1">
             <label>Qty</label>
-						<input name="items[0][count]" type="number" class="validate">
+						<input name="items[0][count]" type="text" class="validate" placeholder="10">
 					</div>
 					<div class="input-field col s2">
-            <label>Origin State</label>
-            	<input list="items[0][origin_state]">
+
+            	<input list="items[0][origin_state]" placeholder="State">
 						<datalist name="items[0][origin_state]" id="items[0][origin_state]">
 							<?php echo echo_states(); ?>
 						</datalist>
 					</div>
 					<div class="input-field col s1">
-						<input name="items[0][asking]" type="number" class="validate">
-						<label>Asking $</label>
+						<input name="items[0][asking]" type="number" class="validate" placeholder="$100">
+						<label>Asking Price</label>
 					</div>
           <div class="input-field col s1">
             <a class="waves-effect waves-yellow red btn-small">Delete</a>
