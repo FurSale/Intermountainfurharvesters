@@ -18,9 +18,9 @@
 			if($item['lot'] == ""){
 				return array('success' => false, 'message' => "Lot cannot be blank");
 			}
-			if(!isset($item['item']) || $item['item'] == ""){
-				return array('success' => false, 'message' => "Item Type cannot be blank");
-			}
+			// if(!isset($item['item']) || $item['item'] == ""){
+			// 	return array('success' => false, 'message' => "Item Type cannot be blank");
+			// }
 			if($item['item'] == "Custom" && $item['item_custom'] == ""){
 				return array('success' => false, 'message' => "Custom Item Type cannot be blank");
 			}
@@ -33,9 +33,9 @@
 			// if($item['tag_id'] == ""){
 			// 	return array('success' => false, 'message' => "Tag ID cannot be blank");
 			// }
-			if(!isset($item['item']) || $item['origin_state'] == ""){
-				return array('success' => false, 'message' => "Origin State cannot be blank");
-			}
+			// if(!isset($item['item']) || $item['origin_state'] == ""){
+			// 	return array('success' => false, 'message' => "Origin State cannot be blank");
+			// }
 			if($item['asking'] == ""){
 				return array('success' => false, 'message' => "Asking Price cannot be blank");
 			}
