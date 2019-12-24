@@ -46,6 +46,14 @@
     }
   }
 
+  $searchName = null;
+  $itemQuery = "SELECT * FROM `seller_item` ORDER BY `date_created` DESC";
+  if(isset($_GET['lot'])){
+    $searchName = urldecode($_GET['lot']);
+    $searchName = mysqli_real_escape_string($connection, $searchName);
+    $itemQuery = "SELECT * FROM `seller_item` WHERE `lot` LIKE '%{$searchName}%' ORDER BY `date_created` DESC";
+  }
+
   require_once("../../includes/begin_html.php");
 	require_once("../../includes/nav.php");
 
@@ -60,6 +68,15 @@
           <!--Responsive Table-->
           <div id="responsive-table">
             <div class="row">
+              <div class="input-field col s4 offset-s4">
+                <input placeholder="Lot #" id="search-query" type="text" value="<?php echo $searchName; ?>">
+                <label for="search-query">Lot</label>
+              </div>
+              <div class=" col s1">
+                <button class="waves-effect waves-light btn-small" id="btn-search"><i class="material-icons left">search</i>Search</button>
+              </div>
+            </div>
+            <div class="row">
               <div class="col s12">
                 <table class="striped">
                   <thead>
@@ -73,8 +90,7 @@
                   </thead>
                   <tbody>
                   <?php
-                        	$query="SELECT * FROM `seller_item` WHERE `sale_made` = 0 ORDER BY `date_created` DESC";
-                          $result=mysqli_query( $connection, $query);
+                          $result=mysqli_query( $connection, $itemQuery);
                           //confirm_query($result);
                           while($sellerItem=mysqli_fetch_array($result)){
                             $query="SELECT * FROM `bid` WHERE seller_item_id = {$sellerItem['id']} ORDER BY `bid_amount` ASC LIMIT 1";
@@ -100,6 +116,24 @@
           </div>
       </div>
   </section>
+  <script>
+    $(document).ready(function(){
+      $( "body" ).on("click", "#btn-search", function(e) {
+        NavigateSearch();
+      });
+      $( "body" ).on("keypress", "#search-query", function(e) {
+        if(e.which == 13) {
+          NavigateSearch();
+        }
+      });
+      function NavigateSearch(){
+        var url = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        var query = $("#search-query").val();
+        var newUrl = url + "?lot=" + encodeURI(query);
+        window.location.href = newUrl;
+      }
+    });
+  </script>
 <!-- END WRAPPER -->
 </main>
   <?php
