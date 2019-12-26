@@ -16,10 +16,7 @@
 <nav class="nav-extended">
 <div class="nav-wrapper " id="header">
 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-<div class="header-search-wrapper hide-on-med-and-down">
-  <i class="material-icons">search</i>
-  <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search" disabled/>
-</div>
+
 <ul class="right hide-on-med-and-down">
   <li><a class="dropdown-trigger" href="../../pages/sellers/list_sellers.php" data-target="dropdown1">Sellers</a></li>
   <li><a class="dropdown-trigger" href="../../pages/buyers/list_buyers.php" data-target="dropdown2">Buyers</a></li>

@@ -33,8 +33,9 @@
     <script type="text/javascript" src="../../vendors/jquery-3.2.1.min.js"></script>
     <script src="../../js/init.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
   </head>
-  <body class="layout-dark blue-grey darken-1">
+  <body class="layout-dark">
     <!-- Start Page Loading -->
     <div id="loader-wrapper">
       <div id="loader"></div>
@@ -44,4 +45,4 @@
     <!-- End Page Loading -->
     <!-- //////////////////////////////////////////////////////////////////////////// -->
     <!-- START MAIN -->
-    <main>
+    <main class="blue-grey darken-3">

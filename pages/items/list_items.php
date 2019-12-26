@@ -47,7 +47,7 @@
   }
 
   $searchName = null;
-  $itemQuery = "SELECT * FROM `seller_item` ORDER BY `date_created` DESC";
+  $itemQuery = "SELECT * FROM `seller_item` ORDER BY `lot` ASC";
   if(isset($_GET['lot'])){
     $searchName = urldecode($_GET['lot']);
     $searchName = mysqli_real_escape_string($connection, $searchName);
@@ -68,27 +68,25 @@
           <!--Responsive Table-->
           <div id="responsive-table">
             <div class="row">
-              <div class="input-field col s4 offset-s4">
-                <input placeholder="Lot #" id="search-query" type="text" value="<?php echo $searchName; ?>">
-                <label for="search-query">Lot</label>
-              </div>
-              <div class=" col s1">
-                <button class="waves-effect waves-light btn-small" id="btn-search"><i class="material-icons left">search</i>Search</button>
+            <div class="col s8 offset-s2 card-panel blue-grey darken-4">
+            <div class="row">
+              <div class="input-field col s12">
+                <input class="searchbar" placeholder="Lot #" id="search-query" type="text" value="<?php echo $searchName; ?>">
               </div>
             </div>
             <div class="row">
               <div class="col s12">
-                <table class="striped">
+                <table class="black-text">
                   <thead>
                     <tr>
                       <th data-field="lot">Lot</th>
                       <th data-field="name">Item</th>
                       <th data-field="count">Count</th>
                       <th data-field="price">Price</th>
-                      <!--<th data-field="high-bid">High Bid</th>-->
+                      <th data-field="high-bid">High Bid</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody class="yellow">
                   <?php
                           $result=mysqli_query( $connection, $itemQuery);
                           //confirm_query($result);
@@ -97,13 +95,13 @@
                             $result2=mysqli_query( $connection, $query);
                             $highestBid=mysqli_fetch_array($result2);
                             ?>
-                       <tr>
+                       <tr class="<?php if($highestBid != null){if($highestBid['bid_amount'] < $sellerItem['asking']){echo "red";}else{echo "green";}} ?> darken-2">
                           <td><?php echo $sellerItem['lot']; ?></td>
                           <td><?php echo $sellerItem['item']; ?></td>
 
                           <td><?php echo $sellerItem['count']; ?>/<?php echo $sellerItem['unit_of_measure']; ?></td>
                           <td><?php echo "$".$sellerItem['asking']; ?></td>
-                          <!--<td <?php if($highestBid != null){if($highestBid['bid_amount'] < $sellerItem['asking']){echo "class=\"red-text\"";}else{echo "class=\"green-text\"";}} ?>><?php if($highestBid != null){ echo "$".$highestBid['bid_amount']; }else{echo "N/A";} ?></td>-->
+                          <td ><?php if($highestBid != null){ echo "$".$highestBid['bid_amount']; }else{echo "N/A";} ?></td>
                           <td><a href="list_items.php?deleteID=<?php echo $sellerItem['id']; ?>" class="waves-effect waves-yellow btn-flat red-text">Delete</a></td>
                         </tr>
                         <?php
@@ -113,6 +111,8 @@
                 </table>
               </div>
             </div>
+          </div>
+          </div>
           </div>
       </div>
   </section>

@@ -207,7 +207,7 @@
            </form>
          </div>
           <!--Responsive Table-->
-            <h4 class="header red">Below is Currently Disabled - Working on Frontend Bidding</h4>
+            <h4 class="header red">Below is Currently Disabled</h4>
           <div id="responsive-table">
 	<h4 class="header">Items</h4>
 	<div class="row">
