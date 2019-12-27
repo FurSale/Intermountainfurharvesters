@@ -73,7 +73,7 @@
 	 	require_once("../../includes/crumbs.php");
 	 	 ?>
             <!--start container-->
-            <div class="container sheet print">
+            <div class="container print">
                 <!--Responsive Table-->
                 <div id="responsive-table">
                   <div class="row">
