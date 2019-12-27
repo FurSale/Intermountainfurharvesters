@@ -22,6 +22,7 @@
     <link href="../../css/reset.css" type="text/css" rel="stylesheet">
     <link href="../../css/materialize.css" type="text/css" rel="stylesheet">
     <link href="../../css/style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/paper.css">
     <link rel="stylesheet" media="print" href="../../css/print.css">
 
     <!-- Custome CSS-->
@@ -35,7 +36,7 @@
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 
   </head>
-  <body class="layout-dark">
+  <body class="layout-dark A5 landscape">
     <!-- Start Page Loading -->
     <div id="loader-wrapper">
       <div id="loader"></div>

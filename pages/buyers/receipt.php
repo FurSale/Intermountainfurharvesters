@@ -35,7 +35,7 @@
 	 	 ?>
 
       <!--start container-->
-      <div class="container">
+      <div class="container print">
 
           <!--Responsive Table-->
           <div class="divider"></div>
