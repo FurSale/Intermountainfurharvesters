@@ -42,7 +42,9 @@
     //Safely escape all data in _POST
     $data = $_POST;
     foreach ($data as $key => $value) {
-      $data[$key] = mysqli_real_escape_string($connection, $value);
+      if(is_string($value)){
+        $data[$key] = mysqli_real_escape_string($connection, $value);
+      }
     }
 
     $date = date("Y-m-d H:i:s");
@@ -154,7 +156,7 @@ require_once("../../includes/begin_html.php");
                      <input placeholder="That Town" id="city" name="city" type="text" class="validate" value="<?php echo $seller['city']; ?>">
                    </div>
                   <div class="input-field col s4">
-                    <input list="state" name="items[0][origin_state]">
+                    <input list="state" name="state">
                     <datalist id="state">
                       <?php echo echo_states($seller['state']); ?>
                       <placeholder></placeholder>

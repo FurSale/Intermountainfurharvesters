@@ -44,7 +44,9 @@
     //Safely escape all data in _POST
     $data = $_POST;
     foreach ($data as $key => $value) {
-      $data[$key] = mysqli_real_escape_string($connection, $value);
+      if(is_string($value)){
+        $data[$key] = mysqli_real_escape_string($connection, $value);
+      }
     }
 
     $date = date("Y-m-d H:i:s");
