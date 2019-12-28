@@ -1,5 +1,5 @@
 <!--breadcrumbs start-->
-<div id="breadcrumbs-wrapper">
+<div id="breadcrumbs-wrapper" class="printhide">
   <div class="blue-grey darken-4">
   <!-- Search for small screen -->
   <div class="header-search-wrapper blue-grey lighten-2 hide-on-large-only">

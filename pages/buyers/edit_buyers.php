@@ -109,13 +109,16 @@
 	require_once("../../includes/nav.php");
 	 ?>
 	 <!-- START CONTENT -->
- <section id="content">
+ <section id="content" class="print">
+   
 	 <?php
 	 	require_once("../../includes/crumbs.php");
 	 	 ?>
       <div class="container">
+        <div class="row">
+          <div class="col s3">
         <?php
-                echo "ID: ".$buyer['id']." Pass: ";
+                echo "<span class \"nav-title\">Login ID: ".$buyer['id']." One Time password: ";
                 $query="SELECT * FROM `user` WHERE `username` = '{$buyer['id']}'";
                 $result2=mysqli_query($connection, $query);
                 confirm_query($result2);
@@ -139,6 +142,9 @@
                   }
                 }
         ?>
+
+      </div>
+      </div>
         <div class="row">
            <form method="post" class="col s12">
            <input id="id" name="id" type="hidden" value="<?php echo $buyer['id']; ?>">
@@ -148,7 +154,7 @@
                  <input placeholder="License" id="fur_buyer_license_num" name="fur_buyer_license_num" type="text" class="validate" value="<?php echo $buyer['fur_buyer_license_num']; ?>">
                  <label for="fur_buyer_license_num">License</label>
                </div>
-               <div class="input-field col s3">
+               <div class="row">
                  <i class="material-icons prefix">contacts</i>
                  <input placeholder="Company" id="company_name" name="company_name" type="text" class="validate" value="<?php echo $buyer['company_name']; ?>">
                  <label for="company_name">Company</label>

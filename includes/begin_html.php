@@ -7,7 +7,7 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
     <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
-    <title>Trapping sale Manager <?php echo $pgsettings['title']; ?></title>
+    <title><?php echo $pgsettings['title']; ?></title>
     <link rel='manifest' href='../../manifest.json'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicons-->
@@ -23,7 +23,7 @@
     <link href="../../css/materialize.css" type="text/css" rel="stylesheet">
     <link href="../../css/style.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/paper.css">
-    <link rel="stylesheet" media="print" href="../../css/print.css">
+    <link rel="stylesheet" media="print" href="../../css/print1.css">
 
     <!-- Custome CSS-->
     <link href="../../css/custom/custom.css" type="text/css" rel="stylesheet">
@@ -34,15 +34,11 @@
     <script type="text/javascript" src="../../vendors/jquery-3.2.1.min.js"></script>
     <script src="../../js/init.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
-
+  <style>@page { size: letter }</style>
   </head>
-  <body class="layout-dark A5 landscape">
+  <body class="layout-dark letter">
     <!-- Start Page Loading -->
-    <div id="loader-wrapper">
-      <div id="loader"></div>
-      <div class="loader-section section-left"></div>
-      <div class="loader-section section-right"></div>
-    </div>
+
     <!-- End Page Loading -->
     <!-- //////////////////////////////////////////////////////////////////////////// -->
     <!-- START MAIN -->

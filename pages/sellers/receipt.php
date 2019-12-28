@@ -29,7 +29,7 @@
   require_once("../../includes/nav.php");
 	 ?>
 	 <!-- START CONTENT -->
-   <section id="content">
+   <section id="content" class="print">
 	 <?php
 	 	require_once("../../includes/crumbs.php");
 	 	 ?>
@@ -39,9 +39,9 @@
           <!--Responsive Table-->
           <div class="divider"></div>
           <div id="responsive-table">
-            <h4 class="header">Data Buyers</h4>
+            <h4 class="header sheet ">Data Buyers</h4>
             <div class="row">
-              <div class="col s12">
+              <div class="col s12 sheet ">
                 <table class="responsive-table">
                   <thead>
                     <tr>

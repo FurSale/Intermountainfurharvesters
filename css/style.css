@@ -3646,7 +3646,7 @@ li.home:before {
   top: 0;
   width: 51%;
   height: 100%;
-  background: #eceff1;
+  background: #263238;
   z-index: 1000;
   -webkit-transform: translateX(0);
   -ms-transform: translateX(0);

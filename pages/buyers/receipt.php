@@ -18,42 +18,40 @@
       $buyerData=mysqli_fetch_array($result);
     }
   }
-
+  $receipt = $buyer['id'];
 	$pgsettings = array(
 		"title" => "Buyer Receipt",
 		"icon" => "icon-newspaper"
 	);
 	$nav = ("1");
 
+
 	require_once("../../includes/begin_html.php");
   require_once("../../includes/nav.php");
 	 ?>
 	 <!-- START CONTENT -->
- <section id="content">
+ <section id="content" class="print">
 	 <?php
 	 	require_once("../../includes/crumbs.php");
 	 	 ?>
 
       <!--start container-->
-      <div class="container print">
+      <div class="container  receipt">
 
           <!--Responsive Table-->
           <div class="divider"></div>
-          <div id="responsive-table">
-            <h4 class="header">Data Buyers</h4>
+
+            <h4 class="header printhide">Data Buyers <?php echo $buyer['id']; ?></h4>
+
             <div class="row">
-              <div class="col s12">
-                <table class="responsive-table">
-                  <thead>
-                    <tr>
-                      <th data-field="id">ID Detail</th>
-                      <th data-field="name">Item</th>
-                      <th data-field="jumlah">Count</th>
-                      <th data-field="harga">Price</th>
-                      <th data-field="subtotal">Bid</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+              <div class="col sheet s12">
+                    <div class="row">
+                      <div class="col s1 offset-s4">Lot</div>
+                      <div class="col s2">Item</div>
+                      <div class="col s1">Count</div>
+                      <!--<div class="col s2">Price</div>-->
+                      <div class="col s2 right-align">Bid</div>
+                    </div>
                   <?php
                   $subtotal = 0;
                           $query = "SELECT * FROM `bid` WHERE `buyer_id` = {$buyerData['id']} AND bid_status = 'Confirmed'";
@@ -79,47 +77,62 @@
                                 $itemData=mysqli_fetch_array($resultItem);
                                 $subtotal += $bid['bid_amount'];
                                 ?>
-                                <tr>
-                                   <td><?php echo $itemData['lot']; ?></td>
-                                   <td><?php echo $itemData['item']; ?></td>
-                                   <td><?php echo $itemData['count']; ?></td>
-                                   <td>$<?php echo $itemData['asking']; ?></td>
-                                   <td <?php if($bid['bid_amount'] < $itemData['asking']){echo "class=\"red-text\"";}else{echo "class=\"green-text\"";} ?>><?php echo "$".$bid['bid_amount']; ?></td>
-                                 </tr>
+                                <div class="row" <?php if($bid['bid_amount'] < $itemData['asking']){echo "class=\"hide\"";} ?>>
+                                   <div class="col s1 offset-s4">#<?php echo $itemData['lot']; ?></div>
+                                   <div class="col s2"><?php echo $itemData['item']; ?></div>
+                                   <div class="col s1"><?php echo $itemData['count']; ?></div>
+                                   <!--<td>$<?php echo $itemData['asking']; ?></td>-->
+                                   <div class="col s2 right-align" <?php if($bid['bid_amount'] < $itemData['asking']){echo "class=\"red-text\"";}else{echo "class=\"green-text\"";} ?>><?php echo "$".$bid['bid_amount']; ?></div>
+                                 </div>
                                  <?php
                               }
                             }
                           }
                       ?>
-										<tr>
-												<td></td>
-												<td></td>
-												<td>Subtotal</td>
-												<td></td>
-												<td>$<?php echo number_format($subtotal, 2); ?></td>
-										</tr>
-										<tr>
-												<td></td>
-												<td></td>
-												<td>Commission</td>
-												<td><?php echo $buyerData['commission']; ?>%</td>
-												<td>$<?php echo number_format((($buyerData['commission']/100) * $subtotal), 2); ?></td>
-										</tr>
-									<tr>
-                      <td></td>
-                      <td></td>
-                      <td><span style="font-weight:bold;">Total Due</span></td>
-                      <td></td>
-                      <td><span style="font-weight:bold;">$<?php echo (($buyerData['commission']/100) + 1) * $subtotal; ?></span></td>
-                  </tr>
-                  </tbody>
-                </table>
-            </div>
+                      <div class="receipt-footer bottom">
+										<div class="row">
+												<div class="col s2  offset-s6">Subtotal</div>
+												<div class="col s2 right-align">$<?php echo number_format($subtotal, 2); ?></div>
+										</div>
+										<div class="row">
+												<div class="col s1  offset-s6">Commission</div>
+												<div class="col s1"><?php echo $buyerData['commission']; ?>%</div>
+												<div class="col s2 right-align">$<?php echo number_format((($buyerData['commission']/100) * $subtotal), 2); ?></div>
+										</div>
+									<div class="row">
+                      <div class="col s2 offset-s6"><span style="font-weight:bold;">Total Due</span></div>
+                      <div class="col s2 right-align"><span style="font-weight:bold;">$<?php echo (($buyerData['commission']/100) + 1) * $subtotal; ?></span></div>
+                  </div>
           </div>
         </div>
       </div>
-    </div>
+
     </section>
+    <script>
+    function PrintElem()
+{
+    Popup($html);
+}
+
+function Popup(data)
+{
+    var myWindow = window.open('', 'Receipt', 'height=400,width=600');
+    myWindow.document.write('<html><head><title>Receipt</title>');
+    /*optional stylesheet*/ //myWindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
+    myWindow.document.write('<style type="text/css"> *, html {margin:0;padding:0;} </style>');
+    myWindow.document.write('</head><body>');
+    myWindow.document.write(data);
+    myWindow.document.write('</body></html>');
+    myWindow.document.close(); // necessary for IE >= 10
+
+    myWindow.onload=function(){ // necessary if the div contain images
+
+        myWindow.focus(); // necessary for IE >= 10
+        myWindow.print();
+        myWindow.close();
+    };
+}
+    </script>
   <!-- END CONTENT -->
 <?php
 

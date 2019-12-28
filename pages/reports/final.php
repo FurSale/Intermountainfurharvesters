@@ -13,13 +13,13 @@
 
 	 ?>
 	 <!-- START CONTENT -->
- <section id="content">
+ <section id="content" class="print">
 	 <?php
 	 	require_once("../../includes/crumbs.php");
 	 	 ?>
 
       <!--start container-->
-      <div class="container">
+      <div class="container sheet">
             <table class="responsive-table striped">
               <thead>
     <tr>
@@ -34,7 +34,7 @@
 
   <tbody>
 
-  <?php 
+  <?php
     //$itemTypes is defined in functions.php
     $types = $itemTypes;
     //Get custom item types

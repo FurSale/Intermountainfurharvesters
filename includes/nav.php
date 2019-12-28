@@ -13,7 +13,7 @@
   <li><a href="../../pages/buyers/list_buyers.php">Buyers</a></li>
   <li><a href="../../pages/items/list_items.php">Items</a></li>
 </ul>-->
-<nav class="nav-extended">
+<nav class="nav-extended printhide">
 <div class="nav-wrapper " id="header">
 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 <ul class="left hide-on-med-and-down">

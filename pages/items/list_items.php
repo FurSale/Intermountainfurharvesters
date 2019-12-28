@@ -58,23 +58,23 @@
 	require_once("../../includes/nav.php");
 
    ?>        <!-- START CONTENT -->
-         <section id="content">
+         <section id="content" class="print">
          <?php
 	 	require_once("../../includes/crumbs.php");
 	 	 ?>
       <!--start container-->
-      <div class="container">
+      <div class="container print">
 
           <!--Responsive Table-->
           <div id="responsive-table">
             <div class="row">
-            <div class="col s8 offset-s2 card-panel blue-grey darken-4">
-            <div class="row">
+            <div class="col s12 m8 offset-m2">
+            <div class="row printhide">
               <div class="input-field col s12">
                 <input class="searchbar" placeholder="Lot #" id="search-query" type="text" value="<?php echo $searchName; ?>">
               </div>
             </div>
-            <div class="row">
+            <div class="row  blue-grey darken-4">
               <div class="col s12">
                 <table class="black-text">
                   <thead>
@@ -102,7 +102,7 @@
                           <td><?php echo $sellerItem['count']; ?>/<?php echo $sellerItem['unit_of_measure']; ?></td>
                           <td><?php echo "$".$sellerItem['asking']; ?></td>
                           <td ><?php if($highestBid != null){ echo "$".$highestBid['bid_amount']; }else{echo "N/A";} ?></td>
-                          <td><a href="list_items.php?deleteID=<?php echo $sellerItem['id']; ?>" class="waves-effect waves-yellow btn-flat red-text">Delete</a></td>
+                          <td class="printhide"><a href="list_items.php?deleteID=<?php echo $sellerItem['id']; ?>" class="waves-effect waves-yellow btn-flat red-text">Delete</a></td>
                         </tr>
                         <?php
                           }

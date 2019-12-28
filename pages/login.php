@@ -97,7 +97,7 @@ require_once("../includes/begin_html.php");
 
 
    <!-- START CONTENT -->
-   <section id="content">
+   <section id="content" class="print">
           <!--start container-->
           <div class="container">
               <!--Responsive Table-->

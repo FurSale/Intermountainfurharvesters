@@ -68,7 +68,7 @@
 
 	 ?>
 	 <!-- START CONTENT -->
- <section id="content">
+ <section id="content" class="print">
 	 <?php
 	 	require_once("../../includes/crumbs.php");
 	 	 ?>

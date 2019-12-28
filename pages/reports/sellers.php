@@ -73,7 +73,7 @@ require_once("../../includes/db_connection.php");
 
 	 ?>
    <!-- START CONTENT -->
- <section id="content">
+ <section id="content" class="print">
           <!--start container-->
           <div class="container">
               <!--Responsive Table-->
