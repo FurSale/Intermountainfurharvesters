@@ -159,7 +159,7 @@
 		"icon" => "icon-newspaper"
 	);
 	$nav = ("1");
-	
+
 	require_once("../../includes/begin_html.php");
 
 
@@ -214,6 +214,7 @@
                 <li class="collection-item">
                   <div class="row">
                     <div class="col s2">#<?php echo $item['lot']; ?></div>
+                    <div class="col s2">#<?php echo $item['item']; ?></div>
                     <div class="col s2"><?php echo $item['count']." ".$item['unit_of_measure']; ?></div>
                     <div class="col s2"><?php echo $item['item']; ?></div>
                     <form method="post" action="index.php" class="form-edit">
@@ -297,7 +298,7 @@
       e.preventDefault();
       $("#form-confirm").submit();
 		});
-    
+
 		$( "body" ).on("click", ".btn-swap", function(e) {
       //Prevent form submission via button
       e.preventDefault();
