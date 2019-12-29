@@ -211,7 +211,7 @@
               confirm_query($result2);
               $item = mysqli_fetch_array($result2);
               ?>
-                <li class="collection-item">
+                <li class="collection-item blue-grey darken-3">
                   <div class="row">
                     <div class="col s2">#<?php echo $item['lot']; ?></div>
                     <div class="col s2">#<?php echo $item['item']; ?></div>
