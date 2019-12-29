@@ -196,7 +196,7 @@
 <a class="btn-floating-center waves-effect waves-light red modal-trigger" href="#modal1"><i class="material-icons">expand_less</i></a>
 </div>
 </main>
-  <div id="modal1" class="modal bottom-sheet">
+  <div id="modal1" class="modal bottom-sheet blue-grey darken-3 black-text">
          <div class="modal-content">
            <ul class="collection with-header">
         <li class="collection-header"><h4>Bids</h4></li>
@@ -211,7 +211,7 @@
               confirm_query($result2);
               $item = mysqli_fetch_array($result2);
               ?>
-                <li class="collection-item blue-grey darken-3">
+                <li class="collection-item">
                   <div class="row">
                     <div class="col s2">#<?php echo $item['lot']; ?></div>
                     <div class="col s2">#<?php echo $item['item']; ?></div>
