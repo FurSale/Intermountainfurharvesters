@@ -19,7 +19,7 @@
 <ul class="left hide-on-med-and-down">
   <li><a class="dropdown-trigger" href="../../pages/reports/final.php" data-target="dropdown1"><i class="material-icons">assessment</i></a></li>
   <li><a class="dropdown-trigger" href="../../pages/reports/sellers.php" data-target="dropdown1"><i class="material-icons">assessment</i></a></li>
-  <li><a class="dropdown-trigger" href="../../pages/reports/buyers.php" data-target="dropdown1"><i class="material-icons">assessment</i></a></li>
+  <li><a class="dropdown-trigger" href="../../pages/logout.php" data-target="dropdown1"><i class="material-icons">logout</i></a></li>
 </ul>
 <ul class="right hide-on-med-and-down">
   <li><a class="dropdown-trigger" href="../../pages/sellers/list_sellers.php" data-target="dropdown1">Sellers</a></li>

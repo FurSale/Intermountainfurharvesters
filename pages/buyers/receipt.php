@@ -46,10 +46,10 @@
             <div class="row">
               <div class="col sheet s12">
                     <div class="row">
-                      <div class="col s1 offset-s4">Lot</div>
+                      <div class="col s1">Lot</div>
                       <div class="col s2">Item</div>
                       <div class="col s1">Count</div>
-                      <!--<div class="col s2">Price</div>-->
+                      <div class="col s1"></div>
                       <div class="col s2 right-align">Bid</div>
                     </div>
                   <?php
@@ -78,9 +78,10 @@
                                 $subtotal += $bid['bid_amount'];
                                 ?>
                                 <div class="row" <?php if($bid['bid_amount'] < $itemData['asking']){echo "class=\"hide\"";} ?>>
-                                   <div class="col s1 offset-s4">#<?php echo $itemData['lot']; ?></div>
+                                   <div class="col s2">#<?php echo $itemData['lot']; ?></div>
                                    <div class="col s2"><?php echo $itemData['item']; ?></div>
-                                   <div class="col s1"><?php echo $itemData['count']; ?></div>
+                                   <div class="col s2"><?php echo $itemData['count']; ?>/<?php echo $itemData['unit_of_measure']; ?></div>
+                                   <div class="col s1"><?php echo $itemData['origin_state']; ?></div>
                                    <!--<td>$<?php echo $itemData['asking']; ?></td>-->
                                    <div class="col s2 right-align" <?php if($bid['bid_amount'] < $itemData['asking']){echo "class=\"red-text\"";}else{echo "class=\"green-text\"";} ?>><?php echo "$".$bid['bid_amount']; ?></div>
                                  </div>
@@ -91,16 +92,16 @@
                       ?>
                       <div class="receipt-footer bottom">
 										<div class="row">
-												<div class="col s2  offset-s6">Subtotal</div>
+												<div class="col s2  offset-s3">Subtotal</div>
 												<div class="col s2 right-align">$<?php echo number_format($subtotal, 2); ?></div>
 										</div>
 										<div class="row">
-												<div class="col s1  offset-s6">Commission</div>
+												<div class="col s1  offset-s3">Commission</div>
 												<div class="col s1"><?php echo $buyerData['commission']; ?>%</div>
 												<div class="col s2 right-align">$<?php echo number_format((($buyerData['commission']/100) * $subtotal), 2); ?></div>
 										</div>
 									<div class="row">
-                      <div class="col s2 offset-s6"><span style="font-weight:bold;">Total Due</span></div>
+                      <div class="col s2 offset-s3"><span style="font-weight:bold;">Total Due</span></div>
                       <div class="col s2 right-align"><span style="font-weight:bold;">$<?php echo (($buyerData['commission']/100) + 1) * $subtotal; ?></span></div>
                   </div>
           </div>
