@@ -140,7 +140,7 @@
       $data[$key] = mysqli_real_escape_string($connection, $value);
     }
 
-    $cutoffDate = date("Y-m-d H:i:s", strtotime('-72 hours', time())); //3 days
+    $cutoffDate = date("Y-m-d H:i:s", strtotime('-168 hours', time())); //3 days
     $query = "UPDATE `bid` SET
     `bid_status` = 'Confirmed' WHERE `buyer_id` = {$_SESSION['username']} AND `bid_status` = 'Unconfirmed' AND `date_created` > '{$cutoffDate}'";
     $result = mysqli_query($connection, $query);
@@ -201,7 +201,7 @@
            <ul class="collection with-header">
         <li class="collection-header"><h4>Bids</h4></li>
         <?php
-            $cutoffDate = date("Y-m-d H:i:s", strtotime('-72 hours', time())); //3 days
+            $cutoffDate = date("Y-m-d H:i:s", strtotime('-168 hours', time())); //3 days
             $query="SELECT * FROM `bid` WHERE `buyer_id` = {$_SESSION['username']} AND `bid_status` = 'Unconfirmed' AND `date_created` > '{$cutoffDate}'";
             $result=mysqli_query( $connection, $query);
             //confirm_query($result);
@@ -236,7 +236,7 @@
             }
         ?>
         <?php
-            $cutoffDate = date("Y-m-d H:i:s", strtotime('-72 hours', time())); //3 days
+            $cutoffDate = date("Y-m-d H:i:s", strtotime('-168 hours', time())); //3 days
             $query="SELECT * FROM `bid` WHERE `buyer_id` = {$_SESSION['username']} AND `bid_status` = 'Confirmed' AND `date_created` > '{$cutoffDate}'";
             $result=mysqli_query( $connection, $query);
             //confirm_query($result);

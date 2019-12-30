@@ -60,7 +60,7 @@
       $amountSold = 0;
       //Go through each item of this type and get bid data
       while($sellerItem=mysqli_fetch_array($result)){
-        $bidQuery = "SELECT * FROM `bid` WHERE `seller_item_id` = {$sellerItem['id']} ORDER BY `bid_amount` DESC LIMIT 1";
+        $bidQuery = "SELECT * FROM `bid` WHERE bid_status = 'Confirmed' AND `seller_item_id` = {$sellerItem['id']} ORDER BY `bid_amount` DESC LIMIT 1";
         $result2 = mysqli_query($connection, $bidQuery);
         confirm_query($result2);
         if(mysqli_num_rows($result2) > 0){

@@ -172,58 +172,108 @@ require_once("../../includes/begin_html.php");
            </form>
          </div>
          </div>
-         <form id="main-form" method="post">
-          <div id="editor-rows">
+          <div class="row">
+          <div class="col s12">
+            <ul class="tabs">
+              <li class="tab col s3"><a class="active" href="#tab1">Add Items</a></li>
+              <li class="tab col s3"><a href="#tab2">View Items</a></li>
+            </ul>
+          </div>
+          <div id="tab1" class="col s12">
+            <form id="main-form" method="post">
+              <div id="editor-rows">
+                <div class="row">
+                <input id="[0]seller_id" name="items[0][seller_id]" type="hidden" value="<?php echo $seller['id']; ?>">
+                  <div class="input-field col s2">
+                    <i class="material-icons prefix">local_offer</i>
+                    <input name="items[0][lot]" id="name[0][lot]" type="text" class="validate">
+                    <label>Lot</label>
+                  </div>
+                  <div class="input-field col s2">
+                    <input list="items[0][item]" name="items[0][item]" class="select-item">
+                  <datalist id="items[0][item]">
+                      <?php echo echo_item_types(); ?>
+                    </datalist>
+                    <input name="items[0][item_custom]" type="text" class="validate item-custom" style="display:none;">
+                    <input name="items[0][tag_id]" type="text" class="validate tag-ID" placeholder="Tag ID" style="display:none;">
+                  </div>
+                  <div class="input-field col s2">
+                    <div style="display: inline;"><label><input name="items[0][unit_of_measure]" value="ct" type="radio" class="radio-count" checked /><span>ct</span></label></div>
+                    <div style="display: inline;"><label><input name="items[0][unit_of_measure]" Value="lbs" type="radio" class="radio-lbs" /><span>lbs</span></label></div>
+                    <div style="display: inline;"><label><input name="items[0][unit_of_measure]" Value="oz" type="radio" class="radio-lbs" /><span>oz</span></label></div>
+                  </div>
+                  <div class="input-field col s1">
+                    <label>Qty</label>
+                    <input name="items[0][count]" type="number" class="validate">
+                  </div>
+                  <div class="input-field col s2">
+                      <input list="items[0][origin_state]" name="items[0][origin_state]">
+                    <datalist id="items[0][origin_state]">
+                      <?php echo echo_states(); ?>
+                    </datalist>
+                  </div>
+                  <div class="input-field col s1">
+                    <input name="items[0][asking]" type="number" class="validate">
+                    <label>Asking $</label>
+                  </div>
+                  <div class="input-field col s1">
+                    <!-- JS parent index number will need to be changed if this button is moved up or down in the DOM -->
+                    <a class="waves-effect waves-yellow red btn-small btn-delete-row">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </form>
             <div class="row">
-            <input id="[0]seller_id" name="items[0][seller_id]" type="hidden" value="<?php echo $seller['id']; ?>">
-              <div class="input-field col s2">
-                <i class="material-icons prefix">local_offer</i>
-                <input name="items[0][lot]" id="name[0][lot]" type="text" class="validate">
-                <label>Lot</label>
-              </div>
-              <div class="input-field col s2">
-                <input list="items[0][item]" name="items[0][item]" class="select-item">
-              <datalist id="items[0][item]">
-                  <?php echo echo_item_types(); ?>
-                </datalist>
-                <input name="items[0][item_custom]" type="text" class="validate item-custom" style="display:none;">
-                <input name="items[0][tag_id]" type="text" class="validate tag-ID" placeholder="Tag ID" style="display:none;">
-              </div>
-              <div class="input-field col s2">
-                <div style="display: inline;"><label><input name="items[0][unit_of_measure]" value="ct" type="radio" class="radio-count" checked /><span>ct</span></label></div>
-                <div style="display: inline;"><label><input name="items[0][unit_of_measure]" Value="lbs" type="radio" class="radio-lbs" /><span>lbs</span></label></div>
-                <div style="display: inline;"><label><input name="items[0][unit_of_measure]" Value="oz" type="radio" class="radio-lbs" /><span>oz</span></label></div>
-              </div>
-              <div class="input-field col s1">
-                <label>Qty</label>
-                <input name="items[0][count]" type="number" class="validate">
-              </div>
-              <div class="input-field col s2">
-                  <input list="items[0][origin_state]" name="items[0][origin_state]">
-                <datalist id="items[0][origin_state]">
-                  <?php echo echo_states(); ?>
-                </datalist>
-              </div>
-              <div class="input-field col s1">
-                <input name="items[0][asking]" type="number" class="validate">
-                <label>Asking $</label>
-              </div>
-              <div class="input-field col s1">
-                <!-- JS parent index number will need to be changed if this button is moved up or down in the DOM -->
-                <a class="waves-effect waves-yellow red btn-small btn-delete-row">Delete</a>
+              <a href="#items[0][lot]" tabindex="0" class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add Items</a>
+              <span class="waves-effect waves-light btn" id="btn-save">Save</span>
+            </div>
+          </div>
+          <div id="tab2" class="col s12">
+            <!--Responsive Table-->
+            <div id="responsive-table">
+              <div class="row">
+                <div class="col s12">
+                  <table class="responsive-table">
+                    <thead>
+                      <tr>
+                        <th data-field="id">Lot</th>
+                        <th data-field="name">Item</th>
+                        <th data-field="company">Asking</th>
+                        <th data-field="phone">Count</th>
+                        <th data-field="license">Created</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                      $query = "SELECT * FROM `seller_item` WHERE `seller_id` = {$seller['id']} ORDER BY `lot` ASC";
+                      $result=mysqli_query( $connection, $query);
+                      confirm_query($result);
+                      while($item=mysqli_fetch_array($result)){
+                        ?>
+                    <tr>
+                      <td>#<?php echo $item['lot']; ?></td>
+                      <td><?php echo $item['item']; ?></td>
+                      <td>$<?php echo number_format($item['asking'], 2); ?></td>
+                      <td><?php echo $item['count'] . " " . $item['unit_of_measure']; ?></td>
+                      <td><?php echo $item['date_created']; ?></td>
+                    </tr>
+                    <?php
+                      }
+                  ?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
-          </form>
-          <div class="row">
-            <a href="#items[0][lot]" tabindex="0" class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add Items</a>
-            <span class="waves-effect waves-light btn" id="btn-save">Save</span>
-          </div>
+        </div>
 </section>
 <script>
 	var _editorRow = $("#editor-rows").html();
 	var _rowIndex = 1;
 	$(document).ready(function(){
+    $('.tabs').tabs();
+
 		$( "#btn-add-row" ).click(function() {
 			//Replace index
 			var modified = _editorRow.toString().replace(/\[0\]/g, "["+_rowIndex+"]");

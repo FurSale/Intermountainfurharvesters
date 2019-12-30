@@ -39,7 +39,9 @@
           <!--Responsive Table-->
           <div class="divider"></div>
           <div id="responsive-table">
-            <h4 class="header sheet ">Data Buyers</h4>
+            <h4 class="header printhide">SELLER</h4>
+            <h5 class="header printhide"><?php echo $sellerData['first_name'] . " " . $sellerData['last_name']; ?></h5>
+            <p><?php echo $sellerData['address_1'] . " " . $sellerData['address_2'] . ", " . $sellerData['city'] . ", " . $sellerData['state'] . " " . $sellerData['zip']; ?></p>
             <div class="row">
               <div class="col s12 sheet ">
                 <table class="responsive-table">

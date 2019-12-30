@@ -18,7 +18,7 @@
       $buyerData=mysqli_fetch_array($result);
     }
   }
-  $receipt = $buyer['id'];
+  $receipt = $buyerData['id'];
 	$pgsettings = array(
 		"title" => "Buyer Receipt",
 		"icon" => "icon-newspaper"
@@ -41,7 +41,9 @@
           <!--Responsive Table-->
           <div class="divider"></div>
 
-            <h4 class="header printhide">Data Buyers <?php echo $buyer['id']; ?></h4>
+            <h4 class="header printhide">BUYER</h4>
+            <h5 class="header printhide"><?php echo $buyerData['first_name'] . " " . $buyerData['last_name']; ?></h5>
+            <p><?php echo $buyerData['address_1'] . " " . $buyerData['address_2'] . " " . $buyerData['city'] . ", " . $buyerData['state'] . " " . $buyerData['zip']; ?></p>
 
             <div class="row">
               <div class="col sheet s12">

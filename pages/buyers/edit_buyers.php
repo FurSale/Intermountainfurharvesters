@@ -214,44 +214,150 @@
              <div class="input-field col s3"><input type="submit" name="submit" class="waves-effect waves-light btn submit" value="Save"></input></div>
            </form>
          </div>
-          <!--Responsive Table-->
-            <h4 class="header red">Below is Currently Disabled</h4>
-          <div id="responsive-table">
-	<h4 class="header">Items</h4>
-	<div class="row">
-		<div class="col s12">
-			<table>
-				<thead>
-					<tr>
-						<th>Lot #</th>
-						<th>Asking Price</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-              <div class="input-field">
-              <input placeholder="$0" id="Lot" type="number" class="validate">
-              <label for="lot">Lot #</label>
+         <div class="row" style="margin-bottom:20px;">
+          <div class="col s12">
+            <ul class="tabs">
+              <li class="tab col s3"><a class="active" href="#tab1">Add Bids</a></li>
+              <li class="tab col s3"><a href="#tab2">View Bids</a></li>
+            </ul>
+          </div>
+          <div id="tab1" class="col s12">
+            <!--Responsive Table-->
+            <div id="responsive-table">
+              <h4 class="header">Items</h4>
+              <div class="row">
+                <div class="col s12">
+                <form id="main-form" method="post">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Lot #</th>
+                        <th>Asking Price</th>
+                      </tr>
+                    </thead>
+                    <tbody id="editor-rows">
+                      <tr>
+                        <td>
+                          <input id="[0]seller_id" name="bids[0][buyer_id]" type="hidden" value="<?php echo $buyer['id']; ?>">
+                          <div class="input-field">
+                          <input name="bids[0][lot]" placeholder="Lot" id="lot[0]" type="number" class="validate">
+                          <label for="lot[0]">Lot #</label>
+                        </div>
+                        </td>
+                        <td>
+                          <div class="input-field">
+                            <input name="bids[0][bid_amount]" placeholder="$0" id="asking_price[0]" type="number" min="0" class="validate">
+                            <label for="asking_price[0]">Asking Price</label>
+                          </div>
+                        </td>
+                        <td>
+                          <!-- JS parent index number will need to be changed if this button is moved up or down in the DOM -->
+                          <a class="waves-effect waves-yellow red btn-small btn-delete-row">Delete</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </form>
+                </div>
+                <div class="row">
+                  <a href="#items[0][lot]" tabindex="0" class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add</a>
+                  <span class="waves-effect waves-light btn" id="btn-save">Save</span>
+                </div>
+              </div>
             </div>
-						</td>
-						<td>
-							<div class="input-field">
-								<input placeholder="$0" id="Asking_Price" type="number" class="validate">
-								<label for="Asking_Price">Asking Price</label>
-							</div>
-						</td>
-            <td><a class="waves-effect waves-yellow btn-flat red-text">Delete</a></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-      <div class="input-field"><a class="waves-effect waves-light btn">Add</a>
-			<div class="input-field"><a class="waves-effect waves-light btn">Save</a>
-	</div>
-</div>
+          </div>
+          <div id="tab2" class="col s12">
+                <!--Responsive Table-->
+                <div id="responsive-table">
+                  <div class="row">
+                    <div class="col s12">
+                      <table class="responsive-table">
+                        <thead>
+                          <tr>
+                            <th data-field="lot">Lot</th>
+                            <th data-field="item">Item</th>
+                            <th data-field="count">Count</th>
+                            <th data-field="amount">Amount</th>
+                            <th data-field="status">Status</th>
+                            <th data-field="date">Date</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                          $query = "SELECT * FROM `bid` WHERE `buyer_id` = {$buyer['id']} ORDER BY `date_created` DESC";
+                          $result=mysqli_query( $connection, $query);
+                          confirm_query($result);
+                          while($bid=mysqli_fetch_array($result)){
+                            $query = "SELECT * FROM `seller_item` WHERE `id` = {$bid['seller_item_id']}";
+                            $result2=mysqli_query( $connection, $query);
+                            confirm_query($result2);
+                            $item=mysqli_fetch_array($result2);
+                            ?>
+                       <tr>
+                          <td>#<?php echo $item['lot']; ?></td>
+                          <td><?php echo $item['item']; ?></td>
+                          <td><?php echo $item['count'] . " " . $item['unit_of_measure']; ?></td>
+                          <td>$<?php echo number_format($bid['bid_amount'], 2); ?></td>
+                          <td><?php echo $bid['bid_status']; ?></td>
+                          <td><?php echo $bid['date_created']; ?></td>
+                        </tr>
+                        <?php
+                          }
+                      ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+          </div>
+        </div>
    </section>
  <!-- END WRAPPER -->
+ <script>
+	var _editorRow = $("#editor-rows").html();
+	var _rowIndex = 1;
+	$(document).ready(function(){
+    $('.tabs').tabs();
+
+		$( "#btn-add-row" ).click(function() {
+			//Replace index
+			var modified = _editorRow.toString().replace(/\[0\]/g, "["+_rowIndex+"]");
+			$("#editor-rows").append(modified);
+			//materialize
+			$('#editor-rows select').formSelect();
+      M.updateTextFields();
+
+			_rowIndex += 1;
+		});
+		$( "#btn-save" ).click(function() {
+			$.ajax({
+				type: "POST",
+				url: "add_bids_post.php",
+				data: $("#main-form").serialize(),
+				success: function(data){
+					console.log(data);
+					if(data.success){
+						M.toast({html:data.message});
+						$("#editor-rows").html(_editorRow);
+						//materialize
+						$('#editor-rows select').formSelect();
+            M.updateTextFields();
+					}else{
+						M.toast({html:data.message});
+					}
+					//console.log(JSON.parse(data));
+				},
+        error:function(data){
+          console.log(data.responseText);
+        }
+			});
+		});
+
+		$( "body" ).on("click", ".btn-delete-row", function(e) {
+      $(this).parents().eq(1).remove();
+		});
+	});
+	</script>
  </main>
 <?php
 include '../../includes/footer.php';
