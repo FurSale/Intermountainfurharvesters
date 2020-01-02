@@ -19,6 +19,7 @@ body {
     position: absolute;
     right: 100px;
     bottom:-20px;
+    display: inline-block;
   }
   nav .navtitle{
     margin-left: 20px;

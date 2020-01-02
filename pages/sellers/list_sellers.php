@@ -90,41 +90,51 @@ require_once("../../includes/db_connection.php");
                   </div>
                 <div class="row">
                   <div class="col s12">
-                    <table class="responsive-table">
-                      <thead>
-                        <tr>
-                          <th data-field="id">ID</th>
-                          <th data-field="name">Name</th>
-                          <th data-field="company">Company</th>
-                          <th data-field="phone">Phone</th>
-                          <th data-field="trapper">Trapper</th>
-                          <th data-field="action">Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
+
+                        <div class="row">
+
+                          <div class="col s4">Name</div>
+
+                          <div class="col s4">Trapper</div>
+                          <div class="col s4">Action</div>
+                        </div>
+
                       <?php
                           $result=mysqli_query( $connection, $sellerQuery);
                           confirm_query($result);
                           while($seller=mysqli_fetch_array($result)){
                             ?>
-                       <tr>
-                          <td><?php echo $seller['id']; ?></td>
-                          <td><?php echo $seller['last_name'] . ", " . $seller['first_name']; ?></td>
-                          <td><?php echo $seller['first_name'] . " " . $seller['last_name']; ?></td>
-                          <td><?php echo $seller['phone']; ?></td>
-                          <td><?php echo $seller['trapper_id']; ?></td>
-                          <td>
+														<a class="white-text" href="edit_sellers.php?id=<?php echo $seller['id']; ?>">
+                       <div class="row section card-panel blue-grey darken-4 sheet">
+
+                          <div class="col s4"><?php echo $seller['last_name'] . ", " . $seller['first_name']; ?></div>
+
+
+                          <div class="col s4"><?php echo $seller['trapper_id']; ?></div>
+                          <div class="col s4">
                             <!-- <a href="../items/edit_items.php?sellerId=<?php echo $seller['id']; ?>" class="waves-effect waves-light  btn-small"><i class="material-icons">add_box</i></a> -->
-                              <a href="edit_sellers.php?id=<?php echo $seller['id']; ?>" class="waves-effect waves-light  btn-small"><i class="material-icons">edit</i></a>
+
 															<a href="receipt.php?id=<?php echo $seller['id']; ?>" class="waves-effect waves-light  btn-small blue"><i class="material-icons">receipt</i></a>
 															<a href="list_sellers.php?deleteID=<?php echo $seller['id']; ?>" class="waves-effect waves-light red btn-small"><i class="material-icons">delete</i></a>
-                          </td>
-                        </tr>
+                          </div>
+													<div class="row">
+														<div class="col s12">
+														<ul class="collapsible">
+												    <li>
+												      <div class="collapsible-header"><i class="material-icons">receipt</i>Receipt</div>
+												      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+												    </li>
+												  </ul>
+													</div>
+													</div>
+                        </div>
+												</a>
                         <?php
+
                           }
                       ?>
-                      </tbody>
-                    </table>
+
+
                   </div>
                 </div>
               </div>

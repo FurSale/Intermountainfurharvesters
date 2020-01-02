@@ -2,9 +2,7 @@
 <div id="breadcrumbs-wrapper" class="printhide">
   <div class="blue-grey darken-4">
   <!-- Search for small screen -->
-  <div class="header-search-wrapper blue-grey lighten-2 hide-on-large-only">
-    <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search">
-  </div>
+  
   <div class="container">
     <div class="row">
       <div class="col s10 m6 l6">

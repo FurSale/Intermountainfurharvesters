@@ -110,7 +110,7 @@
 	 ?>
 	 <!-- START CONTENT -->
  <section id="content" class="print">
-   
+
 	 <?php
 	 	require_once("../../includes/crumbs.php");
 	 	 ?>
@@ -260,7 +260,7 @@
                   </form>
                 </div>
                 <div class="row">
-                  <a href="#items[0][lot]" tabindex="0" class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add</a>
+                  <a href="#" tabindex="0" class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add</a>
                   <span class="waves-effect waves-light btn" id="btn-save">Save</span>
                 </div>
               </div>

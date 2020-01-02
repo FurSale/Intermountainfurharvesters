@@ -76,17 +76,17 @@
             </div>
             <div class="row  blue-grey darken-4">
               <div class="col s12">
-                <table class="black-text">
-                  <thead>
-                    <tr>
-                      <th data-field="lot">Lot</th>
-                      <th data-field="name">Item</th>
-                      <th data-field="count">Count</th>
-                      <th data-field="price">Price</th>
-                      <th data-field="high-bid">High Bid</th>
-                    </tr>
-                  </thead>
-                  <tbody class="yellow">
+
+
+                    <div class="row">
+                      <div class="col s1">Lot</div>
+                      <div class="col s2">Item</div>
+                      <div class="col s2">Count</div>
+                      <div class="col s2">Price</div>
+                      <div class="col s2" >High Bid</div>
+                      <div class="col s2">Buyer</div>
+                    </div>
+
                   <?php
                           $result=mysqli_query( $connection, $itemQuery);
                           //confirm_query($result);
@@ -95,20 +95,19 @@
                             $result2=mysqli_query( $connection, $query);
                             $highestBid=mysqli_fetch_array($result2);
                             ?>
-                       <tr class="<?php if($highestBid != null){if($highestBid['bid_amount'] < $sellerItem['asking']){echo "red";}else{echo "green";}} ?> darken-2">
-                          <td><?php echo $sellerItem['lot']; ?></td>
-                          <td><?php echo $sellerItem['item']; ?></td>
+                       <div  class="row <?php if($highestBid != null){if($highestBid['bid_amount'] > $sellerItem['asking']){echo "red";}else{echo "green";}} ?> darken-2">
+                          <div class="col s1"><?php echo $sellerItem['lot']; ?></div>
+                          <div class="col s2"><?php echo $sellerItem['item']; ?></div>
 
-                          <td><?php echo $sellerItem['count']; ?>/<?php echo $sellerItem['unit_of_measure']; ?></td>
-                          <td><?php echo "$".$sellerItem['asking']; ?></td>
-                          <td ><?php if($highestBid != null){ echo "$".$highestBid['bid_amount']; }else{echo "N/A";} ?></td>
-                          <td class="printhide"><a href="list_items.php?deleteID=<?php echo $sellerItem['id']; ?>" class="waves-effect waves-yellow btn-flat red-text">Delete</a></td>
-                        </tr>
+                          <div class="col s2"><?php echo $sellerItem['count']; ?>/<?php echo $sellerItem['unit_of_measure']; ?></div>
+                          <div class="col s2"><?php echo "$".$sellerItem['asking']; ?></div>
+                          <div class="col s2" ><?php if($highestBid != null){ echo "$".$highestBid['bid_amount']; }else{echo "N/A";} ?></div>
+                          <div class="col s2" class="printhide"><a href="list_items.php?deleteID=<?php echo $sellerItem['id']; ?>" class="waves-effect waves-yellow btn-flat red-text">Delete</a></div>
+                        </div>
                         <?php
                           }
                       ?>
-                  </tbody>
-                </table>
+
               </div>
             </div>
           </div>

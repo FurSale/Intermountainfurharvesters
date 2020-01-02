@@ -88,6 +88,15 @@
                       <td></td>
                       <td>$<?php echo number_format($subtotal, 2); ?></td>
                   </tr>
+                  <div class="row">
+                      <div class="col s1  offset-s3">Commission</div>
+                      <div class="col s1"><?php echo $sellerData['commission']; ?>%</div>
+                      <div class="col s2 right-align">$<?php echo number_format((($sellerData['commission']/100) * $subtotal), 2); ?></div>
+                  </div>
+                <div class="row">
+                    <div class="col s2 offset-s3"><span style="font-weight:bold;">Total Due</span></div>
+                    <div class="col s2 right-align"><span style="font-weight:bold;">$<?php echo (($sellerData['commission']/100) + 1) * $subtotal; ?></span></div>
+                </div>
                   </tbody>
                 </table>
                 <div class="col s12 m12 l12">

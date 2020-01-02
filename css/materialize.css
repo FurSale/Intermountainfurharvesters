@@ -1,4 +1,4 @@
-/*!
+#263238 /*!
  * Materialize v1.0.0 (http://materializecss.com)
  * Copyright 2014-2017 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
@@ -1437,7 +1437,7 @@
 }
 
 .yellow.lighten-5 {
-  background-color: #fffde7 !important;
+  background-color: #263238de7 !important;
 }
 
 .yellow-text.text-lighten-5 {
@@ -1445,7 +1445,7 @@
 }
 
 .yellow.lighten-4 {
-  background-color: #fff9c4 !important;
+  background-color: #2632389c4 !important;
 }
 
 .yellow-text.text-lighten-4 {
@@ -1453,7 +1453,7 @@
 }
 
 .yellow.lighten-3 {
-  background-color: #fff59d !important;
+  background-color: #26323859d !important;
 }
 
 .yellow-text.text-lighten-3 {
@@ -1461,7 +1461,7 @@
 }
 
 .yellow.lighten-2 {
-  background-color: #fff176 !important;
+  background-color: #263238176 !important;
 }
 
 .yellow-text.text-lighten-2 {
@@ -1509,7 +1509,7 @@
 }
 
 .yellow.accent-1 {
-  background-color: #ffff8d !important;
+  background-color: #263238f8d !important;
 }
 
 .yellow-text.text-accent-1 {
@@ -1517,7 +1517,7 @@
 }
 
 .yellow.accent-2 {
-  background-color: #ffff00 !important;
+  background-color: #263238f00 !important;
 }
 
 .yellow-text.text-accent-2 {
@@ -1549,7 +1549,7 @@
 }
 
 .amber.lighten-5 {
-  background-color: #fff8e1 !important;
+  background-color: #2632388e1 !important;
 }
 
 .amber-text.text-lighten-5 {
@@ -1661,7 +1661,7 @@
 }
 
 .orange.lighten-5 {
-  background-color: #fff3e0 !important;
+  background-color: #2632383e0 !important;
 }
 
 .orange-text.text-lighten-5 {
@@ -2033,7 +2033,7 @@
 }
 
 .blue-grey-text.text-darken-4 {
-  color: #263238 !important;
+  color: #fff !important;
 }
 
 .grey {
@@ -2125,7 +2125,7 @@
 }
 
 .white {
-  background-color: #FFFFFF !important;
+  background-color: #263238FFF !important;
 }
 
 .white-text {
@@ -3088,7 +3088,7 @@ td, th {
 }
 
 .collection .collection-item {
-  background-color: #fff;
+  background-color: #263238;
   line-height: 1.5rem;
   padding: 10px 20px;
   margin: 0;
@@ -3159,7 +3159,7 @@ td, th {
 }
 
 .collection.with-header .collection-header {
-  background-color: #fff;
+  background-color: #263238;
   border-bottom: 1px solid #e0e0e0;
   padding: 10px 20px;
 }
@@ -4739,13 +4739,13 @@ small {
   padding: 24px;
   margin: 0.5rem 0 1rem 0;
   border-radius: 2px;
-  background-color: #fff;
+  background-color: #263238;
 }
 
 .card {
   position: relative;
   margin: 0.5rem 0 1rem 0;
-  background-color: #fff;
+  background-color: #263238;
   -webkit-transition: -webkit-box-shadow .25s;
   transition: -webkit-box-shadow .25s;
   transition: box-shadow .25s;
@@ -4928,7 +4928,7 @@ small {
 .card .card-reveal {
   padding: 24px;
   position: absolute;
-  background-color: #fff;
+  background-color: #263238;
   width: 100%;
   overflow-y: auto;
   left: 0;
@@ -5026,7 +5026,7 @@ small {
   overflow-y: hidden;
   height: 48px;
   width: 100%;
-  background-color: #fff;
+  background-color: #263238;
   margin: 0 auto;
   white-space: nowrap;
 }
@@ -5047,7 +5047,7 @@ small {
 }
 
 .tabs.tabs-transparent .indicator {
-  background-color: #fff;
+  background-color: #263238;
 }
 
 .tabs.tabs-fixed-width {
@@ -5135,7 +5135,7 @@ small {
   z-index: 2000;
   background-color: transparent;
   border-radius: 2px;
-  color: #fff;
+  color: #fff ;
   min-height: 36px;
   line-height: 120%;
   opacity: 0;
@@ -5543,7 +5543,7 @@ button.btn-floating {
 }
 
 .dropdown-content {
-  background-color: #fff;
+  background-color: #263238 ;
   margin: 0;
   display: none;
   min-width: 100px;
@@ -5857,7 +5857,7 @@ body.keyboard-focused .dropdown-content li:focus {
   -webkit-tap-highlight-color: transparent;
   line-height: 1.5;
   padding: 1rem;
-  background-color: #fff;
+  background-color: #263238 ;
   border-bottom: 1px solid #ddd;
 }
 
@@ -5919,7 +5919,7 @@ body.keyboard-focused .dropdown-content li:focus {
 .sidenav .collapsible-body,
 .sidenav.fixed .collapsible-body {
   border: 0;
-  background-color: #fff;
+  background-color: #263238 ;
 }
 
 .sidenav .collapsible-body li a,
@@ -6639,7 +6639,7 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
 }
 
 .input-field input[type=search]:focus:not(.browser-default) {
-  background-color: #fff;
+  background-color: #263238 ;
   border: 0;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -6994,8 +6994,8 @@ textarea.materialize-textarea {
   height: 13px;
   border-top: 2px solid transparent;
   border-left: 2px solid transparent;
-  border-right: 2px solid #fff;
-  border-bottom: 2px solid #fff;
+  border-right: 2px solid #263238 ;
+  border-bottom: 2px solid #263238 ;
   -webkit-transform: rotateZ(37deg);
           transform: rotateZ(37deg);
   -webkit-transform-origin: 100% 100%;
@@ -7454,7 +7454,7 @@ input[type=range]::-moz-range-thumb {
 }
 
 input[type=range]:-moz-focusring {
-  outline: 1px solid #fff;
+  outline: 1px solid #263238 ;
   outline-offset: -1px;
 }
 
@@ -7541,7 +7541,7 @@ input[type=range]::-ms-thumb {
   height: calc(100% + 60px);
   height: -moz-calc(100%);
   padding-bottom: 60px;
-  background-color: #fff;
+  background-color: #263238 ;
   z-index: 999;
   overflow-y: auto;
   will-change: transform;
@@ -8443,7 +8443,7 @@ input[type=range]::-ms-thumb {
 }
 
 .carousel .indicators .indicator-item.active {
-  background-color: #fff;
+  background-color: #263238 ;
 }
 
 .carousel.scrolling .carousel-item .materialboxed,
@@ -8528,7 +8528,7 @@ input[type=range]::-ms-thumb {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background-color: #ffffff;
+  background-color: #263238fff;
 }
 
 .tap-target-wave::before {
