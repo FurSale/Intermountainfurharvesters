@@ -83,6 +83,42 @@
     }
   }
 
+  function Delete(){
+    global $connection;
+    $id = mysqli_real_escape_string($connection, $_GET['deleteID']);
+
+    $query = "SELECT * FROM `seller_item` WHERE `id` = {$id}";
+    $result = mysqli_query($connection, $query);
+    confirm_query($result);
+    if (mysqli_num_rows($result)!=1){
+      return array('success' => false, 'message' => "Item does not exist to delete");
+    }
+    $itemData = mysqli_fetch_array($result);
+
+    //Delete all the bids under the item
+    $query = "DELETE FROM `bid` WHERE `seller_item_id` = {$itemData['id']}";
+    $result = mysqli_query($connection, $query);
+    confirm_query($result);
+
+    //Delete the item
+    $query = "DELETE FROM `seller_item` WHERE `id` = {$itemData['id']}";
+    $result = mysqli_query($connection, $query);
+    confirm_query($result);
+
+    if (mysqli_affected_rows($connection) == 1) {
+      return array('success' => true, 'message' => "Item {$itemData['lot']} deleted");
+    }
+    return array('success' => false, 'message' => "Couldn't update" . "<br />" . mysqli_error($connection));
+  }
+
+  if(isset($_GET['deleteID'])){
+    $result = Delete();
+    if($result['success']){
+      $success = $result['message'];
+    }else{
+      $error = $result['message'];
+    }
+  }
   //Set page title
   if(isset($_GET['id'])){
     $title = "Editing Seller";
@@ -256,6 +292,7 @@ require_once("../../includes/begin_html.php");
                       <td>$<?php echo number_format($item['asking'], 2); ?></td>
                       <td><?php echo $item['count'] . " " . $item['unit_of_measure']; ?></td>
                       <td><?php echo $item['date_created']; ?></td>
+                      <td class="printhide"><a href="edit_sellers.php?deleteID=<?php echo $item['id']; ?>" class="waves-effect waves-yellow btn-flat red-text">Delete</a></td>
                     </tr>
                     <?php
                       }
