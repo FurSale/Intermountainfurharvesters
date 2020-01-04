@@ -42,4 +42,4 @@
     <!-- End Page Loading -->
     <!-- //////////////////////////////////////////////////////////////////////////// -->
     <!-- START MAIN -->
-    <main class="blue-grey darken-3">
+    <main class="blue-grey darken-2">

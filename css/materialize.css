@@ -1,9 +1,28 @@
-#263238 /*!
+/*!
  * Materialize v1.0.0 (http://materializecss.com)
  * Copyright 2014-2017 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
+ :root {
+   --primary-bg-color: #37474f ;
 
+ --color-primary : #455A64 	;/* Main Primary color */
+ --color-primary-1 : #818F95 ;
+ --color-primary-2 : #5E717A ;
+ --color-primary-3 : #2F414A ;
+ --color-primary-4 : #1B333E ;
+
+ --color-secondary-2 : #4E526D ;	/* Main Secondary color (1) */
+ --color-secondary-1-1 : #8E91A3 ;
+ --color-secondary-1-2 : #696C85 ;
+ --color-secondary-1-3 : #363951 ;
+ --color-secondary-1-4 : #212544 ;
+ --color-primary : #4C715C ;	/* Main Secondary color (2) */
+ --color-primary-2-1 : #90A89B ;
+ --color-primary-2-2 : #698A77 ;
+ --color-primary-2-3 : #335341 ;
+ --color-primary-2-4 : #1D462F ;
+}
 .materialize-red {
   background-color: #e51c23 !important;
 }
@@ -36,7 +55,7 @@
   color: #f3989b !important;
 }
 
-.materialize-red.lighten-2 {
+.materialize-red.lighten-2 {0
   background-color: #ee6e73 !important;
 }
 
@@ -1437,7 +1456,7 @@
 }
 
 .yellow.lighten-5 {
-  background-color: #263238de7 !important;
+  background-color: var(--primary-bg-color) !important;
 }
 
 .yellow-text.text-lighten-5 {
@@ -1445,7 +1464,7 @@
 }
 
 .yellow.lighten-4 {
-  background-color: #2632389c4 !important;
+  background-color: var(--primary-bg-color) !important;
 }
 
 .yellow-text.text-lighten-4 {
@@ -1453,7 +1472,7 @@
 }
 
 .yellow.lighten-3 {
-  background-color: #26323859d !important;
+  background-color: var(--primary-bg-color)59d !important;
 }
 
 .yellow-text.text-lighten-3 {
@@ -1461,7 +1480,7 @@
 }
 
 .yellow.lighten-2 {
-  background-color: #263238176 !important;
+  background-color: var(--primary-bg-color)176 !important;
 }
 
 .yellow-text.text-lighten-2 {
@@ -1509,7 +1528,7 @@
 }
 
 .yellow.accent-1 {
-  background-color: #263238f8d !important;
+  background-color: var(--primary-bg-color)f8d !important;
 }
 
 .yellow-text.text-accent-1 {
@@ -1517,7 +1536,7 @@
 }
 
 .yellow.accent-2 {
-  background-color: #263238f00 !important;
+  background-color: var(--primary-bg-color)f00 !important;
 }
 
 .yellow-text.text-accent-2 {
@@ -1549,7 +1568,7 @@
 }
 
 .amber.lighten-5 {
-  background-color: #2632388e1 !important;
+  background-color: var(--primary-bg-color)8e1 !important;
 }
 
 .amber-text.text-lighten-5 {
@@ -1661,7 +1680,7 @@
 }
 
 .orange.lighten-5 {
-  background-color: #2632383e0 !important;
+  background-color: var(--primary-bg-color)3e0 !important;
 }
 
 .orange-text.text-lighten-5 {
@@ -2029,7 +2048,7 @@
 }
 
 .blue-grey.darken-4 {
-  background-color: #263238 !important;
+  background-color: var(--primary-bg-color) !important;
 }
 
 .blue-grey-text.text-darken-4 {
@@ -2045,11 +2064,11 @@
 }
 
 .grey.lighten-5 {
-  background-color: #fafafa !important;
+  background-color: var(--primary-bg-color) !important;
 }
 
 .grey-text.text-lighten-5 {
-  color: #fafafa !important;
+  color: var(--primary-bg-color) !important;
 }
 
 .grey.lighten-4 {
@@ -2125,7 +2144,7 @@
 }
 
 .white {
-  background-color: #263238FFF !important;
+  background-color: #fffFFF !important;
 }
 
 .white-text {
@@ -3088,7 +3107,7 @@ td, th {
 }
 
 .collection .collection-item {
-  background-color: #263238;
+  background-color: var(--primary-bg-color);
   line-height: 1.5rem;
   padding: 10px 20px;
   margin: 0;
@@ -3159,7 +3178,7 @@ td, th {
 }
 
 .collection.with-header .collection-header {
-  background-color: #263238;
+  background-color: var(--color-primary);
   border-bottom: 1px solid #e0e0e0;
   padding: 10px 20px;
 }
@@ -4736,16 +4755,16 @@ small {
   transition: -webkit-box-shadow .25s;
   transition: box-shadow .25s;
   transition: box-shadow .25s, -webkit-box-shadow .25s;
-  padding: 24px;
+  padding: 410x;
   margin: 0.5rem 0 1rem 0;
   border-radius: 2px;
-  background-color: #263238;
+  background-color: var(--primary-bg-color);
 }
 
 .card {
   position: relative;
   margin: 0.5rem 0 1rem 0;
-  background-color: #263238;
+  background-color: var(--primary-bg-color);
   -webkit-transition: -webkit-box-shadow .25s;
   transition: -webkit-box-shadow .25s;
   transition: box-shadow .25s;
@@ -4928,7 +4947,7 @@ small {
 .card .card-reveal {
   padding: 24px;
   position: absolute;
-  background-color: #263238;
+  background-color: var(--primary-bg-color);
   width: 100%;
   overflow-y: auto;
   left: 0;
@@ -5026,7 +5045,7 @@ small {
   overflow-y: hidden;
   height: 48px;
   width: 100%;
-  background-color: #263238;
+  background-color: var(--primary-bg-color);
   margin: 0 auto;
   white-space: nowrap;
 }
@@ -5047,7 +5066,7 @@ small {
 }
 
 .tabs.tabs-transparent .indicator {
-  background-color: #263238;
+  background-color: var(--primary-bg-color);
 }
 
 .tabs.tabs-fixed-width {
@@ -5543,7 +5562,7 @@ button.btn-floating {
 }
 
 .dropdown-content {
-  background-color: #263238 ;
+  background-color: var(--primary-bg-color) ;
   margin: 0;
   display: none;
   min-width: 100px;
@@ -5753,7 +5772,7 @@ body.keyboard-focused .dropdown-content li:focus {
   position: fixed;
   left: 0;
   right: 0;
-  background-color: #fafafa;
+  background-color: var(--primary-bg-color);
   padding: 0;
   max-height: 70%;
   width: 55%;
@@ -5787,7 +5806,7 @@ body.keyboard-focused .dropdown-content li:focus {
 
 .modal .modal-footer {
   border-radius: 0 0 2px 2px;
-  background-color: #fafafa;
+  background-color: var(--primary-bg-color);
   padding: 4px 6px;
   height: 56px;
   width: 100%;
@@ -5857,8 +5876,8 @@ body.keyboard-focused .dropdown-content li:focus {
   -webkit-tap-highlight-color: transparent;
   line-height: 1.5;
   padding: 1rem;
-  background-color: #263238 ;
-  border-bottom: 1px solid #ddd;
+  background-color: var(--color-primary) ;
+
 }
 
 .collapsible-header:focus {
@@ -5874,7 +5893,7 @@ body.keyboard-focused .dropdown-content li:focus {
 }
 
 .keyboard-focused .collapsible-header:focus {
-  background-color: #eee;
+  background-color: var(--color-primary-1);
 }
 
 .collapsible-body {
@@ -5908,7 +5927,7 @@ body.keyboard-focused .dropdown-content li:focus {
 
 .sidenav .collapsible-header:hover,
 .sidenav.fixed .collapsible-header:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--color-primary);
 }
 
 .sidenav .collapsible-header i,
@@ -5919,7 +5938,7 @@ body.keyboard-focused .dropdown-content li:focus {
 .sidenav .collapsible-body,
 .sidenav.fixed .collapsible-body {
   border: 0;
-  background-color: #263238 ;
+  background-color: var(--primary-bg-color) ;
 }
 
 .sidenav .collapsible-body li a,
@@ -6225,6 +6244,7 @@ input[type=tel]:not(.browser-default):focus:not([readonly]),
 input[type=number]:not(.browser-default):focus:not([readonly]),
 input[type=search]:not(.browser-default):focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]) {
+  background-color: var(--color-secondary-1);
   border-bottom: 1px solid #558b2f;
   -webkit-box-shadow: 0 1px 0 0 #558b2f;
           box-shadow: 0 1px 0 0 #558b2f;
@@ -6639,7 +6659,7 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
 }
 
 .input-field input[type=search]:focus:not(.browser-default) {
-  background-color: #263238 ;
+  background-color: var(--primary-bg-color) ;
   border: 0;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -6994,8 +7014,8 @@ textarea.materialize-textarea {
   height: 13px;
   border-top: 2px solid transparent;
   border-left: 2px solid transparent;
-  border-right: 2px solid #263238 ;
-  border-bottom: 2px solid #263238 ;
+  border-right: 2px solid var(--primary-bg-color) ;
+  border-bottom: 2px solid var(--primary-bg-color) ;
   -webkit-transform: rotateZ(37deg);
           transform: rotateZ(37deg);
   -webkit-transform-origin: 100% 100%;
@@ -7454,7 +7474,7 @@ input[type=range]::-moz-range-thumb {
 }
 
 input[type=range]:-moz-focusring {
-  outline: 1px solid #263238 ;
+  outline: 1px solid var(--primary-bg-color) ;
   outline-offset: -1px;
 }
 
@@ -7541,7 +7561,7 @@ input[type=range]::-ms-thumb {
   height: calc(100% + 60px);
   height: -moz-calc(100%);
   padding-bottom: 60px;
-  background-color: #263238 ;
+  background-color: var(--primary-bg-color) ;
   z-index: 999;
   overflow-y: auto;
   will-change: transform;
@@ -8443,7 +8463,7 @@ input[type=range]::-ms-thumb {
 }
 
 .carousel .indicators .indicator-item.active {
-  background-color: #263238 ;
+  background-color: var(--primary-bg-color) ;
 }
 
 .carousel.scrolling .carousel-item .materialboxed,
@@ -8528,7 +8548,7 @@ input[type=range]::-ms-thumb {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background-color: #263238fff;
+  background-color: var(--primary-bg-color)fff;
 }
 
 .tap-target-wave::before {

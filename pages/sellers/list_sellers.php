@@ -77,8 +77,8 @@ require_once("../../includes/db_connection.php");
           <!--start container-->
           <div class="container">
               <!--Responsive Table-->
-              <div id="responsive-table">
-                <h4 class="header">Sellers</h4>
+
+
                 <div class="row">
                     <div class="input-field col s4 offset-s4">
                       <input placeholder="Name" id="search-query" type="text" value="<?php echo $searchName; ?>">
@@ -105,7 +105,7 @@ require_once("../../includes/db_connection.php");
                           while($seller=mysqli_fetch_array($result)){
                             ?>
 														<a class="white-text" href="edit_sellers.php?id=<?php echo $seller['id']; ?>">
-                       <div class="row section card-panel blue-grey darken-4 sheet">
+                       <div class="row section card-panel  sheet">
 
                           <div class="col s4"><?php echo $seller['last_name'] . ", " . $seller['first_name']; ?></div>
 
@@ -113,20 +113,53 @@ require_once("../../includes/db_connection.php");
                           <div class="col s4"><?php echo $seller['trapper_id']; ?></div>
                           <div class="col s4">
                             <!-- <a href="../items/edit_items.php?sellerId=<?php echo $seller['id']; ?>" class="waves-effect waves-light  btn-small"><i class="material-icons">add_box</i></a> -->
-
-															<a href="receipt.php?id=<?php echo $seller['id']; ?>" class="waves-effect waves-light  btn-small blue"><i class="material-icons">receipt</i></a>
+														  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+														<a href="receipt.php?id=<?php echo $seller['id']; ?>" class="waves-effect waves-light  btn-small blue"><i class="material-icons">receipt</i></a>
 															<a href="list_sellers.php?deleteID=<?php echo $seller['id']; ?>" class="waves-effect waves-light red btn-small"><i class="material-icons">delete</i></a>
                           </div>
-													<div class="row">
-														<div class="col s12">
-														<ul class="collapsible">
-												    <li>
-												      <div class="collapsible-header"><i class="material-icons">receipt</i>Receipt</div>
-												      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-												    </li>
-												  </ul>
-													</div>
-													</div>
+													<div id="modal1" class="modal bottom-sheet">
+	<div class="modal-content">
+		<table class="responsive-table">
+			<thead>
+				<tr>
+					<th data-field="id">ID Detail</th>
+					<th data-field="name">Item</th>
+					<th data-field="jumlah">Count</th>
+					<th data-field="harga">Price</th>
+					<th data-field="subtotal">Bid</th>
+				</tr>
+			</thead>
+			<tbody>
+
+						<tr>
+								<td><?php echo $itemData['lot']; ?></td>
+								<td><?php echo $itemData['item']; ?></td>
+								<td><?php echo $itemData['count']; ?></td>
+								<td>$<?php echo $itemData['asking']; ?></td>
+								<td <?php if($bid['bid_amount'] < $itemData['asking']){echo "class=\"red-text\"";}else{echo "class=\"green-text\"";} ?>><?php echo "$".$bid['bid_amount']; ?></td>
+							</tr>
+
+			<tr>
+					<td>TOTAL</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>$<?php echo number_format($subtotal, 2); ?></td>
+			</tr>
+			<div class="row">
+					<div class="col s1  offset-s3">Commission</div>
+					<div class="col s1"><?php echo $sellerData['commission']; ?>%</div>
+					<div class="col s2 right-align">$<?php echo number_format((($sellerData['commission']/100) * $subtotal), 2); ?></div>
+			</div>
+		<div class="row">
+				<div class="col s2 offset-s3"><span style="font-weight:bold;">Total Due</span></div>
+				<div class="col s2 right-align"><span style="font-weight:bold;">$<?php echo (($sellerData['commission']/100) + 1) * $subtotal; ?></span></div>
+		</div>
+			</tbody>
+		</table>
+	</div>
+
+</div>
                         </div>
 												</a>
                         <?php
@@ -139,7 +172,7 @@ require_once("../../includes/db_connection.php");
                 </div>
               </div>
             </div>
-          </div>
+
 				</section>
         <script>
               $(document).ready(function(){

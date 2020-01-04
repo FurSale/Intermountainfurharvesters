@@ -1,8 +1,8 @@
 <!--breadcrumbs start-->
 <div id="breadcrumbs-wrapper" class="printhide">
-  <div class="blue-grey darken-4">
+  <div class="blue-grey darken-3">
   <!-- Search for small screen -->
-  
+
   <div class="container">
     <div class="row">
       <div class="col s10 m6 l6">

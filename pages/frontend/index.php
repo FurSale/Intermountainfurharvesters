@@ -196,7 +196,7 @@
 <a class="btn-floating-center waves-effect waves-light red modal-trigger" href="#modal1"><i class="material-icons">expand_less</i></a>
 </div>
 </main>
-  <div id="modal1" class="modal bottom-sheet blue-grey darken-3 black-text">
+  <div id="modal1" class="modal bottom-sheet blue-grey darken-2 black-text">
          <div class="modal-content">
            <ul class="collection with-header">
         <li class="collection-header"><h4>Bids</h4></li>

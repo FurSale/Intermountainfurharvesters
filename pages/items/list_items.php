@@ -74,7 +74,7 @@
                 <input class="searchbar" placeholder="Lot #" id="search-query" type="text" value="<?php echo $searchName; ?>">
               </div>
             </div>
-            <div class="row  blue-grey darken-4">
+            <div class="row  blue-grey darken-3">
               <div class="col s12">
 
 
