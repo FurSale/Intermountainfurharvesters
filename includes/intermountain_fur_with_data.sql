@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 21, 2019 at 07:02 AM
+-- Generation Time: Jan 05, 2020 at 02:04 AM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -28,7 +28,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `bid`
 --
 
-DROP TABLE IF EXISTS `bid`;
 CREATE TABLE IF NOT EXISTS `bid` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `buyer_id` int(11) NOT NULL,
@@ -61,7 +60,6 @@ INSERT INTO `bid` (`id`, `buyer_id`, `seller_item_id`, `bid_amount`, `bid_status
 -- Table structure for table `buyer`
 --
 
-DROP TABLE IF EXISTS `buyer`;
 CREATE TABLE IF NOT EXISTS `buyer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -79,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `buyer` (
   `date_last_logged_in` timestamp NULL DEFAULT NULL,
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `buyer`
@@ -131,7 +129,6 @@ INSERT INTO `buyer` (`id`, `first_name`, `last_name`, `company_name`, `address_1
 -- Table structure for table `seller`
 --
 
-DROP TABLE IF EXISTS `seller`;
 CREATE TABLE IF NOT EXISTS `seller` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `trapper_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -147,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `seller` (
   `commission` decimal(12,2) NOT NULL,
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `seller`
@@ -229,7 +226,6 @@ INSERT INTO `seller` (`id`, `trapper_id`, `first_name`, `last_name`, `address_1`
 -- Table structure for table `seller_item`
 --
 
-DROP TABLE IF EXISTS `seller_item`;
 CREATE TABLE IF NOT EXISTS `seller_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `seller_id` int(11) NOT NULL,
@@ -249,7 +245,7 @@ CREATE TABLE IF NOT EXISTS `seller_item` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `lot` (`lot`),
   KEY `seller_id` (`seller_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `seller_item`
@@ -278,19 +274,20 @@ INSERT INTO `seller_item` (`id`, `seller_id`, `lot`, `type`, `item`, `unit_of_me
 -- Table structure for table `site_info`
 --
 
-DROP TABLE IF EXISTS `site_info`;
 CREATE TABLE IF NOT EXISTS `site_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `site_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `timezone` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'America/Los_Angeles',
+  `bid_cutoff_days` int(11) NOT NULL DEFAULT '7',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `site_info`
 --
 
-INSERT INTO `site_info` (`id`, `site_name`) VALUES
-(1, 'Test');
+INSERT INTO `site_info` (`id`, `site_name`, `timezone`, `bid_cutoff_days`) VALUES
+(1, 'Test2', 'America/Los_Angeles', 7);
 
 -- --------------------------------------------------------
 
@@ -298,7 +295,6 @@ INSERT INTO `site_info` (`id`, `site_name`) VALUES
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -310,27 +306,22 @@ CREATE TABLE IF NOT EXISTS `user` (
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_unique` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `password_one_time`, `deletable`, `role`, `date_last_logged_in`, `date_created`) VALUES
-(1, 'admin', '$2y$10$aFuHxhyY6PnrGjdCrQC5ZeFTatoFcGcM6iq.udEyja00rTE9u6WAS', NULL, 0, 'administrator', '2019-12-21 06:03:34', '2019-12-11 19:23:14'),
+(1, 'admin', '$2y$10$aFuHxhyY6PnrGjdCrQC5ZeFTatoFcGcM6iq.udEyja00rTE9u6WAS', NULL, 0, 'administrator', '2019-12-30 00:39:37', '2019-12-11 19:23:14'),
 (2, '1', NULL, '141181', 1, 'buyer', '2019-12-21 06:16:34', '2019-12-17 03:41:37'),
-(3, '2', NULL, '507387', 1, 'buyer', '2019-12-21 06:18:19', '2019-12-17 04:13:21');
+(3, '2', NULL, '845781', 1, 'buyer', '2019-12-28 07:08:06', '2019-12-17 04:13:21'),
+(6, '16', NULL, '986888', 1, 'buyer', NULL, '2020-01-05 02:03:05'),
+(7, '37', NULL, '697542', 1, 'buyer', NULL, '2020-01-05 02:03:14');
 
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `bid`
---
-ALTER TABLE `bid`
-  ADD CONSTRAINT `fk_bid_buyer` FOREIGN KEY (`buyer_id`) REFERENCES `buyer` (`id`),
-  ADD CONSTRAINT `fk_bid_seller_item` FOREIGN KEY (`seller_item_id`) REFERENCES `seller_item` (`id`);
 
 --
 -- Constraints for table `seller_item`

@@ -178,4 +178,10 @@ function random_generator($length, $usableChars = '0123456789abcdefghijklmnopqrs
 
     return $randomString;
 }
+
+function format_date_timezone($dateTime){
+    $dt = new DateTime($dateTime);
+    $dt -> setTimezone(new DateTimeZone($GLOBALS['site_info']['timezone']));
+    return $dt->format('m/d/Y, H:i:s');
+}
 ?>
