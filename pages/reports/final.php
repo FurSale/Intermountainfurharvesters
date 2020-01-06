@@ -91,7 +91,7 @@
         <td>$<?php echo number_format($average, 2); ?></td>
         <td>$<?php echo number_format($highest, 2); ?></td>
         <td>$<?php echo number_format($saleTotal, 2); ?></td>
-        <td><?php if($offered > 0){ echo round(($amountSold / $offered) * 100, 2)."%";}else{echo "N/A";} ?></td>
+        <td><?php echo $amountSold; ?></td>
       </tr>
     <?php
     }
