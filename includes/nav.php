@@ -25,7 +25,6 @@
   <li><a class="dropdown-trigger" href="../../pages/sellers/list_sellers.php" data-target="dropdown1">Sellers</a></li>
   <li><a class="dropdown-trigger" href="../../pages/buyers/list_buyers.php" data-target="dropdown2">Buyers</a></li>
   <li><a class="dropdown-trigger" href="../../pages/items/list_items.php" data-target="dropdown3">Items</a></li>
-  <li><a class="dropdown-trigger" href="/pages/site_settings.php" data-target="dropdown4"><i class="material-icons">settings_applications</i></a></li>
 </ul>
 </div>
 <div class="nav-content">

@@ -5,6 +5,10 @@
     header("Location: ../login.php");
   }
 
+  $query = "SELECT * FROM `site_info` WHERE `id` = 1";
+  $result = mysqli_query($connection, $query);
+  $site = mysqli_fetch_array($result);
+
   $bid['buyer_id'] = null;
   $bid['seller_item_id'] = null;
   $bid['bid_amount'] = null;
@@ -136,8 +140,7 @@
       $data[$key] = mysqli_real_escape_string($connection, $value);
     }
 
-    $cutoffDays = $GLOBALS['site_info']['bid_cutoff_days'];
-    $cutoffDate = date("Y-m-d H:i:s", strtotime('-'.$cutoffDays.' days', time()));
+    $cutoffDate = date("Y-m-d H:i:s", strtotime('-168 hours', time())); //3 days
     $query = "UPDATE `bid` SET
     `bid_status` = 'Confirmed' WHERE `buyer_id` = {$_SESSION['username']} AND `bid_status` = 'Unconfirmed' AND `date_created` > '{$cutoffDate}'";
     $result = mysqli_query($connection, $query);
@@ -164,9 +167,9 @@
    <div class="container">
       <section id="content" class="">
       <div class="col 12">
-        <h1><?php echo $GLOBALS['site_info']['site_name']; ?></h1>
+        <h1><?php echo $site['site_name']; ?></h1>
       </div>
-        <form method="post" action="index.php" id="form-add">
+          <form method="post" action="index.php" id="form-add">
           <input type="hidden" name="add" value="add" />
             <div class='row'>
               <div class='input-field col s12'>
@@ -198,8 +201,7 @@
            <ul class="collection with-header">
         <li class="collection-header"><h4>Bids</h4></li>
         <?php
-            $cutoffDays = $GLOBALS['site_info']['bid_cutoff_days'];
-            $cutoffDate = date("Y-m-d H:i:s", strtotime('-'.$cutoffDays.' days', time()));
+            $cutoffDate = date("Y-m-d H:i:s", strtotime('-168 hours', time())); //3 days
             $query="SELECT * FROM `bid` WHERE `buyer_id` = {$_SESSION['username']} AND `bid_status` = 'Unconfirmed' AND `date_created` > '{$cutoffDate}'";
             $result=mysqli_query( $connection, $query);
             //confirm_query($result);
@@ -234,8 +236,7 @@
             }
         ?>
         <?php
-            $cutoffDays = $GLOBALS['site_info']['bid_cutoff_days'];
-            $cutoffDate = date("Y-m-d H:i:s", strtotime('-'.$cutoffDays.' days', time()));
+            $cutoffDate = date("Y-m-d H:i:s", strtotime('-168 hours', time())); //3 days
             $query="SELECT * FROM `bid` WHERE `buyer_id` = {$_SESSION['username']} AND `bid_status` = 'Confirmed' AND `date_created` > '{$cutoffDate}'";
             $result=mysqli_query( $connection, $query);
             //confirm_query($result);
