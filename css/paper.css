@@ -47,15 +47,21 @@ body.legal.landscape  .sheet { width: 357mm; height: 215mm }
   body.letter.landscape      { width: 280mm }
   body.legal.landscape       { width: 357mm }
 }
-© 2020 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
+body, .printhide{
+    display: none;
+    visibility: hidden;
+    margin: 0;
+  }
+  body .print{
+
+    visibility: visible;
+    width: 100%;
+    color: black;
+  }
+  .print td, th {
+  padding: 0px;
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+  border-radius: 2px;
+}
