@@ -112,11 +112,54 @@
                           <div class="col"><?php echo $buyer['fur_buyer_license_num']; ?></div>-->
                           <div class="col s1">
 
-                            <a href="receipt.php?id=<?php echo $buyer['id']; ?>" class="waves-effect waves-light  btn-small blue"><i class="material-icons">receipt</i></a>
+                            <a class="waves-effect waves-light  btn-small blue modal-trigger" href="#modal<?php echo $buyer['id']; ?>"><i class="material-icons">receipt</i></a>
                           </div>
                             <div class="col s1">
                             <a href="list_buyers.php?deleteID=<?php echo $buyer['id']; ?>" class="waves-effect waves-light  btn-small red"><i class="material-icons">delete</i></a>
                           </div>
+                          <div id="modal<?php echo $buyer['id']; ?>" class="modal bottom-sheet">
+  <div class="modal-content">
+    <table class="responsive-table">
+      <thead>
+        <tr>
+          <th data-field="id">ID Detail</th>
+          <th data-field="name">Item</th>
+          <th data-field="jumlah">Count</th>
+          <th data-field="harga">Price</th>
+          <th data-field="subtotal">Bid</th>
+        </tr>
+      </thead>
+      <tbody>
+
+            <tr>
+                <td><?php echo $itemData['lot']; ?></td>
+                <td><?php echo $itemData['item']; ?></td>
+                <td><?php echo $itemData['count']; ?></td>
+                <td>$<?php echo $itemData['asking']; ?></td>
+                <td <?php if($bid['bid_amount'] < $itemData['asking']){echo "class=\"red-text\"";}else{echo "class=\"green-text\"";} ?>><?php echo "$".$bid['bid_amount']; ?></td>
+              </tr>
+
+      <tr>
+          <td>TOTAL</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>$<?php echo number_format($subtotal, 2); ?></td>
+      </tr>
+      <div class="row">
+          <div class="col s1  offset-s3">Commission</div>
+          <div class="col s1"><?php echo $sellerData['commission']; ?>%</div>
+          <div class="col s2 right-align">$<?php echo number_format((($sellerData['commission']/100) * $subtotal), 2); ?></div>
+      </div>
+    <div class="row">
+        <div class="col s2 offset-s3"><span style="font-weight:bold;">Total Due</span></div>
+        <div class="col s2 right-align"><span style="font-weight:bold;">$<?php echo (($sellerData['commission']/100) + 1) * $subtotal; ?></span></div>
+    </div>
+      </tbody>
+    </table>
+  </div>
+
+</div>
                         </div>
                       </a>
                         <?php
