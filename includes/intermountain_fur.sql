@@ -139,6 +139,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `username_unique` (`username`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+INSERT INTO `user` (`id`, `username`, `password`, `password_one_time`, `deletable`, `role`, `date_last_logged_in`, `date_created`) VALUES
+(1, 'admin', '$2y$10$aFuHxhyY6PnrGjdCrQC5ZeFTatoFcGcM6iq.udEyja00rTE9u6WAS', NULL, 0, 'administrator', '2019-12-30 00:39:37', '2019-12-11 19:23:14');
 -- --------------------------------------------------------
 
 --

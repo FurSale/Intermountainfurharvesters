@@ -1,4 +1,5 @@
 <?php
+require_once("../includes/db_connection.php");
 require_once("../includes/functions.php");
 confirm_logged_in();
 
