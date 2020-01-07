@@ -74,7 +74,7 @@
                 <input class="searchbar" placeholder="Lot #" id="search-query" type="text" value="<?php echo $searchName; ?>">
               </div>
             </div>
-            <div class="row  blue-grey darken-3">
+            <div class="row ">
               <div class="col s12">
 
 
@@ -82,7 +82,7 @@
                       <div class="col s1">Lot</div>
                       <div class="col s2">Item</div>
                       <div class="col s2">Count</div>
-                      <div class="col s2">Price</div>
+                      <!--<div class="col s2">Price</div>-->
                       <div class="col s2" >High Bid</div>
                       <div class="col s2">Buyer</div>
                     </div>
@@ -95,14 +95,15 @@
                             $result2=mysqli_query( $connection, $query);
                             $highestBid=mysqli_fetch_array($result2);
                             ?>
-                       <div  class="row <?php if($highestBid != null){if($highestBid['bid_amount'] > $sellerItem['asking']){echo "red";}else{echo "green";}} ?> darken-2">
+                       <div  class="row section card-panel <?php if($highestBid != null){if($highestBid['bid_amount'] > $sellerItem['asking']){echo "red";}else{echo "green";}} ?> darken-2">
                           <div class="col s1"><?php echo $sellerItem['lot']; ?></div>
                           <div class="col s2"><?php echo $sellerItem['item']; ?></div>
 
                           <div class="col s2"><?php echo $sellerItem['count']; ?>/<?php echo $sellerItem['unit_of_measure']; ?></div>
-                          <div class="col s2"><?php echo "$".$sellerItem['asking']; ?></div>
+                          <!--<div class="col s2"><?php echo "$".$sellerItem['asking']; ?></div>-->
                           <div class="col s2" ><?php if($highestBid != null){ echo "$".$highestBid['bid_amount']; }else{echo "N/A";} ?></div>
-                          <div class="col s2" class="printhide"><a href="list_items.php?deleteID=<?php echo $sellerItem['id']; ?>" class="waves-effect waves-yellow btn-flat red-text">Delete</a></div>
+                          <div class="col s2" ><div class="chip black-text">Buyer names</div></div>
+                          <div class="col s2" class="printhide"><a href="list_items.php?deleteID=<?php echo $sellerItem['id']; ?>" class="waves-effect waves-yellow btn-flat white-text"><i class="material-icons">delete</i></a></div>
                         </div>
                         <?php
                           }
