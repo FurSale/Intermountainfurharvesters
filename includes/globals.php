@@ -12,5 +12,12 @@ $GLOBALS['HOST'] = $protocol.$_SERVER['HTTP_HOST'].$serv_port;
 $site_version = '0.0.1';
 $db_compatability = '0.0.1';
 
+//global DB variables
+
+//Site Info
+$query="SELECT * FROM `site_info` WHERE `id` = 1";
+$result=mysqli_query( $connection, $query);
+$GLOBALS['site_info']=mysqli_fetch_array($result);
+
 //global constant
 ?>

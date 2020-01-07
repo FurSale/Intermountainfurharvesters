@@ -299,7 +299,7 @@
                           <td><?php echo $item['count'] . " " . $item['unit_of_measure']; ?></td>
                           <td>$<?php echo number_format($bid['bid_amount'], 2); ?></td>
                           <td><?php echo $bid['bid_status']; ?></td>
-                          <td><?php echo $bid['date_created']; ?></td>
+                          <td><?php echo format_date_timezone($bid['date_created']); ?></td>
                         </tr>
                         <?php
                           }

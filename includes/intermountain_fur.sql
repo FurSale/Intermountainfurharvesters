@@ -149,6 +149,8 @@ DROP TABLE IF EXISTS `site_info`;
 CREATE TABLE IF NOT EXISTS `site_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `site_name` varchar(255) COLLATE utf8_unicode_ci NULL
+  `timezone` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'America/Los_Angeles',
+  `bid_cutoff_days` int(11) NOT NULL DEFAULT '7',
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
