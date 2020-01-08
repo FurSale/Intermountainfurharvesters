@@ -150,10 +150,14 @@ INSERT INTO `user` (`id`, `username`, `password`, `password_one_time`, `deletabl
 DROP TABLE IF EXISTS `site_info`;
 CREATE TABLE IF NOT EXISTS `site_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `site_name` varchar(255) COLLATE utf8_unicode_ci NULL
+  `site_name` varchar(255) COLLATE utf8_unicode_ci NULL,
   `timezone` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'America/Los_Angeles',
   `bid_cutoff_days` int(11) NOT NULL DEFAULT '7',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `site_info` (`id`, `site_name`, `timezone`, `bid_cutoff_days`) VALUES
+(1, 'Intermountain Fur', 'America/Los_Angeles', 7);
 
 --
 -- Constraints for dumped tables
