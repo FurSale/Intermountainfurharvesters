@@ -84,27 +84,74 @@
                       <div class="col s2">Item</div>
                       <div class="col s2">Count</div>
                       <!--<div class="col s2">Price</div>-->
-                      <div class="col s2" >High Bid</div>
+                      <div class="col s2" >Bid</div>
                       <div class="col s2">Buyer</div>
                     </div>
 
-                  <?php
-                          $result=mysqli_query( $connection, $itemQuery);
-                          //confirm_query($result);
-                          while($sellerItem=mysqli_fetch_array($result)){
-                            $query="SELECT * FROM `bid` WHERE seller_item_id = {$sellerItem['id']} ORDER BY `bid_amount` ASC LIMIT 1";
+                      <?php
+                          $noBidsItems = array();
+                          $lowBidsItems = array();
+                          $goodBidsItems = array();
+
+                          $resultItem=mysqli_query( $connection, $itemQuery);
+                          confirm_query($resultItem);
+                          while($sellerItem=mysqli_fetch_assoc($resultItem)){
+                            $itemBids = get_item_bids($sellerItem['id']);
+                            $highestBids = get_highest_bids($sellerItem['id']);
+                            $sellerItem['high_bid'] = 0;
+                            $sellerItem['buyer_names'] = "";
+                            if(count($itemBids) < 1){
+                              array_push($noBidsItems, $sellerItem);
+                              continue;
+                            }
+
+                            $sellerItem['high_bid'] = $highestBids[0]['bid_amount'];
+
+                            if(count($highestBids) > 0){
+                              if($highestBids[0]['bid_amount'] >= $sellerItem['asking']){
+                                $names = array();
+                                foreach($highestBids as $highestBid){
+                                  $query="SELECT * FROM `buyer` WHERE `id` = {$highestBid['buyer_id']}";
+                                  $resultBuyer=mysqli_query( $connection, $query);
+                                  confirm_query($resultBuyer);
+                                  $data = mysqli_fetch_assoc($resultBuyer);
+                                  array_push($names, ($data['first_name'] . " " . $data['last_name']));
+                                }
+                                $sellerItem['buyer_names'] = implode(" | ", $names);
+                                array_push($goodBidsItems, $sellerItem);
+                                continue;
+                              }
+                            }
+                            array_push($lowBidsItems, $sellerItem);
+                          }
+
+                          // print_r($noBidsItems);
+                          // if(count($noBidsItems) > 0){
+                          //   array_multisort($noBidsItems['lot'], SORT_ASC, SORT_REGULAR);
+                          // }
+                          // if(count($lowBidsItems) > 0){
+                          //   array_multisort($lowBidsItems['lot'], SORT_ASC, SORT_REGULAR);
+                          // }
+                          // if(count($goodBidsItems) > 0){
+                          //   array_multisort($goodBidsItems['lot'], SORT_ASC, SORT_REGULAR);
+                          // }
+
+                          $itemArr = array_merge($noBidsItems, $lowBidsItems, $goodBidsItems);
+
+                          foreach($itemArr as $sellerItem){
+                            $query="SELECT * FROM `seller` WHERE id = {$sellerItem['seller_id']}";
                             $result2=mysqli_query( $connection, $query);
-                            $highestBid=mysqli_fetch_array($result2);
+                            $sellerData=mysqli_fetch_array($result2);
                             ?>
-                       <div  class="row section card-panel <?php if($highestBid != null){if($highestBid['bid_amount'] > $sellerItem['asking']){echo "red";}else{echo "green";}} ?> darken-2">
-                         <div class="col s2" ><div class="chip blue white-text">Seller id</div></div>
+                       <div  class="row section card-panel <?php if($sellerItem['high_bid'] > 0){if($sellerItem['high_bid'] >= $sellerItem['asking']){echo "green";}else{echo "red";}} ?> darken-2">
+                         <div class="col s2" ><div class="chip blue white-text"><?php echo $sellerData['first_name'] . " " . $sellerData['last_name']; ?></div></div>
                           <div class="col s1"><?php echo $sellerItem['lot']; ?></div>
                           <div class="col s2"><?php echo $sellerItem['item']; ?></div>
 
                           <div class="col s2"><?php echo $sellerItem['count']; ?>/<?php echo $sellerItem['unit_of_measure']; ?></div>
                           <!--<div class="col s2"><?php echo "$".$sellerItem['asking']; ?></div>-->
-                          <div class="col s2" ><?php if($highestBid != null){ echo "$".$highestBid['bid_amount']; }else{echo "N/A";} ?></div>
-                          <div class="col s2" ><div class="chip black-text">Buyer names</div></div>
+                          <div class="col s2" ><?php if( $sellerItem['high_bid'] > 0 ){ echo "$".$sellerItem['high_bid']; }else{echo "N/A";} ?></div>
+                          <div class="col s2" ><div class="chip black-text"><?php if($sellerItem['buyer_names'] != ""){ echo $sellerItem['buyer_names']; }else{echo "N/A";} ?></div></div>
                           <div class="col s1" class="printhide"><a href="list_items.php?deleteID=<?php echo $sellerItem['id']; ?>" class="waves-effect waves-yellow btn-flat white-text"><i class="material-icons">delete</i></a></div>
                         </div>
                         <?php

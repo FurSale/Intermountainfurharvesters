@@ -118,48 +118,72 @@
                             <a href="list_buyers.php?deleteID=<?php echo $buyer['id']; ?>" class="waves-effect waves-light  btn-small red"><i class="material-icons">delete</i></a>
                           </div>
                           <div id="modal<?php echo $buyer['id']; ?>" class="modal bottom-sheet">
-  <div class="modal-content">
-    <table class="responsive-table">
-      <thead>
-        <tr>
-          <th data-field="id">ID Detail</th>
-          <th data-field="name">Item</th>
-          <th data-field="jumlah">Count</th>
-          <th data-field="harga">Price</th>
-          <th data-field="subtotal">Bid</th>
-        </tr>
-      </thead>
-      <tbody>
+                            <div class="modal-content">
+                              <table class="responsive-table">
+                                <thead>
+                                  <tr>
+                                    <th data-field="id">Lot</th>
+                                    <th data-field="name">Item</th>
+                                    <th data-field="jumlah">Count</th>
+                                    <th data-field="harga">Origin State</th>
+                                    <th data-field="subtotal">Bid</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                $buyerBids = get_buyer_won_bids($buyer['id']);
+                                if(count($buyerBids) < 1){?>
+                                <tr><h5>Buyer has no winning bids</h5></tr>                                  
+                                <?php  
+                                }
+                                $subtotal = 0;
+                                foreach($buyerBids as $bid){
+                                  
+                                  //Get item data for this bid
+                                  $query = "SELECT * FROM `seller_item` WHERE `id` = {$bid['seller_item_id']}";
+                                  $resultItem=mysqli_query( $connection, $query);
+                                  confirm_query($resultItem);
+                                  $itemData=mysqli_fetch_array($resultItem);
+                                  $subtotal += $bid['bid_amount'];
+                                  ?>
+                                  <tr>
+                                    <td><?php echo $itemData['lot']; ?></td>
+                                    <td><?php echo $itemData['item']; ?></td>
+                                    <td><?php echo $itemData['count']; ?>/<?php echo $itemData['unit_of_measure']; ?></td>
+                                    <td><?php echo $itemData['origin_state']; ?></td>
+                                    <td <?php if($bid['bid_amount'] < $itemData['asking']){echo "class=\"red-text\"";}else{echo "class=\"green-text\"";} ?>><?php echo "$".$bid['bid_amount']; ?></td>
+                                  </tr>
+                                    <?php
+                                    }
+                                  ?>
+                                  <tr>
+                                    <td>SUBTOTAL</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>$<?php echo number_format($subtotal, 2); ?></td>
+                                  </tr>
+                                  <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Commission</td>
+                                    <td><?php echo $buyer['commission']; ?>%</td>
+                                    <td>$<?php echo number_format((($buyer['commission']/100) * $subtotal), 2); ?></td>
+                                  </tr>
+                                  <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td><span style="font-weight:bold;">Total Due</span></td>
+                                    <td></td>
+                                    <td><span style="font-weight:bold;">$<?php echo number_format((($buyer['commission']/100) + 1) * $subtotal, 2); ?></span></td>
+                                  </tr>
 
-            <tr>
-                <td><?php echo $itemData['lot']; ?></td>
-                <td><?php echo $itemData['item']; ?></td>
-                <td><?php echo $itemData['count']; ?></td>
-                <td>$<?php echo $itemData['asking']; ?></td>
-                <td <?php if($bid['bid_amount'] < $itemData['asking']){echo "class=\"red-text\"";}else{echo "class=\"green-text\"";} ?>><?php echo "$".$bid['bid_amount']; ?></td>
-              </tr>
 
-      <tr>
-          <td>TOTAL</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>$<?php echo number_format($subtotal, 2); ?></td>
-      </tr>
-      <div class="row">
-          <div class="col s1  offset-s3">Commission</div>
-          <div class="col s1"><?php echo $sellerData['commission']; ?>%</div>
-          <div class="col s2 right-align">$<?php echo number_format((($sellerData['commission']/100) * $subtotal), 2); ?></div>
-      </div>
-    <div class="row">
-        <div class="col s2 offset-s3"><span style="font-weight:bold;">Total Due</span></div>
-        <div class="col s2 right-align"><span style="font-weight:bold;">$<?php echo (($sellerData['commission']/100) + 1) * $subtotal; ?></span></div>
-    </div>
-      </tbody>
-    </table>
-  </div>
+                                </tbody>
+                              </table>
+                            </div>
 
-</div>
+                          </div>
                         </div>
                       </a>
                         <?php
