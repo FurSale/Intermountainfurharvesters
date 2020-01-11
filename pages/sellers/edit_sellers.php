@@ -16,7 +16,7 @@
   $seller['zip'] = null;
   $seller['phone'] = null;
   $seller['email'] = null;
-  $seller['commission'] = 6.00;
+  $seller['commission'] = 2.00;
   $seller['trapper_id'] = null;
   $seller['date_created'] = null;
 
@@ -149,12 +149,12 @@ require_once("../../includes/begin_html.php");
                <div class="input-field col s9">
                  <i class="material-icons prefix">contacts</i>
                  <input placeholder="Trapper ID" id="trapper_id" name="trapper_id" type="text" class="validate" value="<?php echo $seller['trapper_id']; ?>">
-                 <label for="trapper_id">Trapper ID</label>
+
                </div>
                <div class="input-field col s3">
                  <i class="material-icons prefix">attach_money</i>
                  <input id="commission" name="commission" type="number" class="validate" value="<?php echo $seller['commission']; ?>">
-                 <label for="commission">Commission %</label>
+
                </div>
              </div>
              <div class="row">
@@ -223,7 +223,7 @@ require_once("../../includes/begin_html.php");
                   <div class="input-field col s2">
                     <i class="material-icons prefix">local_offer</i>
                     <input name="items[0][lot]" id="name[0][lot]" type="text" class="validate">
-                    <label>Lot</label>
+
                   </div>
                   <div class="input-field col s2">
                     <input list="items[0][item]" name="items[0][item]" class="select-item">
@@ -250,7 +250,7 @@ require_once("../../includes/begin_html.php");
                   </div>
                   <div class="input-field col s1">
                     <input name="items[0][asking]" type="number" class="validate">
-                    <label>Asking $</label>
+
                   </div>
                   <div class="input-field col s1">
                     <!-- JS parent index number will need to be changed if this button is moved up or down in the DOM -->
@@ -289,7 +289,7 @@ require_once("../../includes/begin_html.php");
                     <tr>
                       <td>#<?php echo $item['lot']; ?></td>
                       <td><?php echo $item['item']; ?></td>
-                      <td>$<?php echo number_format($item['asking'], 2); ?></td>
+                      <td><input id="[0]seller_id" name="items[0][seller_id]" value="<?php echo number_format($item['asking'], 2); ?>"></td>
                       <td><?php echo $item['count'] . " " . $item['unit_of_measure']; ?></td>
                       <td><?php echo $item['date_created']; ?></td>
                       <td class="printhide"><a href="edit_sellers.php?deleteID=<?php echo $item['id']; ?>" class="waves-effect waves-yellow btn-flat red-text">Delete</a></td>

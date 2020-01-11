@@ -17,7 +17,7 @@
   $buyer['zip'] = null;
   $buyer['phone'] = null;
   $buyer['email'] = null;
-  $buyer['commission'] = 2.00;
+  $buyer['commission'] = 6.00;
   $buyer['fur_buyer_license_num'] = null;
   $buyer['date_last_logged_in'] = null;
   $buyer['date_created'] = null;
