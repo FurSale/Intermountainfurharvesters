@@ -289,9 +289,10 @@ require_once("../../includes/begin_html.php");
                     <tr>
                       <td>#<?php echo $item['lot']; ?></td>
                       <td><?php echo $item['item']; ?></td>
-                      <td><input id="[0]seller_id" name="items[0][seller_id]" value="<?php echo number_format($item['asking'], 2); ?>"></td>
+                      <td>$<?php echo number_format($item['asking'], 2); ?></td>
                       <td><?php echo $item['count'] . " " . $item['unit_of_measure']; ?></td>
                       <td><?php echo $item['date_created']; ?></td>
+                      <td class="printhide"><a  class="waves-effect waves-yellow btn-flat red-text">Save</a></td>
                       <td class="printhide"><a href="edit_sellers.php?deleteID=<?php echo $item['id']; ?>" class="waves-effect waves-yellow btn-flat red-text">Delete</a></td>
                     </tr>
                     <?php

@@ -79,7 +79,7 @@
 
 
                     <div class="row">
-                      <div class="col s2">Seller</div>
+                      <div class="col s1">Seller</div>
                       <div class="col s1">Lot</div>
                       <div class="col s2">Item</div>
                       <div class="col s2">Count</div>
@@ -144,7 +144,7 @@
                             $sellerData=mysqli_fetch_array($result2);
                             ?>
                        <div  class="row section card-panel <?php if($sellerItem['high_bid'] > 0){if($sellerItem['high_bid'] >= $sellerItem['asking']){echo "green";}else{echo "red";}} ?> darken-2">
-                         <div class="col s2" ><div class="chip blue white-text"><?php echo $sellerData['first_name'] . " " . $sellerData['last_name']; ?></div></div>
+                         <div class="col s1" ><a href="../sellers/edit_sellers.php?id=<?php echo $sellerData['id']; ?>" class="tooltipped" data-position="bottom" data-tooltip="<?php echo $sellerData['first_name'] . " " . $sellerData['last_name']; ?>"><div class="chip white black-text"><?php echo $sellerData['id']; ?></div></a></div>
                           <div class="col s1"><?php echo $sellerItem['lot']; ?></div>
                           <div class="col s2"><?php echo $sellerItem['item']; ?></div>
 
