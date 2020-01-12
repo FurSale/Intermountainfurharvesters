@@ -289,7 +289,7 @@ require_once("../../includes/begin_html.php");
                     <tr>
                       <td>#<?php echo $item['lot']; ?></td>
                       <td><?php echo $item['item']; ?></td>
-                      <td>$<?php echo number_format($item['asking'], 2); ?></td>
+                      <td><input  type="text" class="validate" value="<?php echo number_format($item['asking'], 2); ?>"></td>
                       <td><?php echo $item['count'] . " " . $item['unit_of_measure']; ?></td>
                       <td><?php echo $item['date_created']; ?></td>
                       <td class="printhide"><a  class="waves-effect waves-yellow btn-flat red-text">Save</a></td>
