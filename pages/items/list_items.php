@@ -145,7 +145,7 @@
                             ?>
                        <div  class="row section card-panel <?php if($sellerItem['high_bid'] > 0){if($sellerItem['high_bid'] >= $sellerItem['asking']){echo "green";}else{echo "red";}} ?> darken-2">
                          <div class="col s1" ><a href="../sellers/edit_sellers.php?id=<?php echo $sellerData['id']; ?>" class="tooltipped" data-position="bottom" data-tooltip="<?php echo $sellerData['first_name'] . " " . $sellerData['last_name']; ?>"><div class="chip white black-text"><?php echo $sellerData['id']; ?></div></a></div>
-                          <div class="col s1"><?php echo $sellerItem['lot']; ?></div>
+                          <div class="col s1"><a href="item.php?id=<?php echo $sellerItem['id']; ?>"><?php echo $sellerItem['lot']; ?></a></div>
                           <div class="col s2"><?php echo $sellerItem['item']; ?></div>
 
                           <div class="col s2"><?php echo $sellerItem['count']; ?>/<?php echo $sellerItem['unit_of_measure']; ?></div>

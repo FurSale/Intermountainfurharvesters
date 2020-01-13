@@ -127,6 +127,7 @@ require_once("../../includes/db_connection.php");
                                     <th data-field="jumlah">Count</th>
                                     <th data-field="harga">Price</th>
                                     <th data-field="subtotal">Bid</th>
+                                    <th data-field="subtotal">Commission</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -143,39 +144,48 @@ require_once("../../includes/db_connection.php");
                                     confirm_query($result3);
                                     if(mysqli_num_rows($result3) > 0){
                                       $bid=mysqli_fetch_array($result3);
-                                        $subtotal += $bid['bid_amount'];
+                                      $amount = 0;
+                                      if($bid['bid_amount'] >= $itemData['asking']){
+                                        $amount = $bid['bid_amount'];
+                                      }
+                                      $subtotal += $amount;
                                         ?>
                                         <tr>
                                             <td><?php echo $itemData['lot']; ?></td>
                                             <td><?php echo $itemData['item']; ?></td>
                                             <td><?php echo $itemData['count']; ?></td>
                                             <td>$<?php echo $itemData['asking']; ?></td>
-                                            <td <?php if($bid['bid_amount'] < $itemData['asking']){echo "class=\"red-text\"";}else{echo "class=\"green-text\"";} ?>><?php echo "$".$bid['bid_amount']; ?></td>
+                                            <td><?php echo "$".number_format($amount, 2); ?></td>
+                                            <td>$<?php echo number_format((($seller['commission']/100) * $amount), 2); ?></td>
                                           </tr>
                                     <?php
                                     }
                                   }
                                       ?>
                                   <tr>
+                                      <td></td>
+                                      <td></td>
+                                      
                                       <td>SUBTOTAL</td>
                                       <td></td>
-                                      <td></td>
-                                      <td></td>
                                       <td>$<?php echo number_format($subtotal, 2); ?></td>
+                                      <td></td>
                                   </tr>
                                   <tr>
                                       <td></td>
                                       <td></td>
                                       <td>Commission</td>
                                       <td><?php echo $seller['commission']; ?>%</td>
-                                      <td>$<?php echo number_format((($seller['commission']/100) * $subtotal), 2); ?></td>
+                                      <td>-$<?php echo number_format((($seller['commission']/100) * $subtotal), 2); ?></td>
+                                      <td></td>
                                   </tr>
                                   <tr>
                                       <td></td>
                                       <td></td>
                                       <td><span style="font-weight:bold;">Total Due</span></td>
                                       <td></td>
-                                      <td><span style="font-weight:bold;">$<?php echo number_format((($seller['commission']/100) + 1) * $subtotal, 2); ?></span></td>
+                                      <td><span style="font-weight:bold;">$<?php echo number_format($subtotal - (($seller['commission']/100)* $subtotal), 2); ?></span></td>
+                                      <td></td>
                                   </tr>
                                 </tbody>
 		</table>

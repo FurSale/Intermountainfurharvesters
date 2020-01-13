@@ -230,7 +230,7 @@ function get_item_bids($itemID){
     global $connection;
 
     $bids = array();
-    $query = "SELECT * FROM `bid` WHERE `seller_item_id` = {$itemID} AND `bid_status` = 'Confirmed' ORDER BY `bid_amount` DESC";
+    $query = "SELECT * FROM `bid` WHERE `seller_item_id` = {$itemID} AND `bid_status` = 'Confirmed' ORDER BY `bid_amount` DESC, `date_created` DESC";
     $bidResult=mysqli_query( $connection, $query);
     confirm_query($bidResult);
     $bids=mysqli_fetch_all($bidResult,MYSQLI_ASSOC);
