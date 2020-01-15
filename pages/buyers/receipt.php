@@ -2,9 +2,8 @@
   require_once("../../includes/db_connection.php");
   require_once("../../includes/functions.php");
 
-  if(!logged_in()){
-    header("Location: ../login.php");
-  }
+  verify_logged_in(array("administrator"));
+  
   $buyerData = null;
   if(isset($_GET['id'])){
     $id = htmlspecialchars($_GET["id"]);

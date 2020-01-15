@@ -22,6 +22,34 @@ if(isset($_COOKIE['rememberme'])&&!isset($_SESSION['user_id'])){
 	}
 }
 
+function verify_logged_in($allowedRoles = array()){
+	global $connection;
+
+	if (!logged_in()){
+		header("Location: ".$GLOBALS['HOST']."/pages/login.php");
+	}
+
+	$query="SELECT role FROM `user`
+	WHERE `id`= {$_SESSION['user_id']}";
+	$result=mysqli_query($connection, $query);
+	$found_user=mysqli_fetch_array($result);
+
+	if(!in_array($found_user['role'], $allowedRoles)){
+		switch ($found_user['role']) {
+			case "administrator":
+				header("Location: ".$GLOBALS['HOST']."/pages/sellers/list_sellers.php");
+				break;
+			case "buyer":
+				header("Location: ".$GLOBALS['HOST']."/pages/frontend/index.php");
+				break;
+
+			default:
+				header("Location: ".$GLOBALS['HOST']."/pages/logout.php");
+				break;
+		}
+	}
+}
+
 if(!function_exists('logged_in')){
 	function logged_in() {
 		return isset($_SESSION['user_id']);

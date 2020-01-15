@@ -6,9 +6,8 @@
 	);
 	$nav = ("1");
   require_once("../../includes/functions.php");
-  if(!logged_in()){
-    header("Location: ../login.php");
-  }
+  
+  verify_logged_in(array("administrator"));
 
   function Delete(){
     global $connection;

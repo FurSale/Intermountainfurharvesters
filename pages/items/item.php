@@ -2,9 +2,7 @@
   require_once("../../includes/db_connection.php");
   require_once("../../includes/functions.php");
 
-  if(!logged_in()){
-    header("Location: ../login.php");
-  }
+  verify_logged_in(array("administrator"));
 
   if(!isset($_GET['id'])){
     header("Location: list_items.php");

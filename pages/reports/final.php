@@ -5,7 +5,9 @@
 		"icon" => "icon-newspaper"
 	);
 	$nav = ("1");
-	require_once("../../includes/functions.php");
+  require_once("../../includes/functions.php");
+  verify_logged_in(array("administrator"));
+  
 	require_once("../../includes/begin_html.php");
 	require_once("../../includes/nav.php");
 
