@@ -58,12 +58,14 @@ body, .printhide{
     width: 100%;
     color: black;
   }
-  .print td, th {
-  padding: 0px;
+input {
+  padding: 10px;
+  width: 100%;
   display: table-cell;
   text-align: left;
   vertical-align: middle;
   border-radius: 2px;
+  border: 1px solid;
 }
 
 .section {

@@ -13,7 +13,7 @@ $query="SELECT * FROM 'seller_item'}";
         $dbdata[]=$row;
     }
 
-        $datainput = json_encode($dbdata);
+        $datainput = json_encode($dbdata, true);
         $jsonDecoded = json_decode($datainput, true);
 
         //Give our CSV file a name.
@@ -75,7 +75,7 @@ function makeChart(players) {
       labels: playerLabels,
       datasets: [
         {
-          data: weeksData,
+          item: weeksData,
           backgroundColor: playerColors
         }
       ]
@@ -84,7 +84,7 @@ function makeChart(players) {
 }
 
 // Request data using D3
-d3.csv('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2814973/atp_wta.csv')
+d3.csv('https://raw.githubusercontent.com/johnsondelbert1/Intermountainfurharvesters/master/pages/items/example.csv?token=AARG4VKRDMPKQDYE6LTQTB26EAUUS')
   .then(makeChart);
 </script>
 </head>
