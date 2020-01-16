@@ -18,14 +18,13 @@
 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 <ul class="left hide-on-med-and-down">
   <li><a class="dropdown-trigger" href="../../pages/reports/final.php" data-target="dropdown1"><i class="material-icons">assessment</i></a></li>
-  <li><a class="dropdown-trigger" href="../../pages/reports/sellers.php" data-target="dropdown1"><i class="material-icons">assessment</i></a></li>
   <li><a class="dropdown-trigger" href="../../pages/logout.php" data-target="dropdown1"><i class="material-icons">logout</i></a></li>
 </ul>
 <ul class="right hide-on-med-and-down">
-  <li><a class="dropdown-trigger" href="../../pages/sellers/list_sellers.php" data-target="dropdown1">Sellers</a></li>
-  <li><a class="dropdown-trigger" href="../../pages/buyers/list_buyers.php" data-target="dropdown2">Buyers</a></li>
-  <li><a class="dropdown-trigger" href="../../pages/items/list_items.php" data-target="dropdown3">Items</a></li>
-  <li><a class="dropdown-trigger" href="/pages/site_settings.php" data-target="dropdown4"><i class="material-icons">settings_applications</i></a></li>
+  <li><a href="../../pages/sellers/list_sellers.php" data-target="dropdown1">Sellers</a></li>
+  <li><a href="../../pages/buyers/list_buyers.php" data-target="dropdown2">Buyers</a></li>
+  <li><a href="../../pages/items/list_items.php" data-target="dropdown3">Items</a></li>
+  <li><a href="/pages/site_settings.php" data-target="dropdown4"><i class="material-icons">settings_applications</i></a></li>
 </ul>
 </div>
 <div class="nav-content">
@@ -43,7 +42,8 @@
 </div>
 </nav>
 <ul id="slide-out" class="sidenav">
-  <li><a href="../../pages/sellers/list_sellers.php">Sellers</a></li>
-  <li><a href="../../pages/buyers/list_buyers.php">Buyers</a></li>
-  <li><a href="../../pages/items/list_items.php">Items</a></li>
+  <li><a href="../../pages/sellers/list_sellers.php" data-target="dropdown1">Sellers</a></li>
+  <li><a href="../../pages/buyers/list_buyers.php" data-target="dropdown2">Buyers</a></li>
+  <li><a href="../../pages/items/list_items.php" data-target="dropdown3">Items</a></li>
+  <li><a href="/pages/site_settings.php" data-target="dropdown4"><i class="material-icons">settings_applications</i></a></li>
   </ul>

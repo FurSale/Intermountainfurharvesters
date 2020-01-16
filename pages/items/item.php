@@ -2,12 +2,12 @@
   require_once("../../includes/db_connection.php");
   require_once("../../includes/functions.php");
 
-  if(!logged_in()){
-    header("Location: ../login.php");
+  if (!logged_in()) {
+      header("Location: ../login.php");
   }
 
-  if(!isset($_GET['id'])){
-    header("Location: list_items.php");
+  if (!isset($_GET['id'])) {
+      header("Location: list_items.php");
   }
 
   $item['id'] = null;
@@ -29,80 +29,107 @@
   $result=mysqli_query($connection, $query);
   confirm_query($result);
   //Redirect if nothing returned from DB
-  if(mysqli_num_rows($result) == 0){
-    header("Location: list_items.php");
-  }else{
-    $item=mysqli_fetch_array($result);
+  if (mysqli_num_rows($result) == 0) {
+      header("Location: list_items.php");
+  } else {
+      $item=mysqli_fetch_array($result);
   }
 
   $query="SELECT * FROM `seller` WHERE `id`={$item['seller_id']}";
   $result=mysqli_query($connection, $query);
   confirm_query($result);
   $seller=mysqli_fetch_array($result);
- 
-  if(isset($_POST['submit'])){
-    //Safely escape all data in _POST
-    $data = $_POST;
-    foreach ($data as $key => $value) {
-      if(is_string($value)){
-        $data[$key] = mysqli_real_escape_string($connection, $value);
+
+  if (isset($_POST['submit'])) {
+      //Safely escape all data in _POST
+      $data = $_POST;
+      foreach ($data as $key => $value) {
+          if (is_string($value)) {
+              $data[$key] = mysqli_real_escape_string($connection, $value);
+          }
       }
-    }
-    //Set the custom item type if custom
-    if($data['item'] == "Custom"){
-      $data['item'] = $data['item_custom'];
-    }
+      //Set the custom item type if custom
+      if ($data['item'] == "Custom") {
+          $data['item'] = $data['item_custom'];
+      }
 
-    $date = date("Y-m-d H:i:s");
+      $date = date("Y-m-d H:i:s");
 
-    $query = "UPDATE `seller_item` SET
+      $query = "UPDATE `seller_item` SET
     `item` = '{$data['item']}', `unit_of_measure`='{$data['unit_of_measure']}', `count`='{$data['count']}', `origin_state`='{$data['origin_state']}',
-    `asking` = '{$data['asking']}' 
+    `asking` = '{$data['asking']}'
     WHERE `id` = {$data['id']}";
-    $result = mysqli_query($connection, $query);
-    confirm_query($result);
-    if (mysqli_affected_rows($connection) == 1) {
-      header("Location: list_items.php");
-    } else {
-      $error = "Couldn't update";
-      $error .= "<br />" . mysqli_error($connection);
-      $item = $data;
-    }
+      $result = mysqli_query($connection, $query);
+      confirm_query($result);
+      if (mysqli_affected_rows($connection) == 1) {
+          header("Location: list_items.php");
+      } else {
+          $error = "Couldn't update";
+          $error .= "<br />" . mysqli_error($connection);
+          $item = $data;
+      }
 
-    //Get updated data from DB
-    $query="SELECT * FROM `seller_item` WHERE `id`={$id}";
-    $result=mysqli_query($connection, $query);
-    $item=mysqli_fetch_array($result);
+      //Get updated data from DB
+      $query="SELECT * FROM `seller_item` WHERE `id`={$id}";
+      $result=mysqli_query($connection, $query);
+      $item=mysqli_fetch_array($result);
   }
 
   $itemBids = get_item_bids($item['id']);
 
   $itemStatus = "No Sale";
-  if(count($itemBids) > 0){
-    if(get_winning_bid($item['id']) !== false){
-      $itemStatus = "Sold";
-    }else{
-      $itemStatus = "Low";
-    }
+  if (count($itemBids) > 0) {
+      if (get_winning_bid($item['id']) !== false) {
+          $itemStatus = "Sold";
+      } else {
+          $itemStatus = "Low";
+      }
+  }
+  function DeleteBid()
+  {
+      global $connection;
+      $id = mysqli_real_escape_string($connection, $_GET['deleteID']);
+
+      $query = "SELECT * FROM `bid` WHERE `id` = {$id}";
+      $result = mysqli_query($connection, $query);
+      confirm_query($result);
+      if (mysqli_num_rows($result)!=1) {
+          return array('success' => false, 'message' => null);
+      }
+
+      $bidData = mysqli_fetch_array($result);
+      //Make sure the bid is this user's and it is not finalized
+      if ($bidData['buyer_id'] == $_SESSION['username'] && $bidData['bid_status'] == "Unconfirmed") {
+          $query = "DELETE FROM `bid` WHERE `id` = {$id}";
+          $result = mysqli_query($connection, $query);
+          confirm_query($result);
+          if (mysqli_affected_rows($connection) == 1) {
+              return array('success' => true, 'message' => "Bid deleted");
+          } else {
+              return array('success' => false, 'message' => "Couldn't update" . "<br />" . mysqli_error($connection));
+          }
+      } else {
+          return array('success' => false, 'message' => "Cannot delete this bid");
+      }
   }
 
-	$pgsettings = array(
-		"title" => "Edit Items",
-		"icon" => "icon-newspaper"
-	);
-	$nav = ("1");
+    $pgsettings = array(
+        "title" => "Edit Items",
+        "icon" => "icon-newspaper"
+    );
+    $nav = ("1");
 
-	require_once("../../includes/begin_html.php");
-	require_once("../../includes/nav.php");
+    require_once("../../includes/begin_html.php");
+    require_once("../../includes/nav.php");
 
 
 
-	 ?>
+     ?>
 	 <!-- START CONTENT -->
  <section id="content">
 	 <?php
-	 	require_once("../../includes/crumbs.php");
-		  ?>
+        require_once("../../includes/crumbs.php");
+          ?>
 <div class="row">
   <div class="col s1">Lot: #<?php echo $item['lot']; ?></div>
   <div class="col s4 offset-s1">Seller: <?php echo $seller['first_name']." ".$seller['last_name']; ?></div>
@@ -120,12 +147,17 @@
       <input name="tag_id" type="text" class="validate tag-ID" placeholder="Tag ID" style="display:none;">
     </div>
     <div class="input-field col s2">
-      <div style="display: inline;"><label><input name="unit_of_measure" value="ct" type="radio" class="radio-count" <?php if($item['unit_of_measure'] == "ct"){echo "checked";} ?> /><span>ct</span></label></div>
-      <div style="display: inline;"><label><input name="unit_of_measure" Value="lbs" type="radio" class="radio-lbs" <?php if($item['unit_of_measure'] == "lbs"){echo "checked";} ?> /><span>lbs</span></label></div>
-      <div style="display: inline;"><label><input name="unit_of_measure" Value="oz" type="radio" class="radio-lbs" <?php if($item['unit_of_measure'] == "oz"){echo "checked";} ?> /><span>oz</span></label></div>
+      <div style="display: inline;"><label><input name="unit_of_measure" value="ct" type="radio" class="radio-count" <?php if ($item['unit_of_measure'] == "ct") {
+              echo "checked";
+          } ?> /><span>ct</span></label></div>
+      <div style="display: inline;"><label><input name="unit_of_measure" Value="lbs" type="radio" class="radio-lbs" <?php if ($item['unit_of_measure'] == "lbs") {
+              echo "checked";
+          } ?> /><span>lbs</span></label></div>
+      <div style="display: inline;"><label><input name="unit_of_measure" Value="oz" type="radio" class="radio-lbs" <?php if ($item['unit_of_measure'] == "oz") {
+              echo "checked";
+          } ?> /><span>oz</span></label></div>
     </div>
     <div class="input-field col s1">
-      <label>Qty</label>
       <input name="count" type="number" class="validate" value="<?php echo $item['count']; ?>">
     </div>
     <div class="input-field col s2">
@@ -135,7 +167,6 @@
       </datalist>
     </div>
     <div class="input-field col s1">
-      <label>Asking $</label>
       <input name="asking" type="number" min="0" class="validate" value="<?php echo $item['asking']; ?>">
     </div>
     <div class="col s3"><input type="submit" name="submit" class="waves-effect waves-light btn submit" value="Save"></input></div>
@@ -150,19 +181,19 @@
   <div class="col s2">Date</div>
 </div>
 <?php
-foreach($itemBids as $bid){
-  $query="SELECT * FROM `buyer` WHERE `id`={$bid['buyer_id']}";
-  $result=mysqli_query($connection, $query);
-  confirm_query($result);
-  $buyer=mysqli_fetch_array($result);
-?>
+foreach ($itemBids as $bid) {
+              $query="SELECT * FROM `buyer` WHERE `id`={$bid['buyer_id']}";
+              $result=mysqli_query($connection, $query);
+              confirm_query($result);
+              $buyer=mysqli_fetch_array($result); ?>
 <div class="row">
   <div class="col s2"><?php echo $buyer['first_name']." ".$buyer['last_name']; ?></div>
   <div class="col s2"><?php echo $bid['bid_amount']; ?></div>
   <div class="col s2"><?php echo format_date_timezone($bid['date_created']); ?></div>
+  <div class="col s2"><a href="item.php?deleteID=<?php echo $bid['id']; ?>" class="btn waves-effect waves-light red" id="deletebid1"><i class="material-icons">close</i></a></div>
 </div>
 <?php
-}
+          }
 ?>
 
 </section>

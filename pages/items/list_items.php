@@ -58,7 +58,7 @@
 	require_once("../../includes/nav.php");
 
    ?>        <!-- START CONTENT -->
-         <section id="content" class="print">
+         <section id="content">
          <?php
 	 	require_once("../../includes/crumbs.php");
 	 	 ?>
@@ -79,7 +79,7 @@
 
 
                     <div class="row">
-                      <div class="col s1">Seller</div>
+                      <div class="col s1 printhide">Seller</div>
                       <div class="col s1">Lot</div>
                       <div class="col s2">Item</div>
                       <div class="col s2">Count</div>
@@ -144,7 +144,7 @@
                             $sellerData=mysqli_fetch_array($result2);
                             ?>
                        <div  class="row section card-panel <?php if($sellerItem['high_bid'] > 0){if($sellerItem['high_bid'] >= $sellerItem['asking']){echo "green";}else{echo "red";}} ?> darken-2">
-                         <div class="col s1" ><a href="../sellers/edit_sellers.php?id=<?php echo $sellerData['id']; ?>" class="tooltipped" data-position="bottom" data-tooltip="<?php echo $sellerData['first_name'] . " " . $sellerData['last_name']; ?>"><div class="chip white black-text"><?php echo $sellerData['id']; ?></div></a></div>
+                         <div class="col s1 printhide" ><a href="../sellers/edit_sellers.php?id=<?php echo $sellerData['id']; ?>" class="tooltipped" data-position="bottom" data-tooltip="<?php echo $sellerData['first_name'] . " " . $sellerData['last_name']; ?>"><div class="chip white black-text"><?php echo $sellerData['id']; ?></div></a></div>
                           <div class="col s1"><a href="item.php?id=<?php echo $sellerItem['id']; ?>"><?php echo $sellerItem['lot']; ?></a></div>
                           <div class="col s2"><?php echo $sellerItem['item']; ?></div>
 
@@ -152,7 +152,7 @@
                           <!--<div class="col s2"><?php echo "$".$sellerItem['asking']; ?></div>-->
                           <div class="col s2" ><?php if( $sellerItem['high_bid'] > 0 ){ echo "$".$sellerItem['high_bid']; }else{echo "N/A";} ?></div>
                           <div class="col s2" ><div class="chip black-text"><?php if($sellerItem['buyer_names'] != ""){ echo $sellerItem['buyer_names']; }else{echo "N/A";} ?></div></div>
-                          <div class="col s1" class="printhide"><a href="list_items.php?deleteID=<?php echo $sellerItem['id']; ?>" class="waves-effect waves-yellow btn-flat white-text"><i class="material-icons">delete</i></a></div>
+                          <div class="col s1 printhide"><a href="list_items.php?deleteID=<?php echo $sellerItem['id']; ?>" class="waves-effect waves-yellow btn-flat white-text"><i class="material-icons">delete</i></a></div>
                         </div>
                         <?php
                           }

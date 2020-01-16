@@ -20,8 +20,8 @@
     <!-- For Windows Phone -->
     <!-- CORE CSS-->
     <link href="../../css/reset.css" type="text/css" rel="stylesheet">
-    <link href="../../css/materialize.css" type="text/css" rel="stylesheet">
-    <link href="../../css/style.css" type="text/css" rel="stylesheet">
+    <link media="screen" href="../../css/materialize.css" type="text/css" rel="stylesheet">
+    <link media="screen" href="../../css/style.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" media="print" href="../../css/paper.css">
     <link rel="stylesheet"  href="../../css/print1.css">
 
