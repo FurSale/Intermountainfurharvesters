@@ -1,9 +1,8 @@
 <?php
   require_once("../../includes/db_connection.php");
   require_once("../../includes/functions.php");
-  if(!logged_in()){
-    header("Location: ../login.php");
-  }
+
+  verify_logged_in(array("buyer"));
 
   $bid['buyer_id'] = null;
   $bid['seller_item_id'] = null;
