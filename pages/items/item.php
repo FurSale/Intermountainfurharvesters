@@ -73,20 +73,10 @@
       $item=mysqli_fetch_array($result);
   }
 
-  $itemBids = get_item_bids($item['id']);
-
-  $itemStatus = "No Sale";
-  if (count($itemBids) > 0) {
-      if (get_winning_bid($item['id']) !== false) {
-          $itemStatus = "Sold";
-      } else {
-          $itemStatus = "Low";
-      }
-  }
   function DeleteBid()
   {
       global $connection;
-      $id = mysqli_real_escape_string($connection, $_GET['deleteID']);
+      $id = mysqli_real_escape_string($connection, $_GET['deleteBid']);
 
       $query = "SELECT * FROM `bid` WHERE `id` = {$id}";
       $result = mysqli_query($connection, $query);
@@ -97,7 +87,7 @@
 
       $bidData = mysqli_fetch_array($result);
       //Make sure the bid is this user's and it is not finalized
-      if ($bidData['buyer_id'] == $_SESSION['username'] && $bidData['bid_status'] == "Unconfirmed") {
+      if ($bidData['bid_status'] == "Confirmed") {
           $query = "DELETE FROM `bid` WHERE `id` = {$id}";
           $result = mysqli_query($connection, $query);
           confirm_query($result);
@@ -108,6 +98,26 @@
           }
       } else {
           return array('success' => false, 'message' => "Cannot delete this bid");
+      }
+  }
+
+  if (isset($_GET['deleteBid'])) {
+    $deleteResult = DeleteBid();
+    if($deleteResult['success']){
+      $success = $deleteResult['message'];
+    }else{
+      $error = $deleteResult['message'];
+    }
+  }
+
+  $itemBids = get_item_bids($item['id']);
+
+  $itemStatus = "No Sale";
+  if (count($itemBids) > 0) {
+      if (get_winning_bid($item['id']) !== false) {
+          $itemStatus = "Sold";
+      } else {
+          $itemStatus = "Low";
       }
   }
 
@@ -177,6 +187,7 @@
   <div class="col s2">Buyer Name</div>
   <div class="col s2">Price</div>
   <div class="col s2">Date</div>
+  <div class="col s2">Actions</div>
 </div>
 <?php
 foreach ($itemBids as $bid) {
@@ -188,7 +199,7 @@ foreach ($itemBids as $bid) {
   <div class="col s2"><?php echo $buyer['first_name']." ".$buyer['last_name']; ?></div>
   <div class="col s2"><?php echo $bid['bid_amount']; ?></div>
   <div class="col s2"><?php echo format_date_timezone($bid['date_created']); ?></div>
-  <div class="col s2"><a href="item.php?deleteID=<?php echo $bid['id']; ?>" class="btn waves-effect waves-light red" id="deletebid1"><i class="material-icons">close</i></a></div>
+  <div class="col s2"><a href="item.php?id=<?php echo $item['id']; ?>&deleteBid=<?php echo $bid['id']; ?>" class="btn waves-effect waves-light red" id="deletebid1"><i class="material-icons">close</i></a></div>
 </div>
 <?php
           }
