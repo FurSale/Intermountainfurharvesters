@@ -1,144 +1,97 @@
 <?php
   require_once("../../includes/db_connection.php");
   require_once("../../includes/functions.php");
+$query="SELECT * FROM 'seller_item'}";
+  //Fetch 3 rows from actor table
+    $result =$connection->query("SELECT item, count FROM seller_item");
 
-  if(!logged_in()){
-    header("Location: ../login.php");
-  }
+  //Initialize array variable
+    $dbdata = array();
 
-  $seller = null;
-  if(isset($_GET['sellerId'])){
-    $id = htmlspecialchars($_GET["sellerId"]);
-    $query="SELECT * FROM `seller` WHERE `id`={$id}";
-    $result=mysqli_query($connection, $query);
-    //confirm_query($result);
-    //Redirect to blog page if nothing returned from DB
-    if(mysqli_num_rows($result) == 0){
-      header("Location: list_items.php");
-    }else{
-      $seller=mysqli_fetch_array($result);
+  //Fetch into associative array
+    while ($row = $result->fetch_assoc()) {
+        $dbdata[]=$row;
     }
-  }else{
-	header("Location: list_items.php");
-  }
 
-	$pgsettings = array(
-		"title" => "Edit Items",
-		"icon" => "icon-newspaper"
-	);
-	$nav = ("1");
+        $datainput = json_encode($dbdata);
+        $jsonDecoded = json_decode($datainput, true);
 
-	require_once("../../includes/begin_html.php");
-	require_once("../../includes/nav.php");
+        //Give our CSV file a name.
+        $csvFileName = 'example.csv';
 
+        //Open file pointer.
+        $fp = fopen($csvFileName, 'w');
 
+        //Loop through the associative array.
+        foreach ($jsonDecoded as $row) {
+            //Write the row to the CSV file.
+            fputcsv($fp, $row);
+        }
 
-	 ?>
-	 <!-- START CONTENT -->
- <section id="content" class="print">
-	 <?php
-	 	require_once("../../includes/crumbs.php");
-		  ?>
-		  <div class="row">
-			  <h4>Adding Items for <?php echo $seller['first_name'] . " " . $seller['last_name']; ?></h4>
-	      </div>
+        //Finally, close the file pointer.
+        fclose($fp);
+     ?>
 
-		  <form id="main-form" method="post">
-			<div id="editor-rows">
-				<div class="row">
-				<input id="[0]seller_id" name="items[0][seller_id]" type="hidden" value="<?php echo $seller['id']; ?>">
-					<div class="input-field col s2">
-						<input name="items[0][lot]" type="text" class="validate" placeholder="1000">
-						<label>Lot</label>
-					</div>
-					<div class="input-field col s2">
-						<input type="text" list="items[0][item]" class="select-item">
-          <datalist name="items[0][item]" id="items[0][item]" class="autocomplete">
-							<?php echo echo_item_types(); ?>
-            </datalist>
-						<input name="items[0][item_custom]" type="text" class="validate item-custom" style="display:none;">
-            <input name="items[0][tag_id]" type="text" class="validate tag-ID" placeholder="Tag ID" style="display:none;">
-					</div>
-					<div class="input-field col s2">
-						<div style="display: inline;"><label><input name="items[0][unit_of_measure]" value="ct" type="radio" class="radio-count" checked /><span>ct</span></label></div>
-						<div style="display: inline;"><label><input name="items[0][unit_of_measure]" Value="lbs" type="radio" class="radio-lbs" /><span>lbs</span></label></div>
-            <div style="display: inline;"><label><input name="items[0][unit_of_measure]" Value="oz" type="radio" class="radio-lbs" /><span>oz</span></label></div>
-          </div>
-					<div class="input-field col s1">
-            <label>Qty</label>
-						<input name="items[0][count]" type="text" class="validate" placeholder="10">
-					</div>
-					<div class="input-field col s2">
-
-            	<input list="items[0][origin_state]" placeholder="State">
-						<datalist name="items[0][origin_state]" id="items[0][origin_state]">
-							<?php echo echo_states(); ?>
-						</datalist>
-					</div>
-					<div class="input-field col s1">
-						<input name="items[0][asking]" type="number" class="validate" placeholder="$100">
-						<label>Asking Price</label>
-					</div>
-          <div class="input-field col s1">
-            <a class="waves-effect waves-yellow red btn-small">Delete</a>
-					</div>
-				</div>
-			</div>
-		  </form>
-      <div class="row">
-			  <span class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add Items</span>
-			  <span class="waves-effect waves-light btn" id="btn-save">Save</span>
-	      </div>
-</section>
+<?php  ?>
+<!DOCTYPE HTML>
+<html>
+<head>
 <script>
-	var _editorRow = $("#editor-rows").html();
-	var _rowIndex = 1;
-	$(document).ready(function(){
-		$( "#btn-add-row" ).click(function() {
-			//Replace index
-			var modified = _editorRow.toString().replace(/\[0\]/g, "["+_rowIndex+"]");
-			$("#editor-rows").append(modified);
-			//materialize
-			$('#editor-rows select').formSelect();
+Chart.defaults.global.defaultFontFamily = 'Roboto';
+Chart.defaults.global.defaultFontColor = '#333';
 
-			_rowIndex += 1;
-		});
-		$( "#btn-save" ).click(function() {
-			$.ajax({
-				type: "POST",
-				url: "add_items_post.php",
-				data: $("#main-form").serialize(),
-				success: function(data){
-					console.log(data);
-					if(data.success){
-						M.toast({html:data.message});
-						$("#editor-rows").html(_editorRow);
-						//materialize
-						$('#editor-rows select').formSelect();
-					}else{
-						M.toast({html:data.message});
-					}
-					//console.log(JSON.parse(data));
-				}
-			});
-		});
-		$( "body" ).on("change", "input.select-item", function(e) {
-			if($(this).val() == "Custom"){
-				$(this).parents().eq(1).find("input.item-custom").css( "display", "block" );
-			}else{
-				$(this).parents().eq(1).find("input.item-custom").css( "display", "none" );
-			}
+function makeChart(players) {
+  // players is an array of objects where each object is something like:
+  // {
+  //   "Name": "Steffi Graf",
+  //   "Weeks": "377",
+  //   "Gender": "Female"
+  // }
 
-			if($(this).val() == "Antlers" || $(this).val() == "Castor" ){
-				$(this).parents().eq(2).find("input.radio-lbs").prop("checked", true);
-			}
+  var playerLabels = players.map(function(d) {return d.Name});
+  var weeksData = players.map(function(d) {return +d.Weeks});
+  var playerColors = players.map(function(d) {return d.Gender === 'Female' ? '#F15F36' : '#19A0AA';});
 
-      if($(this).val() == "Bobcat"){
-				$(this).parents().eq(1).find("input.tag-ID").css( "display", "block" );
-			}else{
-				$(this).parents().eq(1).find("input.tag-ID").css( "display", "none" );
-			}
-		});
-	});
-	</script>
-<?php include '../../includes/end_html.php'; ?>
+  var chart = new Chart('chart', {
+    type: 'horizontalBar',
+    options: {
+      maintainAspectRatio: false,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [
+          {
+            scaleLabel: {
+              display: true,
+              labelString: 'Weeks at No.1',
+              fontSize: 16
+            }
+          }
+        ]
+      }
+    },
+    data: {
+      labels: playerLabels,
+      datasets: [
+        {
+          data: weeksData,
+          backgroundColor: playerColors
+        }
+      ]
+    }
+  })
+}
+
+// Request data using D3
+d3.csv('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2814973/atp_wta.csv')
+  .then(makeChart);
+</script>
+</head>
+<body>
+<canvas id="chart"></canvas>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<?php echo $datainput ?>
+</body>
+</html>
