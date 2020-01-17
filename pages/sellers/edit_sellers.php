@@ -249,7 +249,7 @@ require_once("../../includes/begin_html.php");
                     </datalist>
                   </div>
                   <div class="input-field col s1">
-                    <input name="items[0][asking]" type="number" class="validate" value="1">
+                    <input tabindex="17" name="items[0][asking]" type="number" class="validate" value="1">
 
                   </div>
                   <div class="input-field col s1">
@@ -260,8 +260,8 @@ require_once("../../includes/begin_html.php");
               </div>
             </form>
             <div class="row">
-              <a href="#btn-add-row" tabindex="0" class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add Items</a>
-              <span class="waves-effect waves-light btn" id="btn-save">Save</span>
+              <a href="#btn-add-row" tabindex="18" class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add Items</a>
+              <span tabindex="19" class="waves-effect waves-light btn" id="btn-save">Save</span>
             </div>
           </div>
           <div id="tab2" class="col s12">
