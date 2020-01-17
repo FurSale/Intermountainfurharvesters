@@ -17,6 +17,7 @@
   $seller['commission'] = 5.00;
   $seller['trapper_id'] = null;
   $seller['date_created'] = null;
+  $items['asking'] = 1;
 
   if (isset($_GET['id'])) {
       $id = htmlspecialchars($_GET["id"]);
@@ -247,7 +248,7 @@ require_once("../../includes/begin_html.php");
                     </datalist>
                   </div>
                   <div class="input-field col s1">
-                    <input name="items[0][asking]" type="number" class="validate">
+                    <input name="items[0][asking]" type="number" class="validate" value="1">
 
                   </div>
                   <div class="input-field col s1">
