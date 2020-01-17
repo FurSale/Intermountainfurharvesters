@@ -238,7 +238,7 @@ require_once("../../includes/begin_html.php");
                   </div>
                   <div class="input-field col s1">
                     <label>Qty</label>
-                    <input name="items[0][count]" type="number" class="validate">
+                    <input name="items[0][count]"  class="validate">
                   </div>
                   <div class="input-field col s2">
                       <input list="items[0][origin_state]" name="items[0][origin_state]">
@@ -360,7 +360,7 @@ require_once("../../includes/begin_html.php");
 				$(this).parents().eq(2).find("input.radio-oz").prop("checked", true);
 			}
 
-      if($(this).val() == "Bobcat"){
+      if($(this).val() == "Bobcat" || $(this).val() == "Otter"){
 				$(this).parents().eq(1).find("input.tag-ID").css( "display", "block" );
 			}else{
 				$(this).parents().eq(1).find("input.tag-ID").css( "display", "none" );
