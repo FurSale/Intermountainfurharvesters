@@ -147,7 +147,7 @@ require_once("../../includes/begin_html.php");
              <div class="row">
                <div class="input-field col s9">
                  <i class="material-icons prefix">contacts</i>
-                 <input tabindex="1" placeholder="Trapper ID" id="trapper_id" name="trapper_id" type="text" class="validate" value="<?php echo $seller['trapper_id']; ?>">
+                 <input tabindex="1" placeholder="Trapper ID" id="trapper_id" name="trapper_id" type="text" class="validate" value="<?php echo $seller['trapper_id']; ?>" autofocus>
 
                </div>
                <div class="input-field col s3">
@@ -161,7 +161,7 @@ require_once("../../includes/begin_html.php");
                <div class="input-field col s4 offset-s1 first-column">
                  <div class="input-field col s6">
                    <i class="material-icons prefix">account_circle</i>
-                   <input tabindex="2" placeholder="John" id="first_name" name="first_name" type="text" class="validate" value="<?php echo $seller['first_name']; ?>" autofocus>
+                   <input tabindex="2" placeholder="John" id="first_name" name="first_name" type="text" class="validate" value="<?php echo $seller['first_name']; ?>">
 
                  </div>
                  <div class="input-field col s6">
