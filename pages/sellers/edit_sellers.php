@@ -63,7 +63,7 @@
       confirm_query($result);
       if (mysqli_affected_rows($connection) == 1) {
           if ($new) {
-              $success = "Seller added";
+              $success = header("Location: list_sellers.php");
           } else {
               $success = "Seller updated";
           }
@@ -156,27 +156,27 @@ require_once("../../includes/begin_html.php");
 
                      </div>
                      <div class="input-field col s6">
-                       <input tabindex="2" placeholder="Smith" id="last_name" name="last_name" type="text" class="validate" value="<?php echo $seller['last_name']; ?>">
+                       <input tabindex="1" placeholder="Smith" id="last_name" name="last_name" type="text" class="validate" value="<?php echo $seller['last_name']; ?>">
 
                      </div>
                    <div class="input-field col s5" >
-                     <input tabindex="3" placeholder="123 example st" id="address_1" name="address_1" type="text" class="validate" value="<?php echo $seller['address_1']; ?>">
+                     <input tabindex="1" placeholder="123 example st" id="address_1" name="address_1" type="text" class="validate" value="<?php echo $seller['address_1']; ?>">
                    </div>
                    <div class="input-field col s3 offset-s1">
-                     <input tabindex="4" placeholder="Unit 4" id="address_2" name="address_2" type="text" class="validate" value="<?php echo $seller['address_2']; ?>">
+                     <input tabindex="1" placeholder="Unit 4" id="address_2" name="address_2" type="text" class="validate" value="<?php echo $seller['address_2']; ?>">
                    </div>
                    <div class="input-field col s3">
-                     <input tabindex="5" placeholder="That Town" id="city" name="city" type="text" class="validate" value="<?php echo $seller['city']; ?>">
+                     <input tabindex="1" placeholder="That Town" id="city" name="city" type="text" class="validate" value="<?php echo $seller['city']; ?>">
                    </div>
                   <div class="input-field col s4">
-                    <input tabindex="6" list="state" name="state">
+                    <input tabindex="1" list="state" name="state">
                     <datalist id="state">
                       <?php echo echo_states($seller['state']); ?>
                       <placeholder></placeholder>
                     </datalist>
                   </div>
                   <div class="input-field col s2 offset-s1">
-                     <input tabindex="7" placeholder="56789" id="zip" name="zip"  class="validate" value="<?php echo $seller['zip']; ?>">
+                     <input tabindex="1" placeholder="56789" id="zip" name="zip"  class="validate" value="<?php echo $seller['zip']; ?>">
                    </div>
                  </div>
                </div>
@@ -184,19 +184,19 @@ require_once("../../includes/begin_html.php");
 
                 <div class="input-field col s6">
                   <i class="material-icons prefix">contact_phone</i>
-                  <input tabindex="8" placeholder="(000) 000-0000" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);" id="phone" name="phone" type="tel" class="validate" value="<?php echo $seller['phone']; ?>">
+                  <input tabindex="1" placeholder="(000) 000-0000" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);" id="phone" name="phone" type="tel" class="validate" value="<?php echo $seller['phone']; ?>">
 
                 </div>
                  <div class="input-field col s6">
                    <i class="material-icons prefix">contact_mail</i>
-                   <input tabindex="9" placeholder="@" id="email" name="email" type="email" class="validate" value="<?php echo $seller['email']; ?>">
+                   <input tabindex="1" placeholder="@" id="email" name="email" type="email" class="validate" value="<?php echo $seller['email']; ?>">
 
                  </div>
                </div>
                <div class="row">
                  <div class="input-field col s9">
                    <i class="material-icons prefix">contacts</i>
-                   <input tabindex="10" placeholder="Trapper ID" id="trapper_id" name="trapper_id" type="text" class="validate" value="<?php echo $seller['trapper_id']; ?>">
+                   <input tabindex="1" placeholder="Trapper ID" id="trapper_id" name="trapper_id" type="text" class="validate" value="<?php echo $seller['trapper_id']; ?>">
 
                  </div>
                  <div class="input-field col s3">
@@ -206,7 +206,7 @@ require_once("../../includes/begin_html.php");
                  </div>
                </div>
              </div>
-             <div class="input-field col s3"><input type="submit" name="submit" class="waves-effect waves-light btn submit" value="Save"></input></div>
+             <div class="input-field col s3"><input tabindex="1" type="submit" name="submit" class="waves-effect waves-light btn submit" value="Save"></input></div>
            </form>
          </div>
          </div>
@@ -225,16 +225,16 @@ require_once("../../includes/begin_html.php");
                 <input id="[0]seller_id" name="items[0][seller_id]" type="hidden" value="<?php echo $seller['id']; ?>">
                   <div class="input-field col s2">
                     <i class="material-icons prefix">local_offer</i>
-                    <input  name="items[0][lot]" id="name[0][lot]" type="text" class="validate">
+                    <input tabindex="[0]" placeholder="lot"  name="items[0][lot]" id="name[0][lot]" type="text" class="validate">
 
                   </div>
                   <div class="input-field col s2">
-                    <input  list="items[0][item]" name="items[0][item]" class="select-item">
+                    <input tabindex="2" list="items[0][item]" name="items[0][item]" class="select-item">
                   <datalist id="items[0][item]">
                       <?php echo echo_item_types(); ?>
                     </datalist>
-                    <input tabindex="13" name="items[0][item_custom]" type="text" class="validate item-custom" style="display:none;">
-                    <input tabindex="14" name="items[0][tag_id]" type="text" class="validate tag-ID" tabindex placeholder="Tag ID" style="display:none;">
+                    <input tabindex="2" name="items[0][item_custom]" type="text" class="validate item-custom" style="display:none;">
+                    <input tabindex="2" name="items[0][tag_id]" type="text" class="validate tag-ID" tabindex placeholder="Tag ID" style="display:none;">
                   </div>
                   <div class="input-field col s2">
                     <div style="display: inline;"><label><input tabindex="999" tab name="items[0][unit_of_measure]" value="ct" type="radio" class="radio-count" checked /><span>ct</span></label></div>
@@ -243,16 +243,16 @@ require_once("../../includes/begin_html.php");
                   </div>
                   <div class="input-field col s1">
 
-                    <input name="items[0][count]"  class="validate">
+                    <input tabindex="2" placeholder="ct" name="items[0][count]"  class="validate">
                   </div>
                   <div class="input-field col s2">
-                      <input  list="items[0][origin_state]" name="items[0][origin_state]">
+                      <input tabindex="2"  list="items[0][origin_state]" name="items[0][origin_state]">
                     <datalist id="items[0][origin_state]">
                       <?php echo echo_states(); ?>
                     </datalist>
                   </div>
                   <div class="input-field col s1">
-                    <input name="items[0][asking]" type="number" class="validate" value="1">
+                    <input tabindex="2" placeholder="Asking" name="items[0][asking]" class="validate" value="1">
 
                   </div>
                   <div class="input-field col s1">
@@ -263,8 +263,8 @@ require_once("../../includes/begin_html.php");
               </div>
             </form>
             <div class="row">
-              <a href="#btn-add-row" tabindex="0" class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add Items</a>
-              <span tabindex="0" class="waves-effect waves-light btn" id="btn-save">Save</span>
+              <a href="#btn-add-row" tabindex="3" class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add Items</a>
+              <span tabindex="3" class="waves-effect waves-light btn" id="btn-save">Save</span>
             </div>
           </div>
           <div id="tab2" class="col s12">
