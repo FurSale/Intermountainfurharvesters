@@ -373,11 +373,6 @@ require_once("../../includes/begin_html.php");
 				$(this).parents().eq(2).find("input.radio-oz").prop("checked", true);
 			}
 
-      if($(this).val() == "Bobcat" || $(this).val() == "Otter"  || $(this).val() == "Fisher"  || $(this).val() == "Wolf"){
-				$(this).parents().eq(1).find("input.tag-ID").css( "display", "block" );
-			}else{
-				$(this).parents().eq(1).find("input.tag-ID").css( "display", "none" );
-			}
 		});
 	});
 	</script>
