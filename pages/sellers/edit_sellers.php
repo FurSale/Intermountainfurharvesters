@@ -305,6 +305,10 @@ require_once("../../includes/begin_html.php");
             </div>
           </div>
         </div>
+        <?php
+            }else{
+        ?>
+        <h5>Save Seller before adding/viewing items</h5>
         <?php } ?>
 </section>
 <script>

@@ -308,6 +308,10 @@
                 </div>
           </div>
         </div>
+        <?php
+            }else{
+        ?>
+        <h5>Save Buyer before adding/viewing bids</h5>
         <?php } ?>
    </section>
  <!-- END WRAPPER -->
