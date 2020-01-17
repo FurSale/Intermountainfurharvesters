@@ -225,11 +225,11 @@ require_once("../../includes/begin_html.php");
                 <input id="[0]seller_id" name="items[0][seller_id]" type="hidden" value="<?php echo $seller['id']; ?>">
                   <div class="input-field col s2">
                     <i class="material-icons prefix">local_offer</i>
-                    <input tabindex="11" name="items[0][lot]" id="name[0][lot]" type="text" class="validate">
+                    <input  name="items[0][lot]" id="name[0][lot]" type="text" class="validate">
 
                   </div>
                   <div class="input-field col s2">
-                    <input tabindex="12" list="items[0][item]" name="items[0][item]" class="select-item">
+                    <input  list="items[0][item]" name="items[0][item]" class="select-item">
                   <datalist id="items[0][item]">
                       <?php echo echo_item_types(); ?>
                     </datalist>
@@ -243,16 +243,16 @@ require_once("../../includes/begin_html.php");
                   </div>
                   <div class="input-field col s1">
 
-                    <input tabindex="15" name="items[0][count]"  class="validate">
+                    <input name="items[0][count]"  class="validate">
                   </div>
                   <div class="input-field col s2">
-                      <input tabindex="16" list="items[0][origin_state]" name="items[0][origin_state]">
+                      <input  list="items[0][origin_state]" name="items[0][origin_state]">
                     <datalist id="items[0][origin_state]">
                       <?php echo echo_states(); ?>
                     </datalist>
                   </div>
                   <div class="input-field col s1">
-                    <input tabindex="17" name="items[0][asking]" type="number" class="validate" value="1">
+                    <input name="items[0][asking]" type="number" class="validate" value="1">
 
                   </div>
                   <div class="input-field col s1">
@@ -263,7 +263,7 @@ require_once("../../includes/begin_html.php");
               </div>
             </form>
             <div class="row">
-              <a href="#btn-add-row" tabindex="18" class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add Items</a>
+              <a href="#btn-add-row" tabindex="0" class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add Items</a>
               <span tabindex="19" class="waves-effect waves-light btn" id="btn-save">Save</span>
             </div>
           </div>
