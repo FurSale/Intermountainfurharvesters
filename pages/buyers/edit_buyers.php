@@ -212,6 +212,7 @@
              <div class="input-field col s3"><input type="submit" name="submit" class="waves-effect waves-light btn submit" value="Save"></input></div>
            </form>
          </div>
+         <?php if(isset($_GET['id'])){ //Dont show this section if creating new ?>
          <div class="row" style="margin-bottom:20px;">
           <div class="col s12">
             <ul class="tabs">
@@ -309,6 +310,7 @@
                 </div>
           </div>
         </div>
+        <?php } ?>
    </section>
  <!-- END WRAPPER -->
  <script>

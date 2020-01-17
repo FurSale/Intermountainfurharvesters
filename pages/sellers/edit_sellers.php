@@ -206,6 +206,7 @@ require_once("../../includes/begin_html.php");
            </form>
          </div>
          </div>
+         <?php if(isset($_GET['id'])){ //Dont show this section if creating new ?>
           <div class="row">
           <div class="col s12">
             <ul class="tabs">
@@ -303,6 +304,7 @@ require_once("../../includes/begin_html.php");
             </div>
           </div>
         </div>
+        <?php } ?>
 </section>
 <script>
 	var _editorRow = $("#editor-rows").html();
