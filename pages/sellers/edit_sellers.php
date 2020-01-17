@@ -237,6 +237,7 @@ require_once("../../includes/begin_html.php");
                     <div style="display: inline;"><label><input name="items[0][unit_of_measure]" Value="oz" type="radio" class="radio-lbs" /><span>oz</span></label></div>
                   </div>
                   <div class="input-field col s1">
+
                     <input name="items[0][count]"  class="validate">
                   </div>
                   <div class="input-field col s2">
@@ -359,7 +360,7 @@ require_once("../../includes/begin_html.php");
 				$(this).parents().eq(2).find("input.radio-oz").prop("checked", true);
 			}
 
-      if($(this).val() == "Bobcat" || $(this).val() == "Otter") || $(this).val() == "Fisher"){
+      if($(this).val() == "Bobcat" || $(this).val() == "Otter"  || $(this).val() == "Fisher"){
 				$(this).parents().eq(1).find("input.tag-ID").css( "display", "block" );
 			}else{
 				$(this).parents().eq(1).find("input.tag-ID").css( "display", "none" );

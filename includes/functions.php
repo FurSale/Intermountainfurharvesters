@@ -83,6 +83,7 @@ $itemTypes = array(
     'Baculum',
     'Badger',
     'Bear Parts',
+    'Bear',
     'Bear rug',
     'Beaver',
     'Beaver Darts',
