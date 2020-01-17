@@ -14,131 +14,131 @@
   $seller['zip'] = null;
   $seller['phone'] = null;
   $seller['email'] = null;
-  $seller['commission'] = 2.00;
+  $seller['commission'] = 5.00;
   $seller['trapper_id'] = null;
   $seller['date_created'] = null;
 
-  if(isset($_GET['id'])){
-    $id = htmlspecialchars($_GET["id"]);
-    $query="SELECT * FROM `seller` WHERE `id`={$id}";
-    $result=mysqli_query($connection, $query);
-    //confirm_query($result);
-    //Redirect to blog page if nothing returned from DB
-    if(mysqli_num_rows($result) == 0){
-      header("Location: list_sellers.php");
-    }else{
-      $seller=mysqli_fetch_array($result);
-    }
+  if (isset($_GET['id'])) {
+      $id = htmlspecialchars($_GET["id"]);
+      $query="SELECT * FROM `seller` WHERE `id`={$id}";
+      $result=mysqli_query($connection, $query);
+      //confirm_query($result);
+      //Redirect to blog page if nothing returned from DB
+      if (mysqli_num_rows($result) == 0) {
+          header("Location: list_sellers.php");
+      } else {
+          $seller=mysqli_fetch_array($result);
+      }
   }
 
-  if(isset($_POST['submit'])){
-    $new = true;
-    if($_POST['id'] != ""){
-      $new = false;
-    }
-
-    //Safely escape all data in _POST
-    $data = $_POST;
-    foreach ($data as $key => $value) {
-      if(is_string($value)){
-        $data[$key] = mysqli_real_escape_string($connection, $value);
+  if (isset($_POST['submit'])) {
+      $new = true;
+      if ($_POST['id'] != "") {
+          $new = false;
       }
-    }
 
-    $date = date("Y-m-d H:i:s");
+      //Safely escape all data in _POST
+      $data = $_POST;
+      foreach ($data as $key => $value) {
+          if (is_string($value)) {
+              $data[$key] = mysqli_real_escape_string($connection, $value);
+          }
+      }
 
-    if($new){
-      $query = "INSERT INTO `seller` (`first_name`, `last_name`, `address_1`, `address_2`, `city`, `state`, `zip`, `phone`, `email`, `commission`, `trapper_id`, `date_created`)
+      $date = date("Y-m-d H:i:s");
+
+      if ($new) {
+          $query = "INSERT INTO `seller` (`first_name`, `last_name`, `address_1`, `address_2`, `city`, `state`, `zip`, `phone`, `email`, `commission`, `trapper_id`, `date_created`)
       VALUES ('{$data['first_name']}', '{$data['last_name']}', '{$data['address_1']}', '{$data['address_2']}', '{$data['city']}', '{$data['state']}',
       '{$data['zip']}', '{$data['phone']}', '{$data['email']}', {$data['commission']}, '{$data['trapper_id']}', '{$date}')";
-    }
-    else{
-      $query = "UPDATE `seller` SET
+      } else {
+          $query = "UPDATE `seller` SET
       `first_name` = '{$data['first_name']}', `last_name`='{$data['last_name']}', `address_1`='{$data['address_1']}',
       `address_2` = '{$data['address_2']}', `city`='{$data['city']}', `state`='{$data['state']}', `zip`='{$data['zip']}',
       `phone` = '{$data['phone']}', `email`='{$data['email']}', `commission`={$data['commission']}, `trapper_id`='{$data['trapper_id']}'
       WHERE `id` = {$data['id']}";
-    }
-    $result = mysqli_query($connection, $query);
-    confirm_query($result);
-    if (mysqli_affected_rows($connection) == 1) {
-      if($new){
-        $success = "Seller added";
-      }else{
-        $success = "Seller updated";
       }
-    } else {
-      $error = "Couldn't update";
-      $error .= "<br />" . mysqli_error($connection);
-      $seller = $data;
-    }
+      $result = mysqli_query($connection, $query);
+      confirm_query($result);
+      if (mysqli_affected_rows($connection) == 1) {
+          if ($new) {
+              $success = "Seller added";
+          } else {
+              $success = "Seller updated";
+          }
+      } else {
+          $error = "Couldn't update";
+          $error .= "<br />" . mysqli_error($connection);
+          $seller = $data;
+      }
 
-    if(!$new){
-      //Get updated data from DB
-      $query="SELECT * FROM `seller` WHERE `id`={$data['id']}";
-      $result=mysqli_query($connection, $query);
-      $seller=mysqli_fetch_array($result);
-    }
+      if (!$new) {
+          //Get updated data from DB
+          $query="SELECT * FROM `seller` WHERE `id`={$data['id']}";
+          $result=mysqli_query($connection, $query);
+          $seller=mysqli_fetch_array($result);
+      }
   }
 
-  function Delete(){
-    global $connection;
-    $id = mysqli_real_escape_string($connection, $_GET['deleteID']);
+  function Delete()
+  {
+      global $connection;
+      $id = mysqli_real_escape_string($connection, $_GET['deleteID']);
 
-    $query = "SELECT * FROM `seller_item` WHERE `id` = {$id}";
-    $result = mysqli_query($connection, $query);
-    confirm_query($result);
-    if (mysqli_num_rows($result)!=1){
-      return array('success' => false, 'message' => "Item does not exist to delete");
-    }
-    $itemData = mysqli_fetch_array($result);
+      $query = "SELECT * FROM `seller_item` WHERE `id` = {$id}";
+      $result = mysqli_query($connection, $query);
+      confirm_query($result);
+      if (mysqli_num_rows($result)!=1) {
+          return array('success' => false, 'message' => "Item does not exist to delete");
+      }
+      $itemData = mysqli_fetch_array($result);
 
-    //Delete all the bids under the item
-    $query = "DELETE FROM `bid` WHERE `seller_item_id` = {$itemData['id']}";
-    $result = mysqli_query($connection, $query);
-    confirm_query($result);
+      //Delete all the bids under the item
+      $query = "DELETE FROM `bid` WHERE `seller_item_id` = {$itemData['id']}";
+      $result = mysqli_query($connection, $query);
+      confirm_query($result);
 
-    //Delete the item
-    $query = "DELETE FROM `seller_item` WHERE `id` = {$itemData['id']}";
-    $result = mysqli_query($connection, $query);
-    confirm_query($result);
+      //Delete the item
+      $query = "DELETE FROM `seller_item` WHERE `id` = {$itemData['id']}";
+      $result = mysqli_query($connection, $query);
+      confirm_query($result);
 
-    if (mysqli_affected_rows($connection) == 1) {
-      return array('success' => true, 'message' => "Item {$itemData['lot']} deleted");
-    }
-    return array('success' => false, 'message' => "Couldn't update" . "<br />" . mysqli_error($connection));
+      if (mysqli_affected_rows($connection) == 1) {
+          return array('success' => true, 'message' => "Item {$itemData['lot']} deleted");
+      }
+      return array('success' => false, 'message' => "Couldn't update" . "<br />" . mysqli_error($connection));
   }
 
-  if(isset($_GET['deleteID'])){
-    $result = Delete();
-    if($result['success']){
-      $success = $result['message'];
-    }else{
-      $error = $result['message'];
-    }
+  if (isset($_GET['deleteID'])) {
+      $result = Delete();
+      if ($result['success']) {
+          $success = $result['message'];
+      } else {
+          $error = $result['message'];
+      }
   }
   //Set page title
-  if(isset($_GET['id'])){
-    $title = "Editing Seller";
-  }else{
-    $title = "Adding Seller";
+  if (isset($_GET['id'])) {
+      $title = "Editing Seller";
+  } else {
+      $title = "Adding Seller";
   }
-	$pgsettings = array(
-		"title" => $title,
-		"icon" => "icon-newspaper"
-	);
-	$nav = ("1");
+    $pgsettings = array(
+        "title" => $title,
+        "icon" => "icon-newspaper"
+    );
+    $nav = ("1");
 require_once("../../includes/begin_html.php");
-	require_once("../../includes/nav.php");
+    require_once("../../includes/nav.php");
 
 
 
-	 ?>
+     ?>
 	 <!-- START CONTENT -->
  <section id="content" class="print">
 	 <?php
-	 	require_once("../../includes/crumbs.php");
-	 	 ?>
+        require_once("../../includes/crumbs.php");
+         ?>
       <div class="container">
         <div class="row">
            <form method="post" class="col s12">
@@ -280,10 +280,10 @@ require_once("../../includes/begin_html.php");
                     <tbody>
                     <?php
                       $query = "SELECT * FROM `seller_item` WHERE `seller_id` = {$seller['id']} ORDER BY `lot` ASC";
-                      $result=mysqli_query( $connection, $query);
+                      $result=mysqli_query($connection, $query);
                       confirm_query($result);
-                      while($item=mysqli_fetch_array($result)){
-                        ?>
+                      while ($item=mysqli_fetch_array($result)) {
+                          ?>
                     <tr>
                       <td>#<?php echo $item['lot']; ?></td>
                       <td><?php echo $item['item']; ?></td>
