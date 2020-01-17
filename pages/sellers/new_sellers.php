@@ -25,7 +25,7 @@
       //confirm_query($result);
       //Redirect to blog page if nothing returned from DB
       if (mysqli_num_rows($result) == 0) {
-          header("Location: list_sellers.php");
+          header("Location: new_sellers.php");
       } else {
           $seller=mysqli_fetch_array($result);
       }
@@ -210,7 +210,7 @@ require_once("../../includes/begin_html.php");
           <div class="col s12">
             <ul class="tabs">
               <li class="tab col s3"><a class="active" href="#tab1">Add Items</a></li>
-              <li class="tab col s3"><a href="#tab2">View Items</a></li>
+              
             </ul>
           </div>
           <div id="tab1" class="col s12">
@@ -259,46 +259,6 @@ require_once("../../includes/begin_html.php");
             <div class="row">
               <a href="#btn-add-row" tabindex="0" class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add Items</a>
               <span class="waves-effect waves-light btn" id="btn-save">Save</span>
-            </div>
-          </div>
-          <div id="tab2" class="col s12">
-            <!--Responsive Table-->
-            <div id="responsive-table">
-              <div class="row">
-                <div class="col s12">
-                  <table class="responsive-table">
-                    <thead>
-                      <tr>
-                        <th data-field="id">Lot</th>
-                        <th data-field="name">Item</th>
-                        <th data-field="company">Asking</th>
-                        <th data-field="phone">Count</th>
-                        <th data-field="license">Created</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                      $query = "SELECT * FROM `seller_item` WHERE `seller_id` = {$seller['id']} ORDER BY `lot` ASC";
-                      $result=mysqli_query($connection, $query);
-                      confirm_query($result);
-                      while ($item=mysqli_fetch_array($result)) {
-                          ?>
-                    <tr>
-                      <td>#<?php echo $item['lot']; ?></td>
-                      <td><?php echo $item['item']; ?></td>
-                      <td><input  type="text" class="validate" value="<?php echo number_format($item['asking'], 2); ?>"></td>
-                      <td><?php echo $item['count'] . " " . $item['unit_of_measure']; ?></td>
-                      <td><?php echo $item['date_created']; ?></td>
-                      <td class="printhide"><a  class="waves-effect waves-yellow btn-flat red-text">Save</a></td>
-                      <td class="printhide"><a href="edit_sellers.php?deleteID=<?php echo $item['id']; ?>" class="waves-effect waves-yellow btn-flat red-text">Delete</a></td>
-                    </tr>
-                    <?php
-                      }
-                  ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -359,7 +319,7 @@ require_once("../../includes/begin_html.php");
 				$(this).parents().eq(2).find("input.radio-oz").prop("checked", true);
 			}
 
-      if($(this).val() == "Bobcat" || $(this).val() == "Otter") || $(this).val() == "Fisher"){
+      if($(this).val() == "Bobcat" || $(this).val() == "Otter"){
 				$(this).parents().eq(1).find("input.tag-ID").css( "display", "block" );
 			}else{
 				$(this).parents().eq(1).find("input.tag-ID").css( "display", "none" );
