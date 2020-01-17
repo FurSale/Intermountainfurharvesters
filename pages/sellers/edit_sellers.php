@@ -147,7 +147,7 @@ require_once("../../includes/begin_html.php");
              <div class="row">
                <div class="input-field col s9">
                  <i class="material-icons prefix">contacts</i>
-                 <input placeholder="Trapper ID" id="trapper_id" name="trapper_id" type="text" class="validate" value="<?php echo $seller['trapper_id']; ?>">
+                 <input tabindex="1" placeholder="Trapper ID" id="trapper_id" name="trapper_id" type="text" class="validate" value="<?php echo $seller['trapper_id']; ?>">
 
                </div>
                <div class="input-field col s3">
@@ -161,44 +161,44 @@ require_once("../../includes/begin_html.php");
                <div class="input-field col s4 offset-s1 first-column">
                  <div class="input-field col s6">
                    <i class="material-icons prefix">account_circle</i>
-                   <input placeholder="John" id="first_name" name="first_name" type="text" class="validate" value="<?php echo $seller['first_name']; ?>">
+                   <input tabindex="2" placeholder="John" id="first_name" name="first_name" type="text" class="validate" value="<?php echo $seller['first_name']; ?>" autofocus>
 
                  </div>
                  <div class="input-field col s6">
-                   <input placeholder="Smith" id="last_name" name="last_name" type="text" class="validate" value="<?php echo $seller['last_name']; ?>">
+                   <input tabindex="3" placeholder="Smith" id="last_name" name="last_name" type="text" class="validate" value="<?php echo $seller['last_name']; ?>">
 
                  </div>
                 <div class="input-field col s6">
                   <i class="material-icons prefix">contact_phone</i>
-                  <input placeholder="(000) 000-0000" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);" id="phone" name="phone" type="tel" class="validate" value="<?php echo $seller['phone']; ?>">
+                  <input tabindex="4" placeholder="(000) 000-0000" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);" id="phone" name="phone" type="tel" class="validate" value="<?php echo $seller['phone']; ?>">
 
                 </div>
                  <div class="input-field col s6">
                    <i class="material-icons prefix">contact_mail</i>
-                   <input placeholder="@" id="email" name="email" type="email" class="validate" value="<?php echo $seller['email']; ?>">
+                   <input tabindex="5" placeholder="@" id="email" name="email" type="email" class="validate" value="<?php echo $seller['email']; ?>">
 
                  </div>
                </div>
                  <div class="input-field col s5 offset-s1 white-text column">
                    <div id="address">
                    <div class="input-field col s5" >
-                     <input placeholder="123 example st" id="address_1" name="address_1" type="text" class="validate" value="<?php echo $seller['address_1']; ?>">
+                     <input tabindex="6" placeholder="123 example st" id="address_1" name="address_1" type="text" class="validate" value="<?php echo $seller['address_1']; ?>">
                    </div>
                    <div class="input-field col s3 offset-s1">
-                     <input placeholder="Unit 4" id="address_2" name="address_2" type="text" class="validate" value="<?php echo $seller['address_2']; ?>">
+                     <input tabindex="7" placeholder="Unit 4" id="address_2" name="address_2" type="text" class="validate" value="<?php echo $seller['address_2']; ?>">
                    </div>
                    <div class="input-field col s3">
-                     <input placeholder="That Town" id="city" name="city" type="text" class="validate" value="<?php echo $seller['city']; ?>">
+                     <input tabindex="8" placeholder="That Town" id="city" name="city" type="text" class="validate" value="<?php echo $seller['city']; ?>">
                    </div>
                   <div class="input-field col s4">
-                    <input list="state" name="state">
+                    <input tabindex="9" list="state" name="state">
                     <datalist id="state">
                       <?php echo echo_states($seller['state']); ?>
                       <placeholder></placeholder>
                     </datalist>
                   </div>
                   <div class="input-field col s2 offset-s1">
-                     <input placeholder="56789" id="zip" name="zip"  class="validate" value="<?php echo $seller['zip']; ?>">
+                     <input tabindex="10" placeholder="56789" id="zip" name="zip"  class="validate" value="<?php echo $seller['zip']; ?>">
                    </div>
                  </div>
                </div>
@@ -207,7 +207,7 @@ require_once("../../includes/begin_html.php");
            </form>
          </div>
          </div>
-         <?php if(isset($_GET['id'])){ //Dont show this section if creating new ?>
+         <?php if (isset($_GET['id'])) { //Dont show this section if creating new?>
           <div class="row">
           <div class="col s12">
             <ul class="tabs">
@@ -222,16 +222,16 @@ require_once("../../includes/begin_html.php");
                 <input id="[0]seller_id" name="items[0][seller_id]" type="hidden" value="<?php echo $seller['id']; ?>">
                   <div class="input-field col s2">
                     <i class="material-icons prefix">local_offer</i>
-                    <input name="items[0][lot]" id="name[0][lot]" type="text" class="validate">
+                    <input tabindex="11" name="items[0][lot]" id="name[0][lot]" type="text" class="validate">
 
                   </div>
                   <div class="input-field col s2">
-                    <input list="items[0][item]" name="items[0][item]" class="select-item">
+                    <input tabindex="12" list="items[0][item]" name="items[0][item]" class="select-item">
                   <datalist id="items[0][item]">
                       <?php echo echo_item_types(); ?>
                     </datalist>
-                    <input name="items[0][item_custom]" type="text" class="validate item-custom" style="display:none;">
-                    <input name="items[0][tag_id]" type="text" class="validate tag-ID" placeholder="Tag ID" style="display:none;">
+                    <input tabindex="13" name="items[0][item_custom]" type="text" class="validate item-custom" style="display:none;">
+                    <input tabindex="14" name="items[0][tag_id]" type="text" class="validate tag-ID" tabindex placeholder="Tag ID" style="display:none;">
                   </div>
                   <div class="input-field col s2">
                     <div style="display: inline;"><label><input name="items[0][unit_of_measure]" value="ct" type="radio" class="radio-count" checked /><span>ct</span></label></div>
@@ -240,10 +240,10 @@ require_once("../../includes/begin_html.php");
                   </div>
                   <div class="input-field col s1">
 
-                    <input name="items[0][count]"  class="validate">
+                    <input tabindex="15" name="items[0][count]"  class="validate">
                   </div>
                   <div class="input-field col s2">
-                      <input list="items[0][origin_state]" name="items[0][origin_state]">
+                      <input tabindex="16" list="items[0][origin_state]" name="items[0][origin_state]">
                     <datalist id="items[0][origin_state]">
                       <?php echo echo_states(); ?>
                     </datalist>
@@ -306,10 +306,11 @@ require_once("../../includes/begin_html.php");
           </div>
         </div>
         <?php
-            }else{
-        ?>
+            } else {
+                ?>
         <h5>Save Seller before adding/viewing items</h5>
-        <?php } ?>
+        <?php
+            } ?>
 </section>
 <script>
 	var _editorRow = $("#editor-rows").html();
