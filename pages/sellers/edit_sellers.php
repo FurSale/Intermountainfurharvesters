@@ -258,7 +258,7 @@ require_once("../../includes/begin_html.php");
               </div>
             </form>
             <div class="row">
-              <a href="#items[0][lot]" tabindex="0" class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add Items</a>
+              <a href="#btn-add-row" tabindex="0" class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add Items</a>
               <span class="waves-effect waves-light btn" id="btn-save">Save</span>
             </div>
           </div>
