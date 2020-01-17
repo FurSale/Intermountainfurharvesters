@@ -210,7 +210,7 @@ require_once("../../includes/begin_html.php");
           <div class="col s12">
             <ul class="tabs">
               <li class="tab col s3"><a class="active" href="#tab1">Add Items</a></li>
-              
+
             </ul>
           </div>
           <div id="tab1" class="col s12">
@@ -319,7 +319,7 @@ require_once("../../includes/begin_html.php");
 				$(this).parents().eq(2).find("input.radio-oz").prop("checked", true);
 			}
 
-      if($(this).val() == "Bobcat" || $(this).val() == "Otter"){
+      if($(this).val() == "Bobcat" || $(this).val() == "Otter" || $(this).val() == "Fisher"){
 				$(this).parents().eq(1).find("input.tag-ID").css( "display", "block" );
 			}else{
 				$(this).parents().eq(1).find("input.tag-ID").css( "display", "none" );
