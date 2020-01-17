@@ -7,7 +7,7 @@
 	$nav = ("1");
   require_once("../../includes/functions.php");
   verify_logged_in(array("administrator"));
-  
+
 	require_once("../../includes/begin_html.php");
 	require_once("../../includes/nav.php");
 
@@ -37,21 +37,24 @@
   <tbody>
 
   <?php
-    //$itemTypes is defined in functions.php
-    $types = $itemTypes;
-    //Get custom item types
-    $query = "SELECT `item` FROM `seller_item` WHERE `item` NOT IN ('".implode("', '",$types)."')";
-    $resultTypes = mysqli_query($connection, $query);
-    confirm_query($resultTypes);
-    while($type=mysqli_fetch_array($resultTypes)){
-      if(array_search($type['item'], $types) === false){
-        array_push($types, $type['item']);
-      }
-    }
+    // //$itemTypes is defined in functions.php
+    // $types = $itemTypes;
+    // //Get custom item types
+    // $query = "SELECT `item` FROM `seller_item` WHERE `item` NOT IN ('".implode("', '",$types)."')";
+    // $resultTypes = mysqli_query($connection, $query);
+    // confirm_query($resultTypes);
+    // while($type=mysqli_fetch_array($resultTypes)){
+    //   if(array_search($type['item'], $types) === false){
+    //     array_push($types, $type['item']);
+    //   }
+    // }
 
     //Go through each type
-    foreach ($types as $value) {
-      $itemQuery = "SELECT * FROM `seller_item` WHERE `item` = '{$value}'";
+    $query = "SELECT * FROM `item_type`";
+    $resultTypes=mysqli_query( $connection, $query);
+    confirm_query($resultTypes);
+    while($value=mysqli_fetch_assoc($resultTypes)){
+      $itemQuery = "SELECT * FROM `seller_item` WHERE `item` = '{$value['name']}'";
       $result = mysqli_query($connection, $itemQuery);
       confirm_query($result);
       $offered = mysqli_num_rows($result);
@@ -88,7 +91,7 @@
 
       ?>
       <tr>
-        <td><b><?php echo $value; ?></b></td>
+        <td><b><?php echo $value['name']; ?></b></td>
         <td><?php echo $offered; ?></td>
         <td>$<?php echo number_format($average, 2); ?></td>
         <td>$<?php echo number_format($highest, 2); ?></td>

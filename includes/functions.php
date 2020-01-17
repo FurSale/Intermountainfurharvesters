@@ -74,94 +74,33 @@ function echo_states($selected = null){
     return $returnHTML;
 }
 
-$itemTypes = array(
-    'Antlers',
-    'Artic Fox',
-    'Baculum',
-    'Badger',
-    'Bear Parts',
-    'Bear rug',
-    'Beaver',
-    'Beaver Darts',
-    'Beaver Skulls',
-    'Beaver Tails',
-    'Bee Hive',
-    'Blue Fox',
-    'Bobcat',
-    'Bobcat Bones',
-    'Bobcat Paws',
-    'Bobcat Skull',
-    'Castor',
-    'Cougar',
-    'Coyote',
-    'Coyote Paws',
-    'Coyote Skulls',
-    'Cross Fox',
-    'Earings',
-    'Ermine',
-    'Ermine Skull',
-    'Fox Paws',
-    'Fur Coat',
-    'Fur Headband',
-    'Fur Pieces',
-    'Goat Skulls',
-    'Goat / Sheep Horns',
-    'Grey Fox',
-    'Grouse Tails',
-    'Hoop Art',
-    'Indian Leather Jacket',
-    'Indian Shield',
-    'Lion Skull',
-    'Lynx Feet',
-    'Marten',
-    'Mink',
-    'Misc Bones',
-    'Misc Skulls',
-    'Muskrat',
-    'Necklace',
-    'Opossum',
-    'Otter',
-    'Porky Claws',
-    'Porky Hair',
-    'Porky Quills',
-    'Raccoon',
-    'Raccoon Paws',
-    'Raccoon Skulls',
-    'Red Fox',
-    'Silver Fox',
-    'Skunk',
-    'Skunk Essence',
-    'Skunk Skulls',
-    'Tanned Lamb Skin',
-    'Traps',
-    'Turkey Beard',
-    'Turkey Tails',
-    'White fox',
-    'Wolf',
-    'Wolf Skull'
-);
-
 function echo_cat(){
     global $itemTypes;
 
     $returnHTML = "";
-    foreach ($itemTypes as $value) {
-        $returnHTML .= "<tr><td><b>{$value}</b><td></td><td></td><td></td><td></td><td></td></tr></td>";
+    $query = "SELECT * FROM `item_type`";
+    $result=mysqli_query( $connection, $query);
+    confirm_query($result);
+    while($value=mysqli_fetch_assoc($result)){
+        $returnHTML .= "<tr><td><b>{$value['name']}</b><td></td><td></td><td></td><td></td><td></td></tr></td>";
     }
 
     return $returnHTML;
 }
 
 function echo_item_types($selected = null){
-    global $itemTypes;
+    global $connection;
 
     $returnHTML = "<option value=\"\">Select type</option><option value=\"Custom\">Custom</option>";
 
-    foreach ($itemTypes as $value) {
+    $query = "SELECT * FROM `item_type`";
+    $result=mysqli_query( $connection, $query);
+    confirm_query($result);
+    while($value=mysqli_fetch_assoc($result)){
         if($value == $selected){
-            $returnHTML .= "<option value=\"{$value}\" selected>{$value}</option>";
+            $returnHTML .= "<option value=\"{$value['name']}\" selected>{$value['name']}</option>";
         }else{
-            $returnHTML .= "<option value=\"{$value}\">{$value}</option>";
+            $returnHTML .= "<option value=\"{$value['name']}\">{$value['name']}</option>";
         }
     }
 

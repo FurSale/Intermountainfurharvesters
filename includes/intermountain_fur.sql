@@ -177,6 +177,82 @@ ALTER TABLE `seller_item`
   ADD CONSTRAINT `fk_seller_seller_id` FOREIGN KEY (`seller_id`) REFERENCES `seller` (`id`);
 COMMIT;
 
+DROP TABLE IF EXISTS `item_type`;
+CREATE TABLE IF NOT EXISTS `item_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+COMMIT;
+
+INSERT INTO `item_type` (`id`, `name`, `date_created`) VALUES
+(1, 'Antlers', '2020-01-17 03:40:11'),
+(2, 'Artic Fox', '2020-01-17 03:40:11'),
+(3, 'Baculum', '2020-01-17 03:40:11'),
+(4, 'Badger', '2020-01-17 03:40:11'),
+(5, 'Bear Parts', '2020-01-17 03:40:11'),
+(6, 'Bear rug', '2020-01-17 03:40:11'),
+(7, 'Beaver', '2020-01-17 03:40:11'),
+(8, 'Beaver Darts', '2020-01-17 03:40:11'),
+(9, 'Beaver Skulls', '2020-01-17 03:40:11'),
+(10, 'Beaver Tails', '2020-01-17 03:40:11'),
+(11, 'Bee Hive', '2020-01-17 03:40:11'),
+(12, 'Blue Fox', '2020-01-17 03:40:11'),
+(13, 'Bobcat', '2020-01-17 03:40:11'),
+(14, 'Bobcat Bones', '2020-01-17 03:40:11'),
+(15, 'Bobcat Paws', '2020-01-17 03:40:11'),
+(16, 'Bobcat Skull', '2020-01-17 03:40:11'),
+(17, 'Castor', '2020-01-17 03:40:11'),
+(18, 'Cougar', '2020-01-17 03:40:11'),
+(19, 'Coyote', '2020-01-17 03:40:11'),
+(20, 'Coyote Paws', '2020-01-17 03:40:11'),
+(21, 'Coyote Skulls', '2020-01-17 03:40:11'),
+(22, 'Cross Fox', '2020-01-17 03:40:11'),
+(23, 'Earings', '2020-01-17 03:40:11'),
+(24, 'Ermine', '2020-01-17 03:40:11'),
+(25, 'Ermine Skull', '2020-01-17 03:40:11'),
+(26, 'Fox Paws', '2020-01-17 03:40:11'),
+(27, 'Fur Coat', '2020-01-17 03:40:11'),
+(28, 'Fur Headband', '2020-01-17 03:40:11'),
+(29, 'Fur Pieces', '2020-01-17 03:40:11'),
+(30, 'Goat Skulls', '2020-01-17 03:40:11'),
+(31, 'Goat / Sheep Horns', '2020-01-17 03:40:11'),
+(32, 'Grey Fox', '2020-01-17 03:40:11'),
+(33, 'Grouse Tails', '2020-01-17 03:40:11'),
+(34, 'Hoop Art', '2020-01-17 03:40:11'),
+(35, 'Indian Leather Jacket', '2020-01-17 03:40:11'),
+(36, 'Indian Shield', '2020-01-17 03:40:11'),
+(37, 'Lion Skull', '2020-01-17 03:40:11'),
+(38, 'Lynx Feet', '2020-01-17 03:40:11'),
+(39, 'Marten', '2020-01-17 03:40:11'),
+(40, 'Mink', '2020-01-17 03:40:11'),
+(41, 'Misc Bones', '2020-01-17 03:40:11'),
+(42, 'Misc Skulls', '2020-01-17 03:40:11'),
+(43, 'Muskrat', '2020-01-17 03:40:11'),
+(44, 'Necklace', '2020-01-17 03:40:11'),
+(45, 'Opossum', '2020-01-17 03:40:11'),
+(46, 'Otter', '2020-01-17 03:40:11'),
+(47, 'Porky Claws', '2020-01-17 03:40:11'),
+(48, 'Porky Hair', '2020-01-17 03:40:11'),
+(49, 'Porky Quills', '2020-01-17 03:40:11'),
+(50, 'Raccoon', '2020-01-17 03:40:11'),
+(51, 'Raccoon Paws', '2020-01-17 03:40:11'),
+(52, 'Raccoon Skulls', '2020-01-17 03:40:11'),
+(53, 'Red Fox', '2020-01-17 03:40:11'),
+(54, 'Silver Fox', '2020-01-17 03:40:11'),
+(55, 'Skunk', '2020-01-17 03:40:11'),
+(56, 'Skunk Essence', '2020-01-17 03:40:11'),
+(57, 'Skunk Skulls', '2020-01-17 03:40:11'),
+(58, 'Tanned Lamb Skin', '2020-01-17 03:40:11'),
+(59, 'Traps', '2020-01-17 03:40:11'),
+(60, 'Turkey Beard', '2020-01-17 03:40:11'),
+(61, 'Turkey Tails', '2020-01-17 03:40:11'),
+(62, 'White fox', '2020-01-17 03:40:11'),
+(63, 'Wolf', '2020-01-17 03:40:11'),
+(64, 'Wolf Skull', '2020-01-17 03:40:11');
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
