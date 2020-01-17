@@ -102,12 +102,12 @@
   }
 
   if (isset($_GET['deleteBid'])) {
-    $deleteResult = DeleteBid();
-    if($deleteResult['success']){
-      $success = $deleteResult['message'];
-    }else{
-      $error = $deleteResult['message'];
-    }
+      $deleteResult = DeleteBid();
+      if ($deleteResult['success']) {
+          $success = $deleteResult['message'];
+      } else {
+          $error = $deleteResult['message'];
+      }
   }
 
   $itemBids = get_item_bids($item['id']);
@@ -175,7 +175,7 @@
       </datalist>
     </div>
     <div class="input-field col s1">
-      <input name="asking" type="number" min="0" class="validate" value="<?php echo $item['asking']; ?>">
+      <input name="asking"  min="0" class="validate" value="<?php echo $item['asking']; ?>">
     </div>
     <div class="col s3"><input type="submit" name="submit" class="waves-effect waves-light btn submit" value="Save"></input></div>
   </form>
