@@ -225,7 +225,7 @@ require_once("../../includes/begin_html.php");
                 <input id="[0]seller_id" name="items[0][seller_id]" type="hidden" value="<?php echo $seller['id']; ?>">
                   <div class="input-field col s2">
                     <i class="material-icons prefix">local_offer</i>
-                    <input tabindex="[0]" placeholder="lot"  name="items[0][lot]" id="name[0][lot]" type="text" class="validate">
+                    <input tabindex="2" placeholder="lot"  name="items[0][lot]" id="name[0][lot]" type="text" class="validate">
 
                   </div>
                   <div class="input-field col s2">
