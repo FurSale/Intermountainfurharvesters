@@ -144,62 +144,65 @@ require_once("../../includes/begin_html.php");
         <div class="row">
            <form method="post" class="col s12">
            <input id="id" name="id" type="hidden" value="<?php echo $seller['id']; ?>">
-             <div class="row">
-               <div class="input-field col s9">
-                 <i class="material-icons prefix">contacts</i>
-                 <input tabindex="1" placeholder="Trapper ID" id="trapper_id" name="trapper_id" type="text" class="validate" value="<?php echo $seller['trapper_id']; ?>" autofocus>
 
-               </div>
-               <div class="input-field col s3">
-                 <i class="material-icons prefix">attach_money</i>
-                 <input id="commission" name="commission" type="number" class="validate" value="<?php echo $seller['commission']; ?>">
-
-               </div>
-             </div>
              <div class="row">
              <div class="row">
-               <div class="input-field col s4 offset-s1 first-column">
-                 <div class="input-field col s6">
-                   <i class="material-icons prefix">account_circle</i>
-                   <input tabindex="2" placeholder="John" id="first_name" name="first_name" type="text" class="validate" value="<?php echo $seller['first_name']; ?>">
 
-                 </div>
-                 <div class="input-field col s6">
-                   <input tabindex="3" placeholder="Smith" id="last_name" name="last_name" type="text" class="validate" value="<?php echo $seller['last_name']; ?>">
-
-                 </div>
-                <div class="input-field col s6">
-                  <i class="material-icons prefix">contact_phone</i>
-                  <input tabindex="4" placeholder="(000) 000-0000" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);" id="phone" name="phone" type="tel" class="validate" value="<?php echo $seller['phone']; ?>">
-
-                </div>
-                 <div class="input-field col s6">
-                   <i class="material-icons prefix">contact_mail</i>
-                   <input tabindex="5" placeholder="@" id="email" name="email" type="email" class="validate" value="<?php echo $seller['email']; ?>">
-
-                 </div>
-               </div>
-                 <div class="input-field col s5 offset-s1 white-text column">
+                 <div class="input-field col s5 offset-s1 white-text first-column">
                    <div id="address">
+                     <div class="input-field col s6">
+
+                       <input tabindex="1" placeholder="John" id="first_name" name="first_name" type="text" class="validate" value="<?php echo $seller['first_name']; ?>" autofocus>
+
+                     </div>
+                     <div class="input-field col s6">
+                       <input tabindex="2" placeholder="Smith" id="last_name" name="last_name" type="text" class="validate" value="<?php echo $seller['last_name']; ?>">
+
+                     </div>
                    <div class="input-field col s5" >
-                     <input tabindex="6" placeholder="123 example st" id="address_1" name="address_1" type="text" class="validate" value="<?php echo $seller['address_1']; ?>">
+                     <input tabindex="3" placeholder="123 example st" id="address_1" name="address_1" type="text" class="validate" value="<?php echo $seller['address_1']; ?>">
                    </div>
                    <div class="input-field col s3 offset-s1">
-                     <input tabindex="7" placeholder="Unit 4" id="address_2" name="address_2" type="text" class="validate" value="<?php echo $seller['address_2']; ?>">
+                     <input tabindex="4" placeholder="Unit 4" id="address_2" name="address_2" type="text" class="validate" value="<?php echo $seller['address_2']; ?>">
                    </div>
                    <div class="input-field col s3">
-                     <input tabindex="8" placeholder="That Town" id="city" name="city" type="text" class="validate" value="<?php echo $seller['city']; ?>">
+                     <input tabindex="5" placeholder="That Town" id="city" name="city" type="text" class="validate" value="<?php echo $seller['city']; ?>">
                    </div>
                   <div class="input-field col s4">
-                    <input tabindex="9" list="state" name="state">
+                    <input tabindex="6" list="state" name="state">
                     <datalist id="state">
                       <?php echo echo_states($seller['state']); ?>
                       <placeholder></placeholder>
                     </datalist>
                   </div>
                   <div class="input-field col s2 offset-s1">
-                     <input tabindex="10" placeholder="56789" id="zip" name="zip"  class="validate" value="<?php echo $seller['zip']; ?>">
+                     <input tabindex="7" placeholder="56789" id="zip" name="zip"  class="validate" value="<?php echo $seller['zip']; ?>">
                    </div>
+                 </div>
+               </div>
+               <div class="input-field col s4 offset-s1 column">
+
+                <div class="input-field col s6">
+                  <i class="material-icons prefix">contact_phone</i>
+                  <input tabindex="8" placeholder="(000) 000-0000" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);" id="phone" name="phone" type="tel" class="validate" value="<?php echo $seller['phone']; ?>">
+
+                </div>
+                 <div class="input-field col s6">
+                   <i class="material-icons prefix">contact_mail</i>
+                   <input tabindex="9" placeholder="@" id="email" name="email" type="email" class="validate" value="<?php echo $seller['email']; ?>">
+
+                 </div>
+               </div>
+               <div class="row">
+                 <div class="input-field col s9">
+                   <i class="material-icons prefix">contacts</i>
+                   <input tabindex="10" placeholder="Trapper ID" id="trapper_id" name="trapper_id" type="text" class="validate" value="<?php echo $seller['trapper_id']; ?>">
+
+                 </div>
+                 <div class="input-field col s3">
+                   <i class="material-icons prefix">attach_money</i>
+                   <input id="commission" name="commission" type="number" class="validate" value="<?php echo $seller['commission']; ?>">
+
                  </div>
                </div>
              </div>
