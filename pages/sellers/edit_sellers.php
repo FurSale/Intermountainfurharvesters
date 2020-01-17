@@ -140,7 +140,7 @@ require_once("../../includes/begin_html.php");
 	 <?php
         require_once("../../includes/crumbs.php");
          ?>
-      <div class="container">
+      <div class="">
         <div class="row">
            <form method="post" class="col s12">
            <input id="id" name="id" type="hidden" value="<?php echo $seller['id']; ?>">
@@ -234,7 +234,9 @@ require_once("../../includes/begin_html.php");
                       <?php echo echo_item_types(); ?>
                     </datalist>
                     <input tabindex="2" name="items[0][item_custom]" type="text" class="validate item-custom" style="display:none;">
-                    <input tabindex="2" name="items[0][tag_id]" type="text" class="validate tag-ID" tabindex placeholder="Tag ID" style="display:none;">
+                  </div>
+                  <div class="input-field col s2">
+                    <input tabindex="2" name="items[0][tag_id]" type="text" class="validate tag-ID" placeholder="Notes" >
                   </div>
                   <div class="input-field col s2">
                     <div style="display: inline;"><label><input tabindex="999" tab name="items[0][unit_of_measure]" value="ct" type="radio" class="radio-count" checked /><span>ct</span></label></div>
@@ -245,7 +247,7 @@ require_once("../../includes/begin_html.php");
 
                     <input tabindex="2" placeholder="ct" name="items[0][count]"  class="validate">
                   </div>
-                  <div class="input-field col s2">
+                  <div class="input-field col s1">
                       <input tabindex="2"  list="items[0][origin_state]" name="items[0][origin_state]">
                     <datalist id="items[0][origin_state]">
                       <?php echo echo_states(); ?>
