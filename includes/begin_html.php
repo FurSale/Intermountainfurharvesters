@@ -33,6 +33,8 @@
     <!-- jQuery Library -->
     <script type="text/javascript" src="../../vendors/jquery-3.2.1.min.js"></script>
     <script src="../../js/init.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
   <style>@page { size: letter }</style>
   </head>
