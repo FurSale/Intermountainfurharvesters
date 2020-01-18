@@ -29,7 +29,17 @@ if (isset($_POST['submit'])) {
         session_name("login");
         session_start();
 
-        
+        $date=date("Y-m-d H:i:s");
+        $query = "";
+        //Set a new one time pass if user is a buyer
+        if ($found_user['role'] == "buyer") {
+            $randomPass = random_generator(6, "0123456789");
+            $query="UPDATE `user` SET `password_one_time` = '{$randomPass}', `date_last_logged_in` = '{$date}'
+			WHERE `id` = {$_SESSION['user_id']}";
+        } else {
+            $query="UPDATE `user` SET `date_last_logged_in` = '{$date}'
+			WHERE `id` = {$_SESSION['user_id']}";
+        }
 
         $result=mysqli_query($connection, $query);
         confirm_query($result);
