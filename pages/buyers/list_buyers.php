@@ -113,7 +113,7 @@
                           <div class="col"><?php echo $buyer['fur_buyer_license_num']; ?></div>-->
               <div class="col s1 printhide">
 
-                <a class="waves-effect waves-light  btn-small blue modal-trigger" href="#modal<?php echo $buyer['id']; ?>"><i class="material-icons">receipt</i></a>
+                <a class="waves-effect waves-light  btn-small blue modal-trigger" href="receipt.php?id=<?php echo $buyer['id']; ?>"><i class="material-icons">receipt</i></a>
               </div>
               <div class="col s1 printhide">
                 <a href="list_buyers.php?deleteID=<?php echo $buyer['id']; ?>" class="waves-effect waves-light  btn-small red"><i class="material-icons">delete</i></a>
