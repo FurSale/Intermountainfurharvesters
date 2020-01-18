@@ -173,7 +173,7 @@
           <input type="hidden" name="add" value="add" />
             <div class='row'>
               <div class='input-field col s12'>
-                <input style="height:6rem; font-size:32px;" placeholder="Lot" class='validate white-text' type='text' name='lot' id='lot' value="<?php echo $bid['lot']; ?>" pattern="\d*"/>
+                <input style="height:6rem; font-size:32px;" placeholder="Lot" class='validate white-text' type='number' name='lot' id='lot' value="<?php echo $bid['lot']; ?>" pattern="\d*"/>
 
               </div>
             </div>
@@ -196,7 +196,7 @@
 <a class="btn-floating-center waves-effect waves-light red modal-trigger" href="#modal1"><i class="material-icons">expand_less</i></a>
 </div>
 </main>
-  <div id="modal1" class="modal bottom-sheet blue-grey darken-2 black-text">
+  <div id="modal1" class="modal bottom-sheet blue-grey darken-2 white-text">
          <div class="modal-content">
            <ul class="collection with-header">
         <li class="collection-header"><h4>Bids</h4></li>
