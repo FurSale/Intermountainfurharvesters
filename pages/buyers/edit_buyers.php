@@ -211,7 +211,7 @@
              <div class="input-field col s3"><input type="submit" name="submit" class="waves-effect waves-light btn submit" value="Save"></input></div>
            </form>
          </div>
-         <?php if(isset($_GET['id'])){ //Dont show this section if creating new ?>
+         <?php if (isset($_GET['id'])) { //Dont show this section if creating new?>
          <div class="row" style="margin-bottom:20px;">
           <div class="col s12">
             <ul class="tabs">
@@ -258,7 +258,7 @@
                   </form>
                 </div>
                 <div class="row">
-                  <a href="#" tabindex="0" class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add</a>
+                  <a href="#btn-add-row" tabindex="0" class="waves-effect waves-light btn" id="btn-add-row"><i class="material-icons left">add_box</i>Add</a>
                   <span class="waves-effect waves-light btn" id="btn-save">Save</span>
                 </div>
               </div>
@@ -309,10 +309,11 @@
           </div>
         </div>
         <?php
-            }else{
-        ?>
+            } else {
+                ?>
         <h5>Save Buyer before adding/viewing bids</h5>
-        <?php } ?>
+        <?php
+            } ?>
    </section>
  <!-- END WRAPPER -->
  <script>
