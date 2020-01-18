@@ -163,6 +163,7 @@
 
 
      ?>
+
    <div class="container">
       <section id="content" class="">
       <div class="col 12">
@@ -172,14 +173,14 @@
           <input type="hidden" name="add" value="add" />
             <div class='row'>
               <div class='input-field col s12'>
-                LOT<input placeholder="Lot" class='validate white-text' type='text' name='lot' id='lot' value="<?php echo $bid['lot']; ?>" pattern="\d*"/>
+                <input style="height:6rem; font-size:32px;" placeholder="Lot" class='validate white-text' type='text' name='lot' id='lot' value="<?php echo $bid['lot']; ?>" pattern="\d*"/>
 
               </div>
             </div>
 
             <div class='row'>
               <div class='input-field col s12'>
-                BID<input placeholder="Bid" class='validate white-text' name='bid_amount' id='bid_amount' value="<?php echo $bid['bid_amount']; ?>" pattern="\d*"/>
+                <input placeholder="Bid" class='validate white-text' name='bid_amount' id='bid_amount' value="<?php echo $bid['bid_amount']; ?>" pattern="\d*"/>
 
               </div>
             </div>
