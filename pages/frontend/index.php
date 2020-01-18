@@ -172,15 +172,15 @@
           <input type="hidden" name="add" value="add" />
             <div class='row'>
               <div class='input-field col s12'>
-                <input class='validate' type='text' name='lot' id='lot' value="<?php echo $bid['lot']; ?>" />
-                <label for='email'>Lot #</label>
+                <input class='validate white-text' type='text' name='lot' id='lot' value="<?php echo $bid['lot']; ?>" />
+
               </div>
             </div>
 
             <div class='row'>
               <div class='input-field col s12'>
-                <input class='validate' name='bid_amount' id='bid_amount' value="<?php echo $bid['bid_amount']; ?>" />
-                <label for='bid_amount'>Bid Amount</label>
+                <input class='validate white-text' name='bid_amount' id='bid_amount' value="<?php echo $bid['bid_amount']; ?>" />
+
               </div>
             </div>
             <br />
