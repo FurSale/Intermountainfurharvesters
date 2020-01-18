@@ -180,7 +180,7 @@
 
             <div class='row'>
               <div class='input-field col s12'>
-                <input placeholder="Bid" class='validate white-text' name='bid_amount' id='bid_amount' value="<?php echo $bid['bid_amount']; ?>" pattern="\d*"/>
+                <input style="height:6rem; font-size:32px;" placeholder="Bid" class='validate white-text' name='bid_amount' id='bid_amount' value="<?php echo $bid['bid_amount']; ?>" pattern="\d*"/>
 
               </div>
             </div>
