@@ -41,7 +41,7 @@
           <div class="divider"></div>
 
             <h4 class="header printhide">BUYER</h4>
-            <h5 class="header printhide"><?php echo $buyerData['first_name'] . " " . $buyerData['last_name']; ?></h5>
+            <h5 class="header"><?php echo $buyerData['first_name'] . " " . $buyerData['last_name']; ?></h5>
             <p><?php echo $buyerData['address_1'] . " " . $buyerData['address_2'] . ", " . $buyerData['city'] . ", " . $buyerData['state'] . " " . $buyerData['zip']; ?></p>
 
             <div class="row">
