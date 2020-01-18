@@ -3,36 +3,36 @@
   require_once("../../includes/functions.php");
 
   verify_logged_in(array("administrator"));
-  
+
   $buyerData = null;
-  if(isset($_GET['id'])){
-    $id = htmlspecialchars($_GET["id"]);
-    $query="SELECT * FROM `buyer` WHERE `id`={$id}";
-    $result=mysqli_query($connection, $query);
-    //confirm_query($result);
-    //Redirect to blog page if nothing returned from DB
-    if(mysqli_num_rows($result) == 0){
-      header("Location: list_buyers.php");
-    }else{
-      $buyerData=mysqli_fetch_array($result);
-    }
+  if (isset($_GET['id'])) {
+      $id = htmlspecialchars($_GET["id"]);
+      $query="SELECT * FROM `buyer` WHERE `id`={$id}";
+      $result=mysqli_query($connection, $query);
+      //confirm_query($result);
+      //Redirect to blog page if nothing returned from DB
+      if (mysqli_num_rows($result) == 0) {
+          header("Location: receipt.php");
+      } else {
+          $buyerData=mysqli_fetch_array($result);
+      }
   }
   $receipt = $buyerData['id'];
-	$pgsettings = array(
-		"title" => "Buyer Receipt",
-		"icon" => "icon-newspaper"
-	);
-	$nav = ("1");
+    $pgsettings = array(
+        "title" => "Buyer Receipt",
+        "icon" => "icon-newspaper"
+    );
+    $nav = ("1");
 
 
-	require_once("../../includes/begin_html.php");
+    require_once("../../includes/begin_html.php");
   require_once("../../includes/nav.php");
-	 ?>
+     ?>
 	 <!-- START CONTENT -->
  <section id="content" class="print">
 	 <?php
-	 	require_once("../../includes/crumbs.php");
-	 	 ?>
+        require_once("../../includes/crumbs.php");
+         ?>
 
       <!--start container-->
       <div class="container  receipt">
@@ -56,39 +56,44 @@
                   <?php
                   $subtotal = 0;
                           $query = "SELECT * FROM `bid` WHERE `buyer_id` = {$buyerData['id']} AND bid_status = 'Confirmed'";
-                          $result=mysqli_query( $connection, $query);
+                          $result=mysqli_query($connection, $query);
                           confirm_query($result);
                           //Check each of the buyer's bid to see if it's the winning one
-                          while($bid=mysqli_fetch_array($result)){
-                            //If bid is the highest for this item
-                            $query = "SELECT * FROM `bid` WHERE `seller_item_id` = {$bid['seller_item_id']} AND `bid_amount` > {$bid['bid_amount']} AND bid_status = 'Confirmed'";
-                            $result2=mysqli_query( $connection, $query);
-                            confirm_query($result2);
-                            if(mysqli_num_rows($result2) == 0){
-                              //Check if bid is the first one time wise if there's a tie
-                              $query = "SELECT * FROM `bid` WHERE `seller_item_id` = {$bid['seller_item_id']} AND `bid_amount` = {$bid['bid_amount']} AND `date_created` < '{$bid['date_created']}' AND bid_status = 'Confirmed'";
-                              $result3=mysqli_query( $connection, $query);
-                              confirm_query($result3);
-                              if(mysqli_num_rows($result3) == 0){
-                                //We should be down here if this is the winning bid
-                                //Get item data for this bid
-                                $query = "SELECT * FROM `seller_item` WHERE `id` = {$bid['seller_item_id']}";
-                                $resultItem=mysqli_query( $connection, $query);
-                                confirm_query($resultItem);
-                                $itemData=mysqli_fetch_array($resultItem);
-                                $subtotal += $bid['bid_amount'];
-                                ?>
-                                <div class="row" <?php if($bid['bid_amount'] < $itemData['asking']){echo "class=\"hide\"";} ?>>
+                          while ($bid=mysqli_fetch_array($result)) {
+                              //If bid is the highest for this item
+                              $query = "SELECT * FROM `bid` WHERE `seller_item_id` = {$bid['seller_item_id']} AND `bid_amount` > {$bid['bid_amount']} AND bid_status = 'Confirmed'";
+                              $result2=mysqli_query($connection, $query);
+                              confirm_query($result2);
+                              if (mysqli_num_rows($result2) == 0) {
+                                  //Check if bid is the first one time wise if there's a tie
+                                  $query = "SELECT * FROM `bid` WHERE `seller_item_id` = {$bid['seller_item_id']} AND `bid_amount` = {$bid['bid_amount']} AND `date_created` < '{$bid['date_created']}' AND bid_status = 'Confirmed'";
+                                  $result3=mysqli_query($connection, $query);
+                                  confirm_query($result3);
+                                  if (mysqli_num_rows($result3) == 0) {
+                                      //We should be down here if this is the winning bid
+                                      //Get item data for this bid
+                                      $query = "SELECT * FROM `seller_item` WHERE `id` = {$bid['seller_item_id']}";
+                                      $resultItem=mysqli_query($connection, $query);
+                                      confirm_query($resultItem);
+                                      $itemData=mysqli_fetch_array($resultItem);
+                                      $subtotal += $bid['bid_amount']; ?>
+                                <div class="row" <?php if ($bid['bid_amount'] < $itemData['asking']) {
+                                          echo "class=\"hide\"";
+                                      } ?>>
                                    <div class="col s2">#<?php echo $itemData['lot']; ?></div>
                                    <div class="col s2"><?php echo $itemData['item']; ?></div>
                                    <div class="col s2"><?php echo $itemData['count']; ?>/<?php echo $itemData['unit_of_measure']; ?></div>
                                    <div class="col s1"><?php echo $itemData['origin_state']; ?></div>
                                    <!--<td>$<?php echo $itemData['asking']; ?></td>-->
-                                   <div class="col s2 right-align" <?php if($bid['bid_amount'] < $itemData['asking']){echo "class=\"red-text\"";}else{echo "class=\"green-text\"";} ?>><?php echo "$".$bid['bid_amount']; ?></div>
+                                   <div class="col s2 right-align" <?php if ($bid['bid_amount'] < $itemData['asking']) {
+                                          echo "class=\"red-text\"";
+                                      } else {
+                                          echo "class=\"green-text\"";
+                                      } ?>><?php echo "$".$bid['bid_amount']; ?></div>
                                  </div>
                                  <?php
+                                  }
                               }
-                            }
                           }
                       ?>
                       <div class="receipt-footer bottom">
@@ -103,7 +108,7 @@
 										</div>
 									<div class="row">
                       <div class="col s2 offset-s3"><span style="font-weight:bold;">Total Due</span></div>
-                      <div class="col s2 right-align"><span style="font-weight:bold;">$<?php echo (($buyerData['commission']/100) + 1) * $subtotal; ?></span></div>
+                      <div class="col s2 right-align"><span style="font-weight:bold;">$<?php echo(($buyerData['commission']/100) + 1) * $subtotal; ?></span></div>
                   </div>
           </div>
         </div>

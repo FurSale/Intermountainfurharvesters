@@ -152,11 +152,7 @@
                         <div class="col s2"><?php echo $itemData['item']; ?></div>
                         <div class="col s2"><?php echo $itemData['count']; ?>/<?php echo $itemData['unit_of_measure']; ?></div>
                         <div class="col s2"><?php echo $itemData['origin_state']; ?></div>
-                        <td class="col s2 <?php if ($bid['bid_amount'] < $itemData['asking']) {
-                                      echo "red-text";
-                                  } else {
-                                      echo "green-text";
-                                  } ?>"><?php echo "$".$bid['bid_amount']; ?></div>
+                        <td class="col s2 "><?php echo "$".$bid['bid_amount']; ?></div>
                       </div>
                       <?php
                               } ?>
