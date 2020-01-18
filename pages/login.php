@@ -29,9 +29,6 @@ if (isset($_POST['submit'])) {
         session_name("login");
         session_start();
 
-        $date=date("Y-m-d H:i:s");
-        $query = "";
-        //Set a new one time pass if user is a buyer
         
 
         $result=mysqli_query($connection, $query);
