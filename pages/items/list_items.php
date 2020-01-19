@@ -83,7 +83,7 @@
                       <div class="col s1">Lot</div>
                       <div class="col s2">Item</div>
                       <div class="col s2">Count</div>
-                      <div class="col s2">Price</div>
+                      <div class="col s2 printhide">Price</div>
                       <div class="col s2">Bid</div>
                       <div class="col s2">Buyer</div>
                     </div>
@@ -154,7 +154,7 @@
                           <div class="col s2"><?php echo $sellerItem['item']; ?></div>
 
                           <div class="col s2"><?php echo $sellerItem['count']; ?>/<?php echo $sellerItem['unit_of_measure']; ?></div>
-                          <div class="col s2"><?php echo "$".$sellerItem['asking']; ?></div>
+                          <div class="col s2 printhide"><?php echo "$".$sellerItem['asking']; ?></div>
                           <div class="col s2" ><?php if ($sellerItem['high_bid'] > 0) {
                                   echo "$".$sellerItem['high_bid'];
                               } else {
