@@ -47,7 +47,7 @@
   }
 
   $searchName = null;
-  $itemQuery = "SELECT * FROM `seller_item` ORDER BY `seller_id` ASC";
+  $itemQuery = "SELECT * FROM `seller_item` ORDER BY `lot` ASC";
   if (isset($_GET['lot'])) {
       $searchName = urldecode($_GET['lot']);
       $searchName = mysqli_real_escape_string($connection, $searchName);
