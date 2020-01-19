@@ -218,9 +218,9 @@
                 <li class="collection-item">
                   <div class="row" style="height:6rem; font-size:25px;">
                     <div class="col s1">#<?php echo $item['lot']; ?></div>
-                    <div class="col s2">#<?php echo $item['item']; ?></div>
-                    <div class="col s1"><?php echo $item['count']." ".$item['unit_of_measure']; ?></div>
                     <div class="col s2"><?php echo $item['item']; ?></div>
+                    <div class="col s1"><?php echo $item['count']." ".$item['unit_of_measure']; ?></div>
+
                     <form method="post" action="index.php" class="form-edit">
                       <input class="white" type="hidden" name="edit" value="edit" />
                       <input type="hidden" name="id" value="<?php echo $bidData['id']; ?>" />
@@ -255,7 +255,7 @@
                 confirm_query($result2);
                 $item = mysqli_fetch_array($result2); ?>
                 <li class="collection-item" style="background-color:#cccccc;">
-                  <div class="row">
+                  <div class="row" style="height:6rem; font-size:25px;">
                     <div class="col s2">#<?php echo $item['lot']; ?></div>
                     <div class="col s2"><?php echo $item['count']." ".$item['unit_of_measure']; ?></div>
                     <div class="col s2"><?php echo $item['item']; ?></div>
