@@ -118,6 +118,7 @@
           $error = $result['message'];
       }
   }
+
   //Set page title
   if (isset($_GET['id'])) {
       $title = "Editing Seller";
@@ -285,7 +286,45 @@ require_once("../../includes/begin_html.php");
                       </tr>
                     </thead>
                     <tbody>
+                      <?php
+
+                            ?>
                     <?php
+                    $noBidsItems = array();
+                    $lowBidsItems = array();
+                    $goodBidsItems = array();
+
+                    $resultItem=mysqli_query($connection, $Query);
+                    confirm_query($resultItem);
+                    while ($sellerItem=mysqli_fetch_assoc($resultItem)) {
+                        $itemBids = get_item_bids($sellerItem['id']);
+                        $highestBids = get_highest_bids($sellerItem['id']);
+                        $sellerItem['high_bid'] = 0;
+                        $sellerItem['buyer_names'] = "";
+                        if (count($itemBids) < 1) {
+                            array_push($noBidsItems, $sellerItem);
+                            continue;
+                        }
+
+                        $sellerItem['high_bid'] = $highestBids[0]['bid_amount'];
+
+                        if (count($highestBids) > 0) {
+                            if ($highestBids[0]['bid_amount'] >= $sellerItem['asking']) {
+                                $names = array();
+                                foreach ($highestBids as $highestBid) {
+                                    $query="SELECT * FROM `buyer` WHERE `id` = {$highestBid['buyer_id']}";
+                                    $resultBuyer=mysqli_query($connection, $query);
+                                    confirm_query($resultBuyer);
+                                    $data = mysqli_fetch_assoc($resultBuyer);
+                                    array_push($names, ($data['first_name'] . " " . $data['last_name']));
+                                }
+                                $sellerItem['buyer_names'] = implode(" | ", $names);
+                                array_push($goodBidsItems, $sellerItem);
+                                continue;
+                            }
+                        }
+                        array_push($lowBidsItems, $sellerItem);
+                    }
                       $query = "SELECT * FROM `seller_item` WHERE `seller_id` = {$seller['id']} ORDER BY `lot` ASC";
                       $result=mysqli_query($connection, $query);
                       confirm_query($result);
@@ -297,6 +336,7 @@ require_once("../../includes/begin_html.php");
                       <td><input  type="text" class="validate" value="<?php echo number_format($item['asking'], 2); ?>"></td>
                       <td><?php echo $item['count'] . " " . $item['unit_of_measure']; ?></td>
                       <td><?php echo $item['date_created']; ?></td>
+                      <td><?php echo $item['asking']; ?></td>
                       <td class="printhide"><a  class="waves-effect waves-yellow btn-flat red-text">Save</a></td>
                       <td class="printhide"><a href="edit_sellers.php?deleteID=<?php echo $item['id']; ?>" class="waves-effect waves-yellow btn-flat red-text">Delete</a></td>
                     </tr>
