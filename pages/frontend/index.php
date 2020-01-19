@@ -257,11 +257,16 @@
                 <li class="collection-item" style="background-color:#cccccc;">
                   <div class="row" style="height:6rem; font-size:25px;">
                     <div class="col s2">#<?php echo $item['lot']; ?></div>
-                    <div class="col s2"><?php echo $item['count']." ".$item['unit_of_measure']; ?></div>
-                    <div class="col s2"><?php echo $item['item']; ?></div>
                     <div class="col s2">$<?php echo $bidData['bid_amount']; ?></div>
-                    <div class="col s2"></div>
+
+
                     </div>
+                    <div class="row" style="height:6rem; font-size:25px;">
+                    
+                      <div class="col s2"><?php echo $item['count']." ".$item['unit_of_measure']; ?></div>
+                      <div class="col s2"><?php echo $item['item']; ?></div>
+
+                      </div>
                 </li>
           <?php
             }
