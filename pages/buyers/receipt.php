@@ -45,7 +45,7 @@
             <p><?php echo $buyerData['address_1'] . " " . $buyerData['address_2'] . ", " . $buyerData['city'] . ", " . $buyerData['state'] . " " . $buyerData['zip']; ?></p>
 
             <div class="row">
-              <div class="col s12">
+              <div class="col sheet s12">
                     <div class="row">
                       <div class="col s1">Lot</div>
                       <div class="col s2">Item</div>
@@ -85,11 +85,6 @@
                                    <div class="col s2"><?php echo $itemData['count']; ?>/<?php echo $itemData['unit_of_measure']; ?></div>
                                    <div class="col s1"><?php echo $itemData['origin_state']; ?></div>
                                    <!--<td>$<?php echo $itemData['asking']; ?></td>-->
-                                   <div class="chip <?php if (count(get_seller_sold_items($seller['id'])) < 1) {
-                                          echo "red ";
-                                      } ?>"><?php if (count(get_seller_sold_items($seller['id'])) < 1) {
-                                          echo "No ";
-                                      } ?>Sale</div>
                                    <div class="col s2 right-align" <?php if ($bid['bid_amount'] < $itemData['asking']) {
                                           echo "class=\"red-text\"";
                                       } else {
