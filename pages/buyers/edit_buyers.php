@@ -193,9 +193,10 @@
                  <label for="city">City</label>
                </div>
               <div class="input-field col s3">
-                <select name="state" id="state">
-                  <?php echo echo_states($buyer['state']); ?>
-                </select>
+                <input tabindex="2"  list="items[0][origin_state]" name="items[0][origin_state]">
+              <datalist id="items[0][origin_state]">
+                <?php echo echo_states(); ?>
+              </datalist>
               </div>
              </div>
              <div class="row">
