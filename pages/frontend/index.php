@@ -163,8 +163,12 @@
 
 
      ?>
-
-   <div class="container">
+     <style>
+     html{
+       text-size:25px !important;
+     }
+</style>
+   <div class="container" style="text-size:25px;">
       <section id="content" class="">
       <div class="col 12">
         <h1><?php echo $GLOBALS['site_info']['site_name']; ?></h1>
@@ -212,13 +216,13 @@
                 confirm_query($result2);
                 $item = mysqli_fetch_array($result2); ?>
                 <li class="collection-item">
-                  <div class="row">
-                    <div class="col s2">#<?php echo $item['lot']; ?></div>
+                  <div class="row" style="height:6rem; font-size:25px;">
+                    <div class="col s1">#<?php echo $item['lot']; ?></div>
                     <div class="col s2">#<?php echo $item['item']; ?></div>
-                    <div class="col s2"><?php echo $item['count']." ".$item['unit_of_measure']; ?></div>
+                    <div class="col s1"><?php echo $item['count']." ".$item['unit_of_measure']; ?></div>
                     <div class="col s2"><?php echo $item['item']; ?></div>
                     <form method="post" action="index.php" class="form-edit">
-                      <input type="hidden" name="edit" value="edit" />
+                      <input class="white" type="hidden" name="edit" value="edit" />
                       <input type="hidden" name="id" value="<?php echo $bidData['id']; ?>" />
                       <div class="col s2">
                         <!-- <span style="display:inline-block;">&#36;</span> -->
@@ -226,6 +230,10 @@
                       </div>
                       <div class="col s2">
                         <button class="btn waves-effect waves-light blue btn-swap">Edit</button>
+
+                      </div>
+                      <div class="col s2">
+
                         <button class="btn waves-effect waves-light green hide btn-send-bid">Save</button>
                       </div>
                     </form>
