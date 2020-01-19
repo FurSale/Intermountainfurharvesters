@@ -45,7 +45,7 @@
             <p><?php echo $buyerData['address_1'] . " " . $buyerData['address_2'] . ", " . $buyerData['city'] . ", " . $buyerData['state'] . " " . $buyerData['zip']; ?></p>
 
             <div class="row">
-              <div class="col sheet s12">
+              <div class="col s12">
                     <div class="row">
                       <div class="col s1">Lot</div>
                       <div class="col s2">Item</div>
