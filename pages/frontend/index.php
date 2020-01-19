@@ -255,14 +255,14 @@
                 confirm_query($result2);
                 $item = mysqli_fetch_array($result2); ?>
                 <li class="collection-item" style="background-color:#cccccc;">
-                  <div class="row" style="height:6rem; font-size:25px;">
+                  <div class="row" style=" font-size:25px;">
                     <div class="col s2">#<?php echo $item['lot']; ?></div>
                     <div class="col s2">$<?php echo $bidData['bid_amount']; ?></div>
 
 
                     </div>
-                    <div class="row" style="height:6rem; font-size:25px;">
-                    
+                    <div class="row" style="font-size:25px;">
+
                       <div class="col s2"><?php echo $item['count']." ".$item['unit_of_measure']; ?></div>
                       <div class="col s2"><?php echo $item['item']; ?></div>
 
