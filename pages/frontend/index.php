@@ -218,15 +218,16 @@
                 <li class="collection-item">
                   <div class="row" style="height:6rem; font-size:25px;">
                     <div class="col s1">#<?php echo $item['lot']; ?></div>
-                    <div class="col s2"><?php echo $item['item']; ?></div>
+                    <div class="col s2">#<?php echo $item['item']; ?></div>
                     <div class="col s1"><?php echo $item['count']." ".$item['unit_of_measure']; ?></div>
-
+                  </div>
+                  <div class="row" style="height:6rem; font-size:25px;">
                     <form method="post" action="index.php" class="form-edit">
                       <input class="white" type="hidden" name="edit" value="edit" />
-                      <input type="hidden" name="id" value="<?php echo $bidData['id']; ?>" />
+                      <input class="white" type="hidden" name="id" value="<?php echo $bidData['id']; ?>" />
                       <div class="col s2">
                         <!-- <span style="display:inline-block;">&#36;</span> -->
-                        <input value="<?php echo $bidData['bid_amount']; ?>" name="bid_amount" type="number" class="validate text-bid-amount" disabled>
+                        <input value="<?php echo $bidData['bid_amount']; ?>" name="bid_amount" type="number" class="validate text-bid-amount white-text" disabled>
                       </div>
                       <div class="col s2">
                         <button class="btn waves-effect waves-light blue btn-swap">Edit</button>
@@ -254,19 +255,16 @@
                 $result2=mysqli_query($connection, $query);
                 confirm_query($result2);
                 $item = mysqli_fetch_array($result2); ?>
-                <li class="collection-item" style="background-color:#cccccc;">
-                  <div class="row" style="height:6rem; font-size:25px;">
+                <li class="collection-item green">
+                  <div class="row">
                     <div class="col s2">#<?php echo $item['lot']; ?></div>
+                    <div class="col s2"><?php echo $item['count']." ".$item['unit_of_measure']; ?></div>
+                  </div>
+                  <div class="row">
+                    <div class="col s2"><?php echo $item['item']; ?></div>
                     <div class="col s2">$<?php echo $bidData['bid_amount']; ?></div>
-
-
+                    <div class="col s2"></div>
                     </div>
-                    <div class="row" style="height:6rem; font-size:25px;">
-
-                      <div class="col s2"><?php echo $item['count']." ".$item['unit_of_measure']; ?></div>
-                      <div class="col s2"><?php echo $item['item']; ?></div>
-
-                      </div>
                 </li>
           <?php
             }
