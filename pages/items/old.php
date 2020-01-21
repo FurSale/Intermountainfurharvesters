@@ -3,7 +3,7 @@
   require_once("../../includes/functions.php");
 $query="SELECT * FROM 'seller_item'}";
   //Fetch 3 rows from actor table
-    $result =$connection->query("SELECT item, count FROM seller_item");
+    $result =$connection->query("SELECT item, count FROM seller_item ORDER BY `item` ASC");
 
   //Initialize array variable
     $dbdata = array();
