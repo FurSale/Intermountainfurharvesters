@@ -113,16 +113,11 @@
                               $query="SELECT * FROM `seller` WHERE id = {$sellerItem['seller_id']}";
                               $result2=mysqli_query($connection, $query);
                               $sellerData=mysqli_fetch_array($result2); ?>
-        <?php echo $sellerItem['lot']; ?>
-                          <?php echo $sellerItem['item']; ?>,
-
-                          <?php echo $sellerItem['count']; ?>/<?php echo $sellerItem['unit_of_measure']; ?>,
-
                           <?php if ($sellerItem['high_bid'] > 0) {
-                                  echo "$".$sellerItem['high_bid'];
+                                  echo $sellerItem['item'], ",",$sellerItem['count'],",","$".$sellerItem['high_bid'],"<br>";
                               } else {
-                                  echo "N/A";
-                              } ?><br>
+                                  echo "N/A","<br>";
+                              } ?>
                         <?php
                           }
                       ?>
