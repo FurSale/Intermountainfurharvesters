@@ -70,15 +70,40 @@ require_once("../../includes/db_connection.php");
   }
 
      ?>
-<!-- START CONTENT -->
 
 				<?php
                           $result=mysqli_query($connection, $sellerQuery);
                           confirm_query($result);
                           while ($seller=mysqli_fetch_array($result)) {
                               ?>
+															<?php echo $seller['last_name'] . ", " . $seller['first_name']; ?>
+<?php echo $seller['address_1'] . " " . $seller['address_1'] . ", " . $seller['city'] . ", " . $seller['state'] . " " . $seller['zip']; ?>
 
-							<?php echo $seller['last_name'] . ", " . $seller['first_name'] . "," . $seller['address_1'] . " " . $seller['address_1'] . ", " . $seller['city'] . " " .  $seller['state']  . " " . $seller['zip'] . ", " . "$ " . number_format($subtotal - (($seller['commission']/100)* $subtotal), 2) . "<br>"; ?>
+
+								<?php
+                                  $subtotal = 0;
+                              $query = "SELECT * FROM `seller_item` WHERE `seller_id` = {$seller['id']}";
+                              $result2=mysqli_query($connection, $query);
+                              confirm_query($result2);
+                              //Check each of the buyer's bid to see if it's the winning one
+                              while ($itemData=mysqli_fetch_array($result2)) {
+                                  //Get first record of the highest bid in case of tie bids
+                                  $query = "SELECT * FROM `bid` WHERE `seller_item_id` = {$itemData['id']} AND `bid_status` = 'Confirmed' ORDER BY `bid_amount` DESC, `DATE_CREATED` ASC LIMIT 1";
+                                  $result3=mysqli_query($connection, $query);
+                                  confirm_query($result3);
+                                  if (mysqli_num_rows($result3) > 0) {
+                                      $bid=mysqli_fetch_array($result3);
+                                      $amount = 0;
+                                      if ($bid['bid_amount'] >= $itemData['asking']) {
+                                          $amount = $bid['bid_amount'];
+                                      }
+                                      $subtotal += $amount; ?>
+
+								<?php
+                                  }
+                              } ?>
+
+									<?php echo "$" . number_format($subtotal - (($seller['commission']/100)* $subtotal), 2) . "<br>"; ?>
 
 				<?php
                           }
