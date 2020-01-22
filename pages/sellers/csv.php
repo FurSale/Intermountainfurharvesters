@@ -77,7 +77,7 @@ require_once("../../includes/db_connection.php");
                           while ($seller=mysqli_fetch_array($result)) {
                               ?>
 															<?php echo $seller['last_name'] . ", " . $seller['first_name'] . ", "; ?>
-<?php echo $seller['address_1'] . " " . $seller['address_2'] . ", " . $seller['city'] . " " . $seller['state'] . " " . $seller['zip']; ?>
+<?php echo $seller['address_1'] . " " . $seller['address_2'] . ", " . $seller['city'] . " " . $seller['state'] . " " . $seller['zip'] . ","; ?>
 
 
 								<?php
@@ -103,7 +103,7 @@ require_once("../../includes/db_connection.php");
                                   }
                               } ?>
 
-									<?php echo "$" . $subtotal - (($seller['commission']/100)* $subtotal), 20 . "<br>"; ?>
+									<?php echo "$" . number_format($subtotal - (($seller['commission']/100)* $subtotal), 2, '.', '') . "<br>"; ?>
 
 				<?php
                           }
