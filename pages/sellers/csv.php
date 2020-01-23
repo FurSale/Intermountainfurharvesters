@@ -7,10 +7,7 @@ require_once("../../includes/db_connection.php");
   require_once("../../includes/functions.php");
 
   verify_logged_in(array("administrator"));
-  header("Content-type: text/csv");
-  header("Content-Disposition: attachment; filename=Sellers.csv");
-  header("Pragma: no-cache");
-  header("Expires: 0");
+
   function Delete()
   {
       global $connection;
@@ -79,7 +76,8 @@ require_once("../../includes/db_connection.php");
                           confirm_query($result);
                           while ($seller=mysqli_fetch_array($result)) {
                               ?>
-
+															<?php echo $seller['last_name'] . ", " . $seller['first_name'] . ", "; ?>
+<?php echo $seller['address_1'] . " " . $seller['address_2'] . ", " . $seller['city'] . " " . $seller['state'] . " " . $seller['zip'] . ","; ?>
 
 
 								<?php
@@ -105,7 +103,7 @@ require_once("../../includes/db_connection.php");
                                   }
                               } ?>
 
-									<?php echo $seller['commission'] . "<br>"; ?>
+									<?php echo "$" . number_format($subtotal - (($seller['commission']/100)* $subtotal), 2, '.', '') ; ?>
 
 				<?php
                           }

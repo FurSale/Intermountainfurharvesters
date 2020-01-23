@@ -117,9 +117,9 @@
                               $result2=mysqli_query($connection, $query);
                               $sellerData=mysqli_fetch_array($result2); ?>
                           <?php if ($sellerItem['high_bid'] > 0) {
-                                  echo $sellerItem['item'], ",",$sellerItem['count'],",","$".$sellerItem['high_bid'],"<br>";
+                                  echo $sellerItem['item'], ",",$sellerItem['count'],",","$".$sellerItem['high_bid'];
                               } else {
-                                  echo "N/A","<br>";
+                                  echo "N/A";
                               } ?>
                         <?php
                           }
