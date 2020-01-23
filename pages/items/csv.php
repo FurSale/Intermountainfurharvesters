@@ -7,10 +7,7 @@
   require_once("../../includes/functions.php");
 
   verify_logged_in(array("administrator"));
-  header("Content-type: text/csv");
-  header("Content-Disposition: attachment; filename=items.csv");
-  header("Pragma: no-cache");
-  header("Expires: 0");
+
   function Delete()
   {
       global $connection;
@@ -117,9 +114,9 @@
                               $result2=mysqli_query($connection, $query);
                               $sellerData=mysqli_fetch_array($result2); ?>
                           <?php if ($sellerItem['high_bid'] > 0) {
-                                  echo $sellerItem['item'], ",",$sellerItem['count'],",","$".$sellerItem['high_bid'];
+                                  echo $sellerItem['item'], ",",$sellerItem['count'],",","$".$sellerItem['high_bid'],"<br>";
                               } else {
-                                  echo "N/A";
+                                  echo "N/A","<br>";
                               } ?>
                         <?php
                           }
