@@ -7,7 +7,10 @@ require_once("../../includes/db_connection.php");
   require_once("../../includes/functions.php");
 
   verify_logged_in(array("administrator"));
-
+  header("Content-type: text/csv");
+  header("Content-Disposition: attachment; filename=Sellers.csv");
+  header("Pragma: no-cache");
+  header("Expires: 0");
   function Delete()
   {
       global $connection;
