@@ -57,7 +57,7 @@
       `first_name` = '{$data['first_name']}', `last_name`='{$data['last_name']}', `address_1`='{$data['address_1']}',
       `address_2` = '{$data['address_2']}', `city`='{$data['city']}', `state`='{$data['state']}', `zip`='{$data['zip']}',
       `phone` = '{$data['phone']}', `email`='{$data['email']}', `commission`={$data['commission']}, `trapper_id`='{$data['trapper_id']}'
-      WHERE `id` = {$data['id']}";
+      WHERE `id` = {$data['lot']}";
       }
       $result = mysqli_query($connection, $query);
       confirm_query($result);

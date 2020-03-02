@@ -33,8 +33,7 @@ if (isset($_POST['submit'])) {
         $query = "";
         //Set a new one time pass if user is a buyer
         if ($found_user['role'] == "buyer") {
-            $randomPass = random_generator(6, "0123456789");
-            $query="UPDATE `user` SET `password_one_time` = '{$randomPass}', `date_last_logged_in` = '{$date}'
+            $query="UPDATE `user` SET `date_last_logged_in` = '{$date}'
 			WHERE `id` = {$_SESSION['user_id']}";
         } else {
             $query="UPDATE `user` SET `date_last_logged_in` = '{$date}'
@@ -46,6 +45,9 @@ if (isset($_POST['submit'])) {
 
         if ($found_user['role'] == "buyer") {
             header("Location: frontend/index.php");
+        }
+        if ($found_user['role'] == "seller") {
+            header("Location: items/list_items.php");
         } else {
             header("Location: sellers/list_sellers.php");
         }

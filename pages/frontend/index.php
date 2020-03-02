@@ -211,7 +211,7 @@
             $result=mysqli_query($connection, $query);
             //confirm_query($result);
             while ($bidData=mysqli_fetch_array($result)) {
-                $query="SELECT * FROM `seller_item` WHERE `id` = '{$bidData['seller_item_id']}'";
+                $query="SELECT * FROM `seller_item` WHERE `id` = '{$bidData['seller_item_id']}' ORDER BY 'id' ASC";
                 $result2=mysqli_query($connection, $query);
                 confirm_query($result2);
                 $item = mysqli_fetch_array($result2); ?>

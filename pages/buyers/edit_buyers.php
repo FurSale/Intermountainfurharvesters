@@ -69,7 +69,7 @@
               //Generate a random number for a OTP
               $randomPass = random_generator(6, "0123456789");
               $query = "INSERT INTO `user` (`username`, `password_one_time`, `deletable`, `role`, `date_created`)
-        VALUES ('{$newID}', '{$randomPass}', 1, 'buyer', '{$date}')";
+        VALUES ('{$data['first_name']}', '{$randomPass}', 1, 'buyer', '{$date}')";
               $result = mysqli_query($connection, $query);
 
               $success = "Buyer added";
@@ -93,7 +93,7 @@
 
   //Set page title
   if (isset($_GET['id'])) {
-      $title = "Editing Buyer";
+      $title = "Editing" ." ".$buyer['company_name'];
   } else {
       $title = "Adding Buyer";
   }
@@ -115,7 +115,7 @@
         <div class="row">
           <div class="col s3">
         <?php
-                echo "<span class \"nav-title\">Login ID: ".$buyer['id']." One Time password: ";
+                echo "<span class \"nav-title\">Login ID: ".$buyer['id']." Login Code: ";
                 $query="SELECT * FROM `user` WHERE `username` = '{$buyer['id']}'";
                 $result2=mysqli_query($connection, $query);
                 confirm_query($result2);
@@ -143,6 +143,12 @@
       </div>
       </div>
         <div class="row">
+          <div id="locationField">
+  <input id="autocomplete"
+         placeholder="Enter your address"
+         onFocus="geolocate()"
+         type="text"/>
+</div>
            <form method="post" class="col s12">
            <input id="id" name="id" type="hidden" value="<?php echo $buyer['id']; ?>">
              <div class="row">
@@ -178,7 +184,7 @@
                  <label for="email">Email</label>
                </div>
              </div>
-             <div class="row">
+             <div class="row" id="address">
                <div class="input-field col s3">
                  <i class="material-icons prefix">home</i>
                  <input placeholder="Address 1" id="address_1" name="address_1" type="text" class="validate" value="<?php echo $buyer['address_1']; ?>">
@@ -362,6 +368,79 @@
 		});
 	});
 	</script>
+  <script>
+// This sample uses the Autocomplete widget to help the user select a
+// place, then it retrieves the address components associated with that
+// place, and then it populates the form fields with those details.
+// This sample requires the Places library. Include the libraries=places
+// parameter when you first load the API. For example:
+// <script
+// src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+var placeSearch, autocomplete;
+
+var componentForm = {
+street_number: 'short_name',
+route: 'long_name',
+city: 'long_name',
+address_1: 'short_name',
+country: 'long_name',
+zip: 'short_name'
+};
+
+function initAutocomplete() {
+// Create the autocomplete object, restricting the search predictions to
+// geographical location types.
+autocomplete = new google.maps.places.Autocomplete(
+  document.getElementById('autocomplete'), {types: ['geocode']});
+
+// Avoid paying for data that you don't need by restricting the set of
+// place fields that are returned to just the address components.
+autocomplete.setFields(['address_component']);
+
+// When the user selects an address from the drop-down, populate the
+// address fields in the form.
+autocomplete.addListener('place_changed', fillInAddress);
+}
+
+function fillInAddress() {
+// Get the place details from the autocomplete object.
+var place = autocomplete.getPlace();
+
+for (var component in componentForm) {
+document.getElementById(component).value = '';
+document.getElementById(component).disabled = false;
+}
+
+// Get each component of the address from the place details,
+// and then fill-in the corresponding field on the form.
+for (var i = 0; i < place.address_components.length; i++) {
+var addressType = place.address_components[i].types[0];
+if (componentForm[addressType]) {
+  var val = place.address_components[i][componentForm[addressType]];
+  document.getElementById(addressType).value = val;
+}
+}
+}
+
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+if (navigator.geolocation) {
+navigator.geolocation.getCurrentPosition(function(position) {
+  var geolocation = {
+    lat: position.coords.latitude,
+    lng: position.coords.longitude
+  };
+  var circle = new google.maps.Circle(
+      {center: geolocation, radius: position.coords.accuracy});
+  autocomplete.setBounds(circle.getBounds());
+});
+}
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzYLfXa3YJ9MgjApEJExSrICCaUPRgfkU&libraries=places&callback=initAutocomplete"
+    async defer></script>
  </main>
 <?php
 include '../../includes/footer.php';

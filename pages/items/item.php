@@ -121,11 +121,18 @@
       }
   }
 
+
     $pgsettings = array(
         "title" => "Edit Items",
         "icon" => "icon-newspaper"
     );
     $nav = ("1");
+    $itemQuery = "SELECT * FROM `seller_item` WHERE `id`={$id}";
+    if (isset($_GET['lot'])) {
+        $searchName = urldecode($_GET['lot']);
+        $searchName = mysqli_real_escape_string($connection, $searchName);
+        $itemQuery = "SELECT * FROM `seller_item` WHERE `lot` LIKE '%{$searchName}%' ORDER BY `item_type` DESC";
+    }
 
     require_once("../../includes/begin_html.php");
     require_once("../../includes/nav.php");
@@ -174,9 +181,44 @@
         <?php echo echo_states(); ?>
       </datalist>
     </div>
-    <div class="input-field col s1">
-      <input name="asking"  min="0" class="validate" value="<?php echo $item['asking']; ?>">
+    <?php
+        $noBidsItems = array();
+        $lowBidsItems = array();
+        $goodBidsItems = array();
+
+        $resultItem=mysqli_query($connection, $itemQuery);
+        confirm_query($resultItem);
+        while ($sellerItem=mysqli_fetch_assoc($resultItem)) {
+            $itemBids = get_item_bids($sellerItem['id']);
+            $highestBids = get_highest_bids($sellerItem['id']);
+            $sellerItem['high_bid'] = 0;
+            $sellerItem['buyer_names'] = "";
+            if (count($itemBids) < 1) {
+                array_push($noBidsItems, $sellerItem);
+                continue;
+            }
+
+            $sellerItem['high_bid'] = $highestBids[0]['bid_amount'];
+
+            // print_r($noBidsItems);
+            // if(count($noBidsItems) > 0){
+            //   array_multisort($noBidsItems['lot'], SORT_ASC, SORT_REGULAR);
+            // }
+            // if(count($lowBidsItems) > 0){
+            //   array_multisort($lowBidsItems['lot'], SORT_ASC, SORT_REGULAR);
+            // }
+            // if(count($goodBidsItems) > 0){
+            //   array_multisort($goodBidsItems['lot'], SORT_ASC, SORT_REGULAR);
+            // }
+
+            $itemArr = array_merge($noBidsItems, $lowBidsItems, $goodBidsItems); ?>
+    <div class="input-field col s2">
+      <?php echo $item['asking']; ?>
+      <input name="asking"  min="0" class="validate" value="<?php echo $sellerItem['high_bid']; ?>">
     </div>
+    <?php
+        }
+  ?>
     <div class="col s3"><input type="submit" name="submit" class="waves-effect waves-light btn submit" value="Save"></input></div>
   </form>
 </div>
@@ -191,18 +233,24 @@
 </div>
 <?php
 foreach ($itemBids as $bid) {
-              $query="SELECT * FROM `buyer` WHERE `id`={$bid['buyer_id']}";
-              $result=mysqli_query($connection, $query);
-              confirm_query($result);
-              $buyer=mysqli_fetch_array($result); ?>
+      $query="SELECT * FROM `buyer` WHERE `id`={$bid['buyer_id']}";
+      $result=mysqli_query($connection, $query);
+      confirm_query($result);
+      $buyer=mysqli_fetch_array($result); ?>
 <div class="row">
   <div class="col s2"><?php echo $buyer['first_name']." ".$buyer['last_name']; ?></div>
-  <div class="col s2"><?php echo $bid['bid_amount']; ?></div>
+  <div class="col s2 <?php if ($sellerItem['high_bid'] > 0) {
+          if ($sellerItem['high_bid'] >= $sellerItem['asking']) {
+              echo "green";
+          } else {
+              echo "red";
+          }
+      } ?>"><?php echo $bid['bid_amount']; ?></div>
   <div class="col s2"><?php echo format_date_timezone($bid['date_created']); ?></div>
   <div class="col s2"><a href="item.php?id=<?php echo $item['id']; ?>&deleteBid=<?php echo $bid['id']; ?>" class="btn waves-effect waves-light red" id="deletebid1"><i class="material-icons">close</i></a></div>
 </div>
 <?php
-          }
+  }
 ?>
 
 </section>

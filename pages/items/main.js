@@ -1,6 +1,6 @@
 const _buttons = {};
 const _presentation = {
-  request: window.PresentationRequest ? new PresentationRequest('./viewer.html') : null,
+  request: window.PresentationRequest ? new PresentationRequest('./list_items.php') : null,
   connection: null
 };
 

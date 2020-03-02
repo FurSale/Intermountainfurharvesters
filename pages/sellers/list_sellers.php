@@ -136,8 +136,8 @@ require_once("../../includes/db_connection.php");
 									<div class="col s2">Commission</div>
 								</div>
 
-								<?php
-                                  $subtotal = 0;
+                <?php
+                                          $subtotal = 0;
                               $query = "SELECT * FROM `seller_item` WHERE `seller_id` = {$seller['id']}";
                               $result2=mysqli_query($connection, $query);
                               confirm_query($result2);
@@ -147,7 +147,7 @@ require_once("../../includes/db_connection.php");
                                   $query = "SELECT * FROM `bid` WHERE `seller_item_id` = {$itemData['id']} AND `bid_status` = 'Confirmed' ORDER BY `bid_amount` DESC, `DATE_CREATED` ASC LIMIT 1";
                                   $result3=mysqli_query($connection, $query);
                                   confirm_query($result3);
-                                  if (mysqli_num_rows($result3) > 0) {
+                                  if (mysqli_num_rows($result3) >= 0) {
                                       $bid=mysqli_fetch_array($result3);
                                       $amount = 0;
                                       if ($bid['bid_amount'] >= $itemData['asking']) {

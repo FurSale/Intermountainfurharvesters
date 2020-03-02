@@ -57,7 +57,10 @@
         $itemQuery = "SELECT * FROM `seller_item` WHERE `item` = '{$value['name']}'";
         $result = mysqli_query($connection, $itemQuery);
         confirm_query($result);
-        $offered = mysqli_num_rows($result);
+        $totalcount = "SELECT SUM(count) AS value_sum FROM seller_item WHERE `item` = '{$value['name']}'";
+        $result4 = mysqli_query($connection, $totalcount);
+        $row = mysqli_fetch_assoc($result4);
+        $offered = $row['value_sum'];
         $averageArr = [];
         $average = 0;
         $highest = 0;
@@ -68,13 +71,12 @@
             $bidQuery = "SELECT * FROM `bid` WHERE bid_status = 'Confirmed' AND `seller_item_id` = {$sellerItem['id']} ORDER BY `bid_amount` DESC LIMIT 1";
             $result2 = mysqli_query($connection, $bidQuery);
             confirm_query($result2);
-            if (mysqli_num_rows($result2) > 0) {
+            if ($result2 >= 0) {
                 $bid=mysqli_fetch_array($result2);
                 //Skip if highest bid is less than asking (not sold)
                 if ($bid['bid_amount'] < $sellerItem['asking']) {
                     continue;
                 }
-          
                 $saleTotal += $bid['bid_amount'];
                 array_push($averageArr, $bid['bid_amount']);
                 if ($bid['bid_amount'] > $highest) {
@@ -94,6 +96,7 @@
         <td>$<?php echo number_format($average, 2); ?></td>
         <td>$<?php echo number_format($highest, 2); ?></td>
         <td>$<?php echo number_format($saleTotal, 2); ?></td>
+        <td><?php echo $amountSold; ?></td>
         <td><?php if ($offered > 0) {
             echo round(($amountSold / $offered) * 100, 2)."%";
         } else {

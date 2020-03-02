@@ -23,7 +23,7 @@
     <link media="screen" href="../../css/materialize.css" type="text/css" rel="stylesheet">
     <link media="screen" href="../../css/style.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" media="print" href="../../css/paper.css">
-    <link rel="stylesheet"  href="../../css/print1.css">
+
 
     <!-- Custome CSS-->
     <link href="../../css/custom/custom.css" type="text/css" rel="stylesheet">
@@ -31,12 +31,14 @@
     <link href="../../vendors/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet">
     <link href="../../vendors/flag-icon/css/flag-icon.min.css" type="text/css" rel="stylesheet">
     <!-- jQuery Library -->
-    <script type="text/javascript" src="../../vendors/jquery-3.2.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../../js/init.js"></script>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
   <style>@page { size: letter }</style>
+
   </head>
   <body class="layout-dark letter">
     <!-- Start Page Loading -->

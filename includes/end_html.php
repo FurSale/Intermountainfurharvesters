@@ -82,33 +82,35 @@ async function install() {
       $(document).ready(function(){
       <?php
       //Display messages
-      if(isset($error)&&!is_array($error)){
+      if (isset($error)&&!is_array($error)) {
           echo "M.toast({html:'".$error."'});";
-      }elseif(isset($error)&&is_array($error)&&!empty($error)){
+      } elseif (isset($error)&&is_array($error)&&!empty($error)) {
           foreach ($error as $value) {
-            echo "M.toast({html:'".$value."'});";
+              echo "M.toast({html:'".$value."'});";
           }
       }
       ?>
       <?php
-      if(isset($success)&&!is_array($success)){
+      if (isset($success)&&!is_array($success)) {
           echo "M.toast({html:'".$success."'});";
-      }elseif(isset($success)&&is_array($success)&&!empty($success)){
+      } elseif (isset($success)&&is_array($success)&&!empty($success)) {
           foreach ($success as $value) {
-            echo "M.toast({html:'".$value."'});";
+              echo "M.toast({html:'".$value."'});";
           }
       }
       ?>
       <?php
-      if(isset($message)&&!is_array($message)){
+      if (isset($message)&&!is_array($message)) {
           echo "M.toast({html:'".$message."'});";
-      }elseif(isset($message)&&is_array($message)&&!empty($message)){
+      } elseif (isset($message)&&is_array($message)&&!empty($message)) {
           foreach ($message as $value) {
-            echo "M.toast({html:'".$value."'});";
+              echo "M.toast({html:'".$value."'});";
           }
       }
       ?>
     });
+    $(".dropdown-trigger").dropdown();
     </script>
+    <script src="../../js/printThis.js"></script>
   </body>
 </html>

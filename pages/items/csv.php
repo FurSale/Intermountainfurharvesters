@@ -47,18 +47,15 @@
   }
 
   $searchName = null;
-  $itemQuery = "SELECT * FROM `seller_item` ORDER BY `lot` ASC";
-  if (isset($_GET['lot'])) {
-      $searchName = urldecode($_GET['lot']);
-      $searchName = mysqli_real_escape_string($connection, $searchName);
-      $itemQuery = "SELECT * FROM `seller_item` WHERE `lot` LIKE '%{$searchName}%' ORDER BY `item_type` DESC";
-  }
+  $itemQuery = "SELECT * FROM `seller_item` ";
+
 
 
 
    ?>        <!-- START CONTENT -->
 
-
+Type,Count,Price
+<br/>
                       <?php
                           $noBidsItems = array();
                           $lowBidsItems = array();
@@ -107,10 +104,10 @@
                           //   array_multisort($goodBidsItems['lot'], SORT_ASC, SORT_REGULAR);
                           // }
 
-                          $itemArr = array_merge($noBidsItems, $lowBidsItems, $goodBidsItems);
+                          $itemArr = array_merge($goodBidsItems);
 
                           foreach ($itemArr as $sellerItem) {
-                              $query="SELECT * FROM `seller` WHERE id = {$sellerItem['seller_id']}";
+                              $query="SELECT * FROM `seller_item` ORDER BY `item` DESC";
                               $result2=mysqli_query($connection, $query);
                               $sellerData=mysqli_fetch_array($result2); ?>
                           <?php if ($sellerItem['high_bid'] > 0) {

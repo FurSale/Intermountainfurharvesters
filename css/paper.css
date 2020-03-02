@@ -1,31 +1,13 @@
 
-@page { margin: 0 }
+
 body { margin: 0 }
 .sheet {
   margin: 0;
   overflow: hidden;
   position: relative;
   box-sizing: border-box;
-  page-break-after: always;
+  page-break-before: always;
 }
-
-/** Paper sizes **/
-body.A3               .sheet { width: 297mm; height: 419mm }
-body.A3.landscape     .sheet { width: 420mm; height: 296mm }
-body.A4               .sheet { width: 210mm; height: 296mm }
-body.A4.landscape     .sheet { width: 297mm; height: 209mm }
-body.A5               .sheet { width: 148mm; height: 209mm }
-body.A5.landscape     .sheet { width: 210mm; height: 147mm }
-body.letter           .sheet { width: 216mm; height: 279mm }
-body.letter.landscape .sheet { width: 280mm; height: 215mm }
-body.legal            .sheet { width: 216mm; height: 356mm }
-body.legal.landscape  .sheet { width: 357mm; height: 215mm }
-
-/** Padding area **/
-.sheet.padding-10mm { padding: 10mm }
-.sheet.padding-15mm { padding: 15mm }
-.sheet.padding-20mm { padding: 20mm }
-.sheet.padding-25mm { padding: 25mm }
 
 /** For screen preview **/
 @media screen {
@@ -38,15 +20,46 @@ body.legal.landscape  .sheet { width: 357mm; height: 215mm }
 }
 
 /** Fix for Chrome issue #273306 **/
-@media print {
-           body.A3.landscape { width: 420mm }
-  body.A3, body.A4.landscape { width: 297mm }
-  body.A4, body.A5.landscape { width: 210mm }
-  body.A5                    { width: 148mm }
-  body.letter, body.legal    { width: 216mm }
-  body.letter.landscape      { width: 280mm }
-  body.legal.landscape       { width: 357mm }
-}
+
+  /*
+  	 CSS-Tricks Example
+  	 by Chris Coyier
+  	 http://css-tricks.com
+  */
+
+  * { margin: 0; padding: 0; }
+
+
+
+  table { border-collapse: collapse; }
+  table td, table th { border: 1px solid black; padding: 5px; }
+
+
+  #address { width: 250px; height: 150px; float: left; }
+  #customer { overflow: hidden; }
+
+  #logo #image { text-align: right; float: right; position: relative; margin-top: 25px; border: 1px solid #fff;  max-height: 100px; width: auto; overflow: hidden; }
+  #logoctr { display: none; }
+#customer-title { font-size: 20px; font-weight: bold; float: left; }
+
+  #meta { margin-top: 1px; width: 300px; float: right; }
+  #meta td { text-align: right;  }
+  #meta td.meta-head { text-align: left; }
+  #meta td textarea { width: 100%; height: 20px; text-align: right; }
+
+  #items { clear: both; width: 100%; margin: 30px 0 0 0; border: 1px solid black; }
+
+  #items textarea { width: 80px; height: 50px; }
+  #items tr.item-row td { vertical-align: top; }
+  #items td.description { width: 300px; }
+  #items td.item-name { width: 175px; }
+  #items td.description textarea, #items td.item-name textarea { width: 100%; }
+  #items td.total-line { border-right: 0; text-align: right; }
+  #items td.total-value { border-left: 0; padding: 10px; }
+  #items td.total-value textarea { height: 20px; background: none; }
+
+  #items td.blank { border: 0; }
+
 body, .printhide{
     display: none;
     visibility: hidden;
@@ -88,7 +101,8 @@ input {
 .row {
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 20px;
+padding: 5px;
+  border: 1px solid black;
 }
 
 .row:after {
@@ -334,4 +348,5 @@ input {
 
 .row .col.push-s12 {
   left: 100%;
+}
 }

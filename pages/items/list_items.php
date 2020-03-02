@@ -6,6 +6,9 @@
     );
   require_once("../../includes/functions.php");
 
+  require_once '../../vendor/autoload.php';
+  use YoHang88\LetterAvatar\LetterAvatar;
+
   verify_logged_in(array("administrator"));
 
   function Delete()
@@ -51,7 +54,7 @@
   if (isset($_GET['lot'])) {
       $searchName = urldecode($_GET['lot']);
       $searchName = mysqli_real_escape_string($connection, $searchName);
-      $itemQuery = "SELECT * FROM `seller_item` WHERE `lot` LIKE '%{$searchName}%' ORDER BY `date_created` DESC";
+      $itemQuery = "SELECT * FROM `seller_item` WHERE `lot` LIKE '%{$searchName}%' ORDER BY `item_type` DESC";
   }
 
   require_once("../../includes/begin_html.php");
@@ -62,13 +65,14 @@
          <?php
         require_once("../../includes/crumbs.php");
          ?>
+         <script src="viewer.js"></script>
       <!--start container-->
       <div class="container print">
 
           <!--Responsive Table-->
           <div id="responsive-table">
             <div class="row">
-            <div class="col s12 m8 offset-m2">
+            <div class="col s12">
             <div class="row printhide">
               <div class="input-field col s12">
                 <input class="searchbar" placeholder="Lot #" id="search-query" type="text" value="<?php echo $searchName; ?>">
@@ -82,8 +86,8 @@
                       <div class="col s1 printhide">Seller</div>
                       <div class="col s1">Lot</div>
                       <div class="col s2">Item</div>
-                      <div class="col s2">Count</div>
-                      <div class="col s2 printhide">Price</div>
+                      <div class="col s1">Count</div>
+                      <div class="col s1 printhide">Price</div>
                       <div class="col s2">Bid</div>
                       <div class="col s2">Buyer</div>
                     </div>
@@ -115,7 +119,7 @@
                                           $resultBuyer=mysqli_query($connection, $query);
                                           confirm_query($resultBuyer);
                                           $data = mysqli_fetch_assoc($resultBuyer);
-                                          array_push($names, ($data['first_name'] . " " . $data['last_name']));
+                                          array_push($names, ($data['first_name'] . "+" . $data['last_name']));
                                       }
                                       $sellerItem['buyer_names'] = implode(" | ", $names);
                                       array_push($goodBidsItems, $sellerItem);
@@ -145,27 +149,43 @@
                        <div  class="row section card-panel <?php if ($sellerItem['high_bid'] > 0) {
                                   if ($sellerItem['high_bid'] >= $sellerItem['asking']) {
                                       echo "green";
+                                  } elseif ($sellerItem['high_bid'] < $sellerItem['asking']) {
+                                      echo "yellow";
                                   } else {
                                       echo "red";
                                   }
                               } ?> darken-2">
-                         <div class="col s1 printhide" ><a href="../sellers/edit_sellers.php?id=<?php echo $sellerData['id']; ?>" class="tooltipped" data-position="bottom" data-tooltip="<?php echo $sellerData['first_name'] . " " . $sellerData['last_name']; ?>"><div class="chip white black-text"><?php echo $sellerData['id']; ?></div></a></div>
+                         <div class="col s1 printhide" ><a href="../sellers/edit_sellers.php?id=<?php echo $sellerData['id']; ?>" class="tooltipped" data-position="bottom" data-tooltip="<?php echo $sellerData['first_name'] . " " . $sellerData['last_name']; ?>"><img class="responsive-img" src="https://ui-avatars.com/api/?rounded=true&size=32&name=<?php echo $sellerData['first_name'] . "+" . $sellerData['last_name']; ?>"></a></div>
                           <div class="col s1"><a href="item.php?id=<?php echo $sellerItem['id']; ?>"><?php echo $sellerItem['lot']; ?></a></div>
                           <div class="col s2"><?php echo $sellerItem['item']; ?></div>
 
-                          <div class="col s2"><?php echo $sellerItem['count']; ?>/<?php echo $sellerItem['unit_of_measure']; ?></div>
-                          <div class="col s2 printhide"><?php echo "$".$sellerItem['asking']; ?></div>
-                          <div class="col s2" ><?php if ($sellerItem['high_bid'] > 0) {
-                                  echo "$".$sellerItem['high_bid'];
-                              } else {
-                                  echo "N/A";
+                          <div class="col s1"><?php echo $sellerItem['count'] + 0; ?>/<?php echo $sellerItem['unit_of_measure']; ?></div>
+                          <div class="col s1 printhide" contenteditable='true'>$<?php echo $sellerItem['asking'] + 0; ?></div>
+                          <div class="col s1" ><?php if ($sellerItem['high_bid'] > 0) {
+                                  echo "$".number_format($sellerItem['high_bid'], 2);
                               } ?></div>
-                          <div class="col s2" ><div class="chip black-text"><?php if ($sellerItem['buyer_names'] != "") {
-                                  echo $sellerItem['buyer_names'];
-                              } else {
-                                  echo "N/A";
-                              } ?></div></div>
-                          <div class="col s1 printhide"><a href="list_items.php?deleteID=<?php echo $sellerItem['id']; ?>" class="waves-effect waves-yellow btn-flat white-text"><i class="material-icons">delete</i></a></div>
+
+                              <?php
+                              $membersQuery = "SELECT * FROM `buyer` WHERE `id` = {$highestBid['buyer_id']}";
+                              $membersResult = mysqli_query($connection, $membersQuery);
+                              while ($member = mysqli_fetch_assoc($membersResult)) {
+                                  $avatarImage = '';
+                                  if ($member['avatar']) {
+                                      $avatarImage = $member['avatar'];
+                                  } else {
+                                      $memberName = $member['first_name']." ".$member['last_name'];
+                                      $avatarImage = new LetterAvatar($memberName, 'circle', 64);
+                                  } ?>
+                          <div class="col s1" >
+                            <div class="black-text">
+                              <?php if ($sellerItem['buyer_names'] != "") {
+                                      echo  '<img class="responsive-img" src="https://ui-avatars.com/api/?rounded=true&size=32&name='.$sellerItem['buyer_names'].'">';
+                                  } ?>
+                            </div>
+                            </div>
+<?php
+                              } ?>
+                          <!--<div class="col s1 printhide"><a href="list_items.php?deleteID=<?php echo $sellerItem['id']; ?>" class="waves-effect waves-yellow btn-flat white-text"><i class="material-icons">delete</i></a></div>-->
                         </div>
                         <?php
                           }

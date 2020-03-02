@@ -24,10 +24,11 @@
   <li><a href="../../pages/sellers/list_sellers.php" data-target="dropdown1">Sellers</a></li>
   <li><a href="../../pages/buyers/list_buyers.php" data-target="dropdown2">Buyers</a></li>
   <li><a href="../../pages/items/list_items.php" data-target="dropdown3">Items</a></li>
-  <li><a href="/pages/site_settings.php" data-target="dropdown4"><i class="material-icons">settings_applications</i></a></li>
+  <li><a href="../../pages/reports/final.php" data-target="dropdown4">CSV</a></li>
+  <li><a href="/pages/site_settings.php" data-target="dropdown5"><i class="material-icons">settings_applications</i></a></li>
 </ul>
 </div>
-<div class="nav-content">
+<div class="nav-content container">
 <span class="nav-title"><?php echo $pgsettings['title']; ?></span>
   <div class="fab">
     <a class="btn-floating btn-large halfway-fab waves-effect waves-light red pulse">
@@ -38,6 +39,10 @@
       <li><a href="../../pages/buyers/edit_buyers.php?new" class="btn-floating halfwayfab blue tooltipped" data-position="bottom" data-tooltip="Buyers"><i class="material-icons">store_mall_directory</i></a></li>
       <!--<li><a href="../../pages/items/edit_items.php?new" class="btn-floating halfwayfab green tooltipped" data-position="bottom" data-tooltip="Items"><i class="material-icons left">publish</i></a></li>-->
     </ul>
+    <ul id="dropdown3" class="dropdown-content">
+  <li><a href="../../pages/items/list_nosale.php">No Sale</a></li>
+  <li><a href="../../pages/items/list_nobid.php">No Bids</a></li>
+</ul>
   </div>
 </div>
 </nav>
