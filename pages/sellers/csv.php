@@ -7,7 +7,8 @@ require_once("../../includes/db_connection.php");
   require_once("../../includes/functions.php");
 
   verify_logged_in(array("administrator"));
-
+  header('Content-Type: text/csv; charset=utf-8');
+  header('Content-Disposition: attachment; filename=data.csv');
   function Delete()
   {
       global $connection;
