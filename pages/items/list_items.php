@@ -179,13 +179,16 @@
                           <div class="col s1" >
                             <div class="black-text">
                               <?php if ($sellerItem['buyer_names'] != "") {
-                                      echo  '<img class="responsive-img" src="https://ui-avatars.com/api/?rounded=true&size=32&name='.$sellerItem['buyer_names'].'">';
+                                      echo  '<img class="responsive-img printhide" src="https://ui-avatars.com/api/?rounded=true&size=32&name='.$sellerItem['buyer_names'].'">';
                                   } ?>
                             </div>
                             </div>
 <?php
                               } ?>
-                          <!--<div class="col s1 printhide"><a href="list_items.php?deleteID=<?php echo $sellerItem['id']; ?>" class="waves-effect waves-yellow btn-flat white-text"><i class="material-icons">delete</i></a></div>-->
+                          <div class="col s4 print"><?php
+                          $Bname=$sellerItem['buyer_names'];
+                              $Bname = str_replace("+", " ", $Bname);
+                              echo $Bname; ?></div>
                         </div>
                         <?php
                           }

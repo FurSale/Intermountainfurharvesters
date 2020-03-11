@@ -152,23 +152,17 @@
                   <div id="page-wrap ">
 
 
-                		<div id="identity">
+                		<!--<div id="identity">
 
-                            <div id="address">Chris Coyier
+                            <div id="address"><?php echo $buyer['last_name'] . ", " . $buyer['first_name']; ?>
                 123 Appleseed Street
                 Appleville, WI 53719
 
                 Phone: (555) 555-5555</div>
 
-                            <div id="logo">
 
 
-
-
-                              <img id="image" src="../../images/logo.jpg" alt="logo" />
-                            </div>
-
-                		</div>
+              </div>-->
 
                 		<div style="clear:both"></div>
 

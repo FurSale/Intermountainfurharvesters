@@ -65,7 +65,7 @@ body, .printhide{
     visibility: hidden;
     margin: 0;
   }
-  body .print{
+  body .print,.printonly{
 
     visibility: visible;
     width: 100%;

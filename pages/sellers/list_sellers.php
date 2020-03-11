@@ -98,6 +98,7 @@ require_once("../../includes/db_connection.php");
 					<div class="col s2">Trapper</div>
 					<div class="col s4 offset-s3">Action</div>
 				</div>
+        <style>.rob{cursor: url(../../images/rob.png), auto;}</style>
 
 				<?php
                           $result=mysqli_query($connection, $sellerQuery);
@@ -119,7 +120,7 @@ require_once("../../includes/db_connection.php");
                                   echo "No ";
                               } ?>Sale</div>
 								<!-- <a href="../items/edit_items.php?sellerId=<?php echo $seller['id']; ?>" class="waves-effect waves-light  btn-small"><i class="material-icons">add_box</i></a> -->
-								<a class="waves-effect waves-light  btn-small blue modal-trigger" href="#modal<?php echo $seller['id']; ?>"><i class="material-icons">receipt</i></a>
+								<a class="rob waves-effect waves-light  btn-small blue modal-trigger" href="#modal<?php echo $seller['id']; ?>"><i class="material-icons">receipt</i></a>
 								<a href="list_sellers.php?deleteID=<?php echo $seller['id']; ?>" class="waves-effect waves-light red btn-small"><i class="material-icons">delete</i></a>
 							</div>
 						</div>

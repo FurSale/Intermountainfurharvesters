@@ -6,7 +6,11 @@
   General Layout Style
 ------------------------------------------*/
 
-
+.printonly{
+    display: none;
+    visibility: hidden;
+    margin: 0;
+  }
 body.layout-light .footer-copyright {
   color: rgba(0, 0, 0, 0.87);
   background: #fff;
